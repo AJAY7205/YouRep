@@ -1,11 +1,39 @@
 package com.learning.ytrep.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.learning.ytrep.payload.VideoDTO;
+import com.learning.ytrep.service.VideoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.SchemaProperty;
+import jakarta.persistence.PostRemove;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api")
 public class VideoController {
 
+    private final VideoService videoService;
+
+    public VideoController(VideoService videoService) {
+        this.videoService = videoService;
+    }
+
+    @PostMapping(
+            value = "/posting-video",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<VideoDTO> postVideo(@RequestPart("metadata") VideoDTO videoDTO,
+                                              @RequestPart("file") MultipartFile file){
+        VideoDTO videoDTO1 = videoService.postVideo(videoDTO,file);
+        return new ResponseEntity<>(videoDTO1,HttpStatus.CREATED);
+    }
 
 }
