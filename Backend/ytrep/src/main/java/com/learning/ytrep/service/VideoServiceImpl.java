@@ -28,6 +28,7 @@ public class VideoServiceImpl implements VideoService{
     public VideoDTO postVideo(VideoDTO videoDTO, MultipartFile file){
         Video video = modelMapper.map(videoDTO,Video.class);
 //        video.setVideoId(videoDTO.getVideoId());
+        video.setVideoId(null);
         video.setTitle(videoDTO.getVideoName());
         video.setStatus(VideoStatus.UPLOADED);
         video.setDescription(videoDTO.getVideoDescription());

@@ -14,7 +14,7 @@ import java.util.UUID;
 public class StorageService {
 
     @Value("${minio.bucket}")
-    private static String BUCKET_NAME;
+    private String BUCKET_NAME;
 
     private final MinioClient minIOConfig;
 
