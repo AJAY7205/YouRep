@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class VideoDTO {
     private Long videoId;
-    private String videoName;
-    private String videoDescription;
+    private String title;
+    private String description;
 //    private String videoUrl;
     private VideoStatus videoStatus;
-    private LocalDateTime videoCreateTime;
-    private LocalDateTime videoUpdateTime;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }
