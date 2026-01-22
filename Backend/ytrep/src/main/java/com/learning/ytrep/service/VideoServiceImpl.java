@@ -6,6 +6,7 @@ import com.learning.ytrep.model.Video;
 import com.learning.ytrep.model.VideoStatus;
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
+import com.learning.ytrep.payload.VideoUploadRequest;
 import com.learning.ytrep.repository.VideoRepository;
 
 import jakarta.persistence.criteria.CriteriaBuilder.In;
@@ -33,13 +34,14 @@ public class VideoServiceImpl implements VideoService{
     }
 
     @Override
-    public VideoDTO postVideo(VideoDTO videoDTO, MultipartFile file){
-        Video video = modelMapper.map(videoDTO,Video.class);
+    public VideoDTO postVideo(VideoUploadRequest videoUploadRequest, MultipartFile file){
+        // Video video = modelMapper.map(videoDTO,Video.class);
 //        video.setVideoId(videoDTO.getVideoId());
+        Video video = new Video();
         video.setVideoId(null);
-        video.setTitle(videoDTO.getTitle());
+        video.setTitle(videoUploadRequest.getTitle());
         video.setStatus(VideoStatus.UPLOADED);
-        video.setDescription(videoDTO.getDescription());
+        video.setDescription(videoUploadRequest.getDescription());
         video.setCreatedAt(LocalDateTime.now());
         video.setUpdatedAt(LocalDateTime.now());
         String object = storageService.uploadVideo(file);
@@ -68,5 +70,14 @@ public class VideoServiceImpl implements VideoService{
         }
         String objectKey = video.getObjectKey();
         return storageService.getVideoStream(objectKey);
+    }
+
+    @Override
+    public long getVideoSize(Long videoId){
+        Video video = videoRepository.findByVideoId(videoId);
+        if(video == null){
+            throw new APIException("Video Not Found");
+        }
+        return storageService.getVideoSize(video.getObjectKey());
     }
 }

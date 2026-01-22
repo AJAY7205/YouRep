@@ -53,5 +53,17 @@ public class StorageService {
             } catch (Exception e) {
             throw new RuntimeException("Failed to fetch video", e);
         }
+    }
+    public long getVideoSize(String objectKey) {
+        try {
+            return minIOConfig.statObject(
+                io.minio.StatObjectArgs.builder()
+                    .bucket(BUCKET_NAME)
+                    .object(objectKey)
+                    .build()
+            ).size();
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to get video size", e);
         }
+    }
 }

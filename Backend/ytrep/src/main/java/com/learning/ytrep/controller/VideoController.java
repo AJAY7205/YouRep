@@ -2,7 +2,10 @@ package com.learning.ytrep.controller;
 
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
+import com.learning.ytrep.payload.VideoUploadRequest;
 import com.learning.ytrep.service.VideoService;
+
+import io.micrometer.common.lang.NonNull;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -40,9 +43,9 @@ public class VideoController {
             value = "/posting-video",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
-    public ResponseEntity<String> postVideo(@RequestPart("metadata")@Parameter(content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) VideoDTO videoDTO,
+    public ResponseEntity<String> postVideo(@RequestPart("metadata")@Parameter(content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) VideoUploadRequest videoUploadRequest,
                                               @RequestPart("file") MultipartFile file){
-        VideoDTO videoDTO1 = videoService.postVideo(videoDTO,file);
+        VideoDTO videoDTO1 = videoService.postVideo(videoUploadRequest,file);
         return new ResponseEntity<>(videoDTO1.toString(),HttpStatus.CREATED);
     }
 
@@ -53,15 +56,35 @@ public class VideoController {
     }
 
     @GetMapping(value = "/videos/{videoId}/stream")
-    public ResponseEntity<Resource> streamVideo(@PathVariable Long videoId, @RequestHeader(value = "Range", required = false) String range){
-        InputStream videoStream = videoService.streamVideo(videoId);
-        InputStreamResource resource = new InputStreamResource(videoStream);
+public ResponseEntity<Resource> streamVideo(@PathVariable Long videoId, @RequestHeader(value = "Range", required = false) String range){
+    // Get video metadata first
+    VideoResponse videoResponse = videoService.getVideo(videoId);
+    VideoDTO videoDTO = videoResponse.getContent().get(0);
+    
+    // Get full video stream
+    InputStream videoStream = videoService.streamVideo(videoId);
+    InputStreamResource resource = new InputStreamResource(videoStream);
 
-        return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT)
-            .header(HttpHeaders.CONTENT_TYPE, "video/mp4")
-            .header(HttpHeaders.ACCEPT_RANGES, "bytes")
+    // Get video size from storage
+    long videoSize = videoService.getVideoSize(videoId);
+    
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.parseMediaType("video/mp4"));
+    headers.set(HttpHeaders.ACCEPT_RANGES, "bytes");
+    headers.setContentLength(videoSize);
+    
+    if (range == null) {
+        return ResponseEntity.ok()
+            .headers(headers)
             .body(resource);
     }
+    
+    // For now, return full content even with range
+    // Proper range handling requires more complex implementation
+    return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT)
+        .headers(headers)
+        .body(resource);
+}
 }
 
 
