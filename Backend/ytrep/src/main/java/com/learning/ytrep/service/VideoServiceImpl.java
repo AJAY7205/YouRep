@@ -1,15 +1,15 @@
 package com.learning.ytrep.service;
 
 import com.learning.ytrep.exception.APIException;
+import com.learning.ytrep.exception.ResourceNotFoundException;
 import com.learning.ytrep.model.Video;
+import com.learning.ytrep.model.VideoAnalytics;
 //import com.learning.ytrep.model.VideoAnalytics;
 import com.learning.ytrep.model.VideoStatus;
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
 import com.learning.ytrep.payload.VideoUploadRequest;
 import com.learning.ytrep.repository.VideoRepository;
-
-import jakarta.persistence.criteria.CriteriaBuilder.In;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -46,15 +46,22 @@ public class VideoServiceImpl implements VideoService{
         video.setUpdatedAt(LocalDateTime.now());
         String object = storageService.uploadVideo(file);
         video.setObjectKey(object);
-        videoRepository.save(video);
-        return modelMapper.map(video,VideoDTO.class);
+        VideoAnalytics videoAnalytics = new VideoAnalytics();
+        videoAnalytics.setVideo(video);
+        videoAnalytics.setViewCount(0);
+        videoAnalytics.setLikeCount(0);
+        videoAnalytics.setCreatedAt(LocalDateTime.now());
+        video.setVideoAnalytics(videoAnalytics);
+        // videoAnalytics.setVideo(video);
+        Video savedVideo = videoRepository.save(video);
+        return mapToDTO(savedVideo);
     }
 
     @Override
     public VideoResponse getVideo(Long videoId){
         Video video = videoRepository.findByVideoId(videoId);
         if(video == null){
-            throw new APIException("Video Not Found");
+            throw new ResourceNotFoundException("Video","ID",videoId.toString());
         }
         VideoDTO videoDTO = modelMapper.map(video,VideoDTO.class);
         VideoResponse videoResponse = new VideoResponse();
@@ -66,7 +73,7 @@ public class VideoServiceImpl implements VideoService{
     public InputStream streamVideo(Long videoId){
         Video video = videoRepository.findByVideoId(videoId);
         if(video == null){
-            throw new APIException("Video Not Found");
+            throw new ResourceNotFoundException("Video","ID",videoId.toString());
         }
         String objectKey = video.getObjectKey();
         return storageService.getVideoStream(objectKey);
@@ -79,5 +86,22 @@ public class VideoServiceImpl implements VideoService{
             throw new APIException("Video Not Found");
         }
         return storageService.getVideoSize(video.getObjectKey());
+    }
+    private VideoDTO mapToDTO(Video video) {
+        VideoDTO dto = new VideoDTO();
+        dto.setVideoId(video.getVideoId());
+        dto.setTitle(video.getTitle());
+        dto.setDescription(video.getDescription());
+        // dto.setObjectKey(video.getObjectKey());
+        dto.setVideoStatus(video.getStatus());
+        dto.setCreatedAt(video.getCreatedAt());
+        dto.setUpdatedAt(video.getUpdatedAt());
+        
+        if (video.getVideoAnalytics() != null) {
+            dto.setViewCount(video.getVideoAnalytics().getViewCount());
+            dto.setLikeCount(video.getVideoAnalytics().getLikeCount());
+        }
+        
+        return dto;
     }
 }

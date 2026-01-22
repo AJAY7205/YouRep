@@ -16,6 +16,8 @@ public class VideoDTO {
     private String description;
 //    private String videoUrl;
     private VideoStatus videoStatus;
+    private long viewCount;
+    private long likeCount;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

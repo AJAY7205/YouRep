@@ -36,4 +36,7 @@ public class Video {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
+    @OneToOne(mappedBy = "video", cascade = CascadeType.ALL,fetch =  FetchType.LAZY,orphanRemoval = true)
+    private VideoAnalytics videoAnalytics;
+
 }
