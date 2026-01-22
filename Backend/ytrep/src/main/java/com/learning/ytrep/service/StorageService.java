@@ -1,13 +1,15 @@
 package com.learning.ytrep.service;
 
-import com.learning.ytrep.config.MinIOConfig;
+// import com.learning.ytrep.config.MinIOConfig;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
+import io.minio.GetObjectArgs;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import java.io.InputStream;
+// import java.io.IOException;
 import java.util.UUID;
 
 @Service
@@ -37,5 +39,19 @@ public class StorageService {
         } catch (Exception e) {
             throw new RuntimeException("Notitu poyiruchu Thambi",e);
         }
+        
+
     }
+    public InputStream getVideoStream(String objectKey) {
+            try {
+                return minIOConfig.getObject(
+                    GetObjectArgs.builder()
+                        .bucket(BUCKET_NAME)
+                        .object(objectKey)
+                        .build()
+                    );
+            } catch (Exception e) {
+            throw new RuntimeException("Failed to fetch video", e);
+        }
+        }
 }

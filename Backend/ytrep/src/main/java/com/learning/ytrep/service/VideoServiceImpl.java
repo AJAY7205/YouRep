@@ -7,10 +7,14 @@ import com.learning.ytrep.model.VideoStatus;
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
 import com.learning.ytrep.repository.VideoRepository;
+
+import jakarta.persistence.criteria.CriteriaBuilder.In;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -54,5 +58,15 @@ public class VideoServiceImpl implements VideoService{
         VideoResponse videoResponse = new VideoResponse();
         videoResponse.setContent(List.of(videoDTO));
         return videoResponse;
+    }
+
+    @Override
+    public InputStream streamVideo(Long videoId){
+        Video video = videoRepository.findByVideoId(videoId);
+        if(video == null){
+            throw new APIException("Video Not Found");
+        }
+        String objectKey = video.getObjectKey();
+        return storageService.getVideoStream(objectKey);
     }
 }

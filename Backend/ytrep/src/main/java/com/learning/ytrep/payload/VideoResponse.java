@@ -1,6 +1,6 @@
 package com.learning.ytrep.payload;
 
-import com.learning.ytrep.model.Video;
+// import com.learning.ytrep.model.Video;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
