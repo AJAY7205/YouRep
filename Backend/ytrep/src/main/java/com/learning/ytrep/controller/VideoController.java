@@ -4,8 +4,6 @@ import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
 import com.learning.ytrep.payload.VideoUploadRequest;
 import com.learning.ytrep.service.VideoService;
-
-import io.micrometer.common.lang.NonNull;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -13,7 +11,6 @@ import io.swagger.v3.oas.annotations.media.Encoding;
 
 import java.io.InputStream;
 
-import org.simpleframework.xml.Path;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
@@ -56,32 +53,26 @@ public class VideoController {
     }
 
     @GetMapping(value = "/videos/{videoId}/stream")
-public ResponseEntity<Resource> streamVideo(@PathVariable Long videoId, @RequestHeader(value = "Range", required = false) String range){
+    public ResponseEntity<Resource> streamVideo(@PathVariable Long videoId){
     // Get video metadata first
-    VideoResponse videoResponse = videoService.getVideo(videoId);
-    VideoDTO videoDTO = videoResponse.getContent().get(0);
+        // VideoResponse videoResponse = videoService.getVideo(videoId);
+        // VideoDTO videoDTO = videoResponse.getContent().get(0);
     
     // Get full video stream
-    InputStream videoStream = videoService.streamVideo(videoId);
-    InputStreamResource resource = new InputStreamResource(videoStream);
+        InputStream videoStream = videoService.streamVideo(videoId);
+        InputStreamResource resource = new InputStreamResource(videoStream);
 
     // Get video size from storage
-    long videoSize = videoService.getVideoSize(videoId);
+    // long videoSize = videoService.getVideoSize(videoId);
     
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.parseMediaType("video/mp4"));
-    headers.set(HttpHeaders.ACCEPT_RANGES, "bytes");
-    headers.setContentLength(videoSize);
-    
-    if (range == null) {
-        return ResponseEntity.ok()
-            .headers(headers)
-            .body(resource);
-    }
+    // headers.set(HttpHeaders.ACCEPT_RANGES, "bytes");
+    // headers.setContentLength(videoSize); 
     
     // For now, return full content even with range
     // Proper range handling requires more complex implementation
-    return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT)
+    return ResponseEntity.ok()
         .headers(headers)
         .body(resource);
 }
