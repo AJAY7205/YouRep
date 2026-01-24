@@ -6,6 +6,7 @@ import com.learning.ytrep.model.Video;
 import com.learning.ytrep.model.VideoAnalytics;
 //import com.learning.ytrep.model.VideoAnalytics;
 import com.learning.ytrep.model.VideoStatus;
+import com.learning.ytrep.payload.VideoAnalyticsResponse;
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
 import com.learning.ytrep.payload.VideoUploadRequest;
@@ -25,12 +26,14 @@ public class VideoServiceImpl implements VideoService{
 
     private final VideoRepository videoRepository;
     private final StorageService storageService;
-    private final ModelMapper modelMapper;
+    private final VideoAnalyticsServiceImpl videoAnalyticsServiceImpl;
+    // private final ModelMapper modelMapper;
 
-    public VideoServiceImpl(VideoRepository videoRepository,StorageService storageService,ModelMapper modelMapper){
+    public VideoServiceImpl(VideoRepository videoRepository,StorageService storageService,VideoAnalyticsServiceImpl videoAnalyticsServiceImpl){
         this.videoRepository = videoRepository;
         this.storageService = storageService;
-        this.modelMapper = modelMapper;
+        this.videoAnalyticsServiceImpl = videoAnalyticsServiceImpl;
+        // this.modelMapper = modelMapper;
     }
 
     @Override
@@ -51,6 +54,7 @@ public class VideoServiceImpl implements VideoService{
         videoAnalytics.setViewCount(0);
         videoAnalytics.setLikeCount(0);
         videoAnalytics.setCreatedAt(LocalDateTime.now());
+        videoAnalytics.setUpdatedAt(LocalDateTime.now());
         video.setVideoAnalytics(videoAnalytics);
         // videoAnalytics.setVideo(video);
         Video savedVideo = videoRepository.save(video);
@@ -63,7 +67,8 @@ public class VideoServiceImpl implements VideoService{
         if(video == null){
             throw new ResourceNotFoundException("Video","ID",videoId.toString());
         }
-        VideoDTO videoDTO = modelMapper.map(video,VideoDTO.class);
+        // VideoDTO videoDTO = modelMapper.map(video,VideoDTO.class);
+        VideoDTO videoDTO = mapToDTO(video);
         VideoResponse videoResponse = new VideoResponse();
         videoResponse.setContent(List.of(videoDTO));
         return videoResponse;
@@ -72,10 +77,13 @@ public class VideoServiceImpl implements VideoService{
     @Override
     public InputStream streamVideo(Long videoId){
         Video video = videoRepository.findByVideoId(videoId);
+
+        // VideoAnalytics videoAnalytics = 
         if(video == null){
             throw new ResourceNotFoundException("Video","ID",videoId.toString());
         }
         String objectKey = video.getObjectKey();
+        VideoAnalyticsResponse videoAnalyticsResponse = videoAnalyticsServiceImpl.incrementViewCount(videoId);
         return storageService.getVideoStream(objectKey);
     }
 
@@ -87,6 +95,7 @@ public class VideoServiceImpl implements VideoService{
         }
         return storageService.getVideoSize(video.getObjectKey());
     }
+    
     private VideoDTO mapToDTO(Video video) {
         VideoDTO dto = new VideoDTO();
         dto.setVideoId(video.getVideoId());
@@ -103,5 +112,21 @@ public class VideoServiceImpl implements VideoService{
         }
         
         return dto;
+    }
+    @Override
+    public VideoResponse updateVideo(VideoUploadRequest videoUploadRequest,Long videoId){
+        Video video = videoRepository.findByVideoId(videoId);
+        if(video == null){
+            throw new ResourceNotFoundException("Video","ID",videoId.toString());
+        }
+        video.setTitle(videoUploadRequest.getTitle());
+        video.setDescription(videoUploadRequest.getDescription());
+        video.setUpdatedAt(LocalDateTime.now());
+        Video savedVideo = videoRepository.save(video);
+        // VideoDTO videoDTO = modelMapper.map(video, VideoDTO.class);
+        VideoDTO videoDTO = mapToDTO(savedVideo);
+        VideoResponse videoResponse = new VideoResponse();
+        videoResponse.setContent(List.of(videoDTO));
+        return videoResponse;
     }
 }

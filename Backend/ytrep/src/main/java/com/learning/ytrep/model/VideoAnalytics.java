@@ -31,4 +31,7 @@ public class VideoAnalytics {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
+
 }

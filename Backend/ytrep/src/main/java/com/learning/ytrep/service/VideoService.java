@@ -18,4 +18,6 @@ public interface VideoService {
     InputStream streamVideo(Long videoId);
 
     long getVideoSize(Long videoId);
+
+    VideoResponse updateVideo(VideoUploadRequest videoUploadRequest, Long videoId);
 }

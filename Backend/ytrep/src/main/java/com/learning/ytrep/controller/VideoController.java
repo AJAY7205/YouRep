@@ -54,28 +54,25 @@ public class VideoController {
 
     @GetMapping(value = "/videos/{videoId}/stream")
     public ResponseEntity<Resource> streamVideo(@PathVariable Long videoId){
-    // Get video metadata first
-        // VideoResponse videoResponse = videoService.getVideo(videoId);
-        // VideoDTO videoDTO = videoResponse.getContent().get(0);
     
-    // Get full video stream
         InputStream videoStream = videoService.streamVideo(videoId);
         InputStreamResource resource = new InputStreamResource(videoStream);
 
-    // Get video size from storage
-    // long videoSize = videoService.getVideoSize(videoId);
     
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.parseMediaType("video/mp4"));
-    // headers.set(HttpHeaders.ACCEPT_RANGES, "bytes");
-    // headers.setContentLength(videoSize); 
-    
-    // For now, return full content even with range
-    // Proper range handling requires more complex implementation
     return ResponseEntity.ok()
         .headers(headers)
         .body(resource);
 }
+    @Operation(summary = "Update a Video")
+    @PutMapping(value = "update-video/{videoId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<VideoResponse> updateVideo(@RequestBody VideoUploadRequest videoUploadRequest,
+                                                    @PathVariable Long videoId){
+        VideoResponse videoResponse = videoService.updateVideo(videoUploadRequest,videoId);
+        return new ResponseEntity<>(videoResponse,HttpStatus.OK);
+    }
+
 }
 
 
