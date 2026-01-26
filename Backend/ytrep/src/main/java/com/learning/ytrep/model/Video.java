@@ -30,6 +30,9 @@ public class Video {
     @Column(nullable = false)
     private VideoStatus status;
 
+    @Column
+    private String thumbnailkey;
+
     @Column(nullable = false)
     private LocalDateTime createdAt;
 

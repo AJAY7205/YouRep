@@ -34,20 +34,20 @@ public class VideoAnalyticsController {
     @PostMapping("/video-analyitcs/{videoId}/increment-views")
     public ResponseEntity<VideoAnalyticsResponse> updateViews(@PathVariable Long videoId){
         VideoAnalyticsResponse response = videoAnalyticsService.incrementViewCount(videoId);
-        return new ResponseEntity<>(response,HttpStatus.OK);
+        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
     }
 
     @Operation(summary = "Increasing the likes")
     @PostMapping("/video-analyitcs/{videoId}/increment-likes")
     public ResponseEntity<VideoAnalyticsResponse> incrementLikes(@PathVariable Long videoId){
         VideoAnalyticsResponse response = videoAnalyticsService.incrementLikeCount(videoId);
-        return new ResponseEntity<>(response,HttpStatus.OK);
+        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
     }
 
     @Operation(summary = "Decreasing the likes")
     @PostMapping("/video-analyitcs/{videoId}/decrement-likes")
     public ResponseEntity<VideoAnalyticsResponse> decrementLikes(@PathVariable Long videoId){
         VideoAnalyticsResponse response = videoAnalyticsService.decrementLikeCount(videoId);
-        return new ResponseEntity<>(response,HttpStatus.OK);
+        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
     }
 }

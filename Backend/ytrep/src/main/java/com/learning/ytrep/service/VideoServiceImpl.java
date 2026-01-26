@@ -13,6 +13,7 @@ import com.learning.ytrep.payload.VideoUploadRequest;
 import com.learning.ytrep.repository.VideoRepository;
 
 import org.modelmapper.ModelMapper;
+// import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,17 +28,19 @@ public class VideoServiceImpl implements VideoService{
     private final VideoRepository videoRepository;
     private final StorageService storageService;
     private final VideoAnalyticsServiceImpl videoAnalyticsServiceImpl;
-    // private final ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
+    private final ThumbnailService thumbnailService;
 
-    public VideoServiceImpl(VideoRepository videoRepository,StorageService storageService,VideoAnalyticsServiceImpl videoAnalyticsServiceImpl){
+    public VideoServiceImpl(VideoRepository videoRepository,StorageService storageService,VideoAnalyticsServiceImpl videoAnalyticsServiceImpl,ModelMapper modelMapper,ThumbnailService thumbnailService){
         this.videoRepository = videoRepository;
         this.storageService = storageService;
         this.videoAnalyticsServiceImpl = videoAnalyticsServiceImpl;
-        // this.modelMapper = modelMapper;
+        this.modelMapper = modelMapper;
+        this.thumbnailService = thumbnailService;
     }
 
     @Override
-    public VideoDTO postVideo(VideoUploadRequest videoUploadRequest, MultipartFile file){
+    public VideoDTO postVideo(VideoUploadRequest videoUploadRequest, MultipartFile file,MultipartFile thumbnail){
         // Video video = modelMapper.map(videoDTO,Video.class);
 //        video.setVideoId(videoDTO.getVideoId());
         Video video = new Video();
@@ -49,6 +52,10 @@ public class VideoServiceImpl implements VideoService{
         video.setUpdatedAt(LocalDateTime.now());
         String object = storageService.uploadVideo(file);
         video.setObjectKey(object);
+        if(thumbnail != null && !thumbnail.isEmpty()){
+            String thumbnailKey = thumbnailService.uploadThumbnail(thumbnail);
+            video.setThumbnailkey(thumbnailKey);
+        }
         VideoAnalytics videoAnalytics = new VideoAnalytics();
         videoAnalytics.setVideo(video);
         videoAnalytics.setViewCount(0);
@@ -110,7 +117,9 @@ public class VideoServiceImpl implements VideoService{
             dto.setViewCount(video.getVideoAnalytics().getViewCount());
             dto.setLikeCount(video.getVideoAnalytics().getLikeCount());
         }
-        
+        if (video.getThumbnailkey() != null) {
+            dto.setThumbnailKey("/api/videos/" + video.getVideoId() + "/thumbnail");
+        }
         return dto;
     }
     @Override
@@ -127,6 +136,38 @@ public class VideoServiceImpl implements VideoService{
         VideoDTO videoDTO = mapToDTO(savedVideo);
         VideoResponse videoResponse = new VideoResponse();
         videoResponse.setContent(List.of(videoDTO));
+        return videoResponse;
+    }
+
+    @Override
+    public VideoResponse getAllVideo(){
+        List<Video> videos = videoRepository.findAll();
+        // if(videos == null){
+        //     throw new ResourceNotFoundException("No Videos Uploaded Found");
+        // }
+        List<VideoDTO> videoDTOs = videos.stream().map(video -> mapToDTO(video)).toList();
+        VideoResponse videoResponse = new VideoResponse();
+        videoResponse.setContent(videoDTOs);
+        return videoResponse;
+    }
+
+    @Override
+    public VideoResponse deleteVideo(Long videoId){
+        Video video = videoRepository.findByVideoId(videoId);
+        if(video == null){
+            throw new ResourceNotFoundException("Video", "VideoID", videoId.toString());
+        }
+        if(video.getThumbnailkey() != null){
+            thumbnailService.deleteThumbnailCache(videoId);
+            storageService.deleteThumbnail(video.getThumbnailkey());
+        }
+
+        storageService.deleteVideo(video.getObjectKey());
+        VideoDTO videoDTO = mapToDTO(video);
+        VideoResponse videoResponse = new VideoResponse();
+        // videoResponse.setContent(List.of(video));
+        videoResponse.setContent(List.of(videoDTO));
+        videoRepository.delete(video);
         return videoResponse;
     }
 }

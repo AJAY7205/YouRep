@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Encoding;
 
 import java.io.InputStream;
+// import java.util.List;
 
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -41,8 +42,9 @@ public class VideoController {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
     public ResponseEntity<String> postVideo(@RequestPart("metadata")@Parameter(content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE)) VideoUploadRequest videoUploadRequest,
-                                              @RequestPart("file") MultipartFile file){
-        VideoDTO videoDTO1 = videoService.postVideo(videoUploadRequest,file);
+                                              @RequestPart("file") MultipartFile file,
+                                              @RequestPart(value = "thumbnail",required = false) MultipartFile thumbnail){
+        VideoDTO videoDTO1 = videoService.postVideo(videoUploadRequest,file,thumbnail);
         return new ResponseEntity<>(videoDTO1.toString(),HttpStatus.CREATED);
     }
 
@@ -59,19 +61,34 @@ public class VideoController {
         InputStreamResource resource = new InputStreamResource(videoStream);
 
     
-    HttpHeaders headers = new HttpHeaders();
-    headers.setContentType(MediaType.parseMediaType("video/mp4"));
-    return ResponseEntity.ok()
-        .headers(headers)
-        .body(resource);
-}
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.parseMediaType("video/mp4"));
+        return ResponseEntity.ok()
+            .headers(headers)
+            .body(resource);
+    }
     @Operation(summary = "Update a Video")
-    @PutMapping(value = "update-video/{videoId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/update-video/{videoId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<VideoResponse> updateVideo(@RequestBody VideoUploadRequest videoUploadRequest,
                                                     @PathVariable Long videoId){
         VideoResponse videoResponse = videoService.updateVideo(videoUploadRequest,videoId);
-        return new ResponseEntity<>(videoResponse,HttpStatus.OK);
+        return new ResponseEntity<>(videoResponse,HttpStatus.ACCEPTED);
     }
+
+    @Operation(summary = "Delete a Video")
+    @DeleteMapping(value = "/delete-video/{videoId}")
+    public ResponseEntity<VideoResponse> deleteVideo(@PathVariable Long videoId){
+        VideoResponse videoResponse = videoService.deleteVideo(videoId);
+        return new ResponseEntity<>(videoResponse,HttpStatus.ACCEPTED);
+    }
+    
+    @Operation(summary = "Get All Video")
+    @GetMapping(value = "/get-all-video")
+    public ResponseEntity<VideoResponse> getAllVideo(){
+        VideoResponse videoResponses = videoService.getAllVideo();
+        return new ResponseEntity<>(videoResponses,HttpStatus.OK);
+    }
+
 
 }
 
