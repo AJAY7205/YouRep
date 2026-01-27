@@ -6,7 +6,6 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.learning.ytrep.exception.APIException;
 import com.learning.ytrep.exception.ResourceNotFoundException;
 import com.learning.ytrep.model.VideoAnalytics;
 import com.learning.ytrep.payload.VideoAnalyticsDTO;

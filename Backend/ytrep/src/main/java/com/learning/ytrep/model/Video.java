@@ -42,4 +42,7 @@ public class Video {
     @OneToOne(mappedBy = "video", cascade = CascadeType.ALL,fetch =  FetchType.LAZY,orphanRemoval = true)
     private VideoAnalytics videoAnalytics;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 }

@@ -43,7 +43,7 @@ public class StorageService {
             );
             return objectKey;
         } catch (Exception e) {
-            throw new APIException("Notitu poyiruchu Thambi");
+            throw new RuntimeException("Failed to upload video",e);
         }
         
 
@@ -125,7 +125,7 @@ public class StorageService {
                 .build()
             );
         }catch(Exception e){
-            throw new APIException("Failed to delete video");
+            throw new APIException("Failed to delete thumbnail");
         }
     }
 }

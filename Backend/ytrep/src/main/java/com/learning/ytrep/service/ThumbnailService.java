@@ -1,6 +1,5 @@
 package com.learning.ytrep.service;
 
-import java.lang.module.ResolutionException;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.data.redis.core.RedisTemplate;
@@ -42,6 +41,7 @@ public class ThumbnailService {
 
         byte[] cachedThumbnail = redisTemplate.opsForValue().get(cacheKey);
         if(cachedThumbnail != null){
+            // System.out.println("FROm Redis");
             return cachedThumbnail;
         }
 

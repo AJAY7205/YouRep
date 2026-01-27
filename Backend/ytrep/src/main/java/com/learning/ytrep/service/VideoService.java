@@ -6,13 +6,13 @@ import com.learning.ytrep.payload.VideoResponse;
 import com.learning.ytrep.payload.VideoUploadRequest;
 
 import java.io.InputStream;
-import java.util.List;
+
 
 import org.springframework.web.multipart.MultipartFile;
 
 public interface VideoService {
 
-    VideoDTO postVideo(VideoUploadRequest videoUploadRequest, MultipartFile file,MultipartFile thumbnail);
+    VideoDTO postVideo(VideoUploadRequest videoUploadRequest, MultipartFile file,MultipartFile thumbnail,String username);
 
     VideoResponse getVideo(Long videoId);
 

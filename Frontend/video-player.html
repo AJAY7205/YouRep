@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player - YouRep</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <h1>🎥 YouRep</h1>
+        </header>
+
+        <div class="player-container">
+            <!-- Video Player -->
+            <div class="video-wrapper">
+                <video id="videoPlayer" controls>
+                    <source id="videoSource" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+            <!-- Video Info -->
+            <div class="video-info">
+                <h2 id="videoTitle">Loading...</h2>
+                <div class="video-stats">
+                    <span id="viewCount">👁️ 0 views</span>
+                    <div class="like-section">
+                        <button id="likeBtn" class="btn-icon">👍 <span id="likeCount">0</span></button>
+                    </div>
+                </div>
+                <p id="videoDescription" class="description">Loading description...</p>
+                <div class="video-meta">
+                    <small>Uploaded: <span id="uploadDate">-</span></small>
+                    <small>Status: <span id="videoStatus">-</span></small>
+                </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="video-actions">
+                <button id="editBtn" class="btn-secondary">Edit Video</button>
+                <button id="deleteBtn" class="btn-danger">Delete Video</button>
+            </div>
+
+            <!-- Edit Form (Hidden) -->
+            <div id="editForm" class="edit-section" style="display: none;">
+                <h3>Edit Video</h3>
+                <form id="updateForm">
+                    <div class="form-group">
+                        <label for="editTitle">Title</label>
+                        <input type="text" id="editTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription">Description</label>
+                        <textarea id="editDescription" rows="4"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Save Changes</button>
+                    <button type="button" onclick="cancelEdit()" class="btn-secondary">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/video-player.js"></script>
+</body>
+</html>

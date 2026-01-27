@@ -2,6 +2,7 @@ package com.learning.ytrep.service;
 
 import com.learning.ytrep.exception.APIException;
 import com.learning.ytrep.exception.ResourceNotFoundException;
+import com.learning.ytrep.model.User;
 import com.learning.ytrep.model.Video;
 import com.learning.ytrep.model.VideoAnalytics;
 //import com.learning.ytrep.model.VideoAnalytics;
@@ -10,6 +11,7 @@ import com.learning.ytrep.payload.VideoAnalyticsResponse;
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
 import com.learning.ytrep.payload.VideoUploadRequest;
+import com.learning.ytrep.repository.UserRepository;
 import com.learning.ytrep.repository.VideoRepository;
 
 import org.modelmapper.ModelMapper;
@@ -30,19 +32,23 @@ public class VideoServiceImpl implements VideoService{
     private final VideoAnalyticsServiceImpl videoAnalyticsServiceImpl;
     private final ModelMapper modelMapper;
     private final ThumbnailService thumbnailService;
+    private final UserRepository userRepository;
 
-    public VideoServiceImpl(VideoRepository videoRepository,StorageService storageService,VideoAnalyticsServiceImpl videoAnalyticsServiceImpl,ModelMapper modelMapper,ThumbnailService thumbnailService){
+    public VideoServiceImpl(VideoRepository videoRepository,StorageService storageService,VideoAnalyticsServiceImpl videoAnalyticsServiceImpl,ModelMapper modelMapper,ThumbnailService thumbnailService,UserRepository userRepository){
         this.videoRepository = videoRepository;
         this.storageService = storageService;
         this.videoAnalyticsServiceImpl = videoAnalyticsServiceImpl;
         this.modelMapper = modelMapper;
         this.thumbnailService = thumbnailService;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public VideoDTO postVideo(VideoUploadRequest videoUploadRequest, MultipartFile file,MultipartFile thumbnail){
+    public VideoDTO postVideo(VideoUploadRequest videoUploadRequest, MultipartFile file,MultipartFile thumbnail, String username){
         // Video video = modelMapper.map(videoDTO,Video.class);
 //        video.setVideoId(videoDTO.getVideoId());
+        User user = userRepository.findByUsername(username)
+                    .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
         Video video = new Video();
         video.setVideoId(null);
         video.setTitle(videoUploadRequest.getTitle());
@@ -50,6 +56,7 @@ public class VideoServiceImpl implements VideoService{
         video.setDescription(videoUploadRequest.getDescription());
         video.setCreatedAt(LocalDateTime.now());
         video.setUpdatedAt(LocalDateTime.now());
+        video.setUser(user);
         String object = storageService.uploadVideo(file);
         video.setObjectKey(object);
         if(thumbnail != null && !thumbnail.isEmpty()){
@@ -118,7 +125,7 @@ public class VideoServiceImpl implements VideoService{
             dto.setLikeCount(video.getVideoAnalytics().getLikeCount());
         }
         if (video.getThumbnailkey() != null) {
-            dto.setThumbnailKey("/api/videos/" + video.getVideoId() + "/thumbnail");
+            dto.setThumbnailUrl("/videos/" + video.getVideoId() + "/thumbnail");
         }
         return dto;
     }
@@ -157,12 +164,13 @@ public class VideoServiceImpl implements VideoService{
         if(video == null){
             throw new ResourceNotFoundException("Video", "VideoID", videoId.toString());
         }
+        storageService.deleteVideo(video.getObjectKey());
         if(video.getThumbnailkey() != null){
             thumbnailService.deleteThumbnailCache(videoId);
             storageService.deleteThumbnail(video.getThumbnailkey());
         }
 
-        storageService.deleteVideo(video.getObjectKey());
+        
         VideoDTO videoDTO = mapToDTO(video);
         VideoResponse videoResponse = new VideoResponse();
         // videoResponse.setContent(List.of(video));

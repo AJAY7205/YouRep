@@ -29,7 +29,7 @@ public class ThumbnailController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok()
-                .contentType(MediaType.ALL)
+                .contentType(MediaType.IMAGE_JPEG)
                 .body(thumbnail);
     }
 }
