@@ -13,4 +13,7 @@ public interface UserLikeRepository extends JpaRepository<UserLike, Long> {
     Optional<UserLike> findByUserUserIdAndVideoVideoId(Long userId, Long videoId);
     List<UserLike> findByUserUserId(Long userId);
     boolean existsByUserUserIdAndVideoVideoId(Long userId, Long videoId);
+    long countByVideoVideoId(Long videoId);
+
+    List<UserLike> findByVideoVideoId(Long videoId);
 }

@@ -12,10 +12,19 @@
         <header>
             <h1>🎥 YouRep</h1>
             <p>YouTube Lite Clone</p>
+            
+            <!-- Auth Buttons (shown when not logged in) -->
+            <div id="authButtons" style="margin-top: 20px;">
+                <a href="login.html" class="btn-secondary" style="margin-right: 10px; text-decoration: none;">Login</a>
+                <a href="signup.html" class="btn-primary" style="text-decoration: none;">Sign Up</a>
+            </div>
+
+            <!-- User Info (shown when logged in) -->
+            <div id="userInfo" style="margin-top: 20px; display: none;"></div>
         </header>
 
-        <!-- Upload Section -->
-        <section class="upload-section">
+        <!-- Upload Section (only for authenticated users) -->
+        <section id="uploadSection" class="upload-section" style="display: none;">
             <h2>Upload Video</h2>
             <form id="uploadForm">
                 <div class="form-group">
@@ -53,6 +62,18 @@
             </div>
 
             <div id="uploadMessage" class="message"></div>
+        </section>
+
+        <!-- My Liked Videos Section (only for authenticated users) -->
+        <section id="likedVideosSection" class="videos-section" style="display: none;">
+            <div class="section-header">
+                <h2>❤️ My Liked Videos</h2>
+                <button onclick="loadLikedVideos()" class="btn-secondary">Refresh</button>
+            </div>
+
+            <div id="likedVideosList" class="videos-grid">
+                <p class="loading">Loading liked videos...</p>
+            </div>
         </section>
 
         <!-- Videos List -->

@@ -21,4 +21,6 @@ public class VideoDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private String thumbnailUrl;
+    private String username;
+    private boolean liked;
 }

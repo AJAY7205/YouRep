@@ -150,6 +150,11 @@ header p {
     background: var(--surface);
 }
 
+.btn-icon.liked {
+    background: rgba(255, 0, 0, 0.1);
+    border-color: var(--primary-color);
+}
+
 /* Progress Bar */
 .progress-container {
     margin-top: 20px;
@@ -257,6 +262,18 @@ header p {
     margin-top: 10px;
     color: var(--text-secondary);
     font-size: 12px;
+    margin-top: 5px;
+}
+
+.video-card-meta small {
+    display: block;
+    margin-top: 5px;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.video-card-meta small:first-child {
+    margin-top: 0;
 }
 
 /* Video Player */

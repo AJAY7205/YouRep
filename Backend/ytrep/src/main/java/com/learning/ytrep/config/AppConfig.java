@@ -18,11 +18,16 @@ public class AppConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**")
-                        .allowedOrigins("*")
+                registry.addMapping("/api/**")  // Changed from "/**"
+                        .allowedOrigins(
+                            "http://127.0.0.1:5500",  // Removed trailing slash
+                            "http://localhost:5500"   // Added localhost variant
+                        )
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*")
-                        .exposedHeaders("Content-Length", "Content-Range", "Accept-Ranges");
+                        .exposedHeaders("Content-Length", "Content-Range", "Accept-Ranges", "Authorization")
+                        .allowCredentials(true)
+                        .maxAge(3600);  // Cache preflight for 1 hour
             }
         };
     }

@@ -3,6 +3,7 @@ package com.learning.ytrep.service;
 import com.learning.ytrep.exception.APIException;
 import com.learning.ytrep.exception.ResourceNotFoundException;
 import com.learning.ytrep.model.User;
+import com.learning.ytrep.model.UserLike;
 import com.learning.ytrep.model.Video;
 import com.learning.ytrep.model.VideoAnalytics;
 //import com.learning.ytrep.model.VideoAnalytics;
@@ -11,6 +12,7 @@ import com.learning.ytrep.payload.VideoAnalyticsResponse;
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
 import com.learning.ytrep.payload.VideoUploadRequest;
+import com.learning.ytrep.repository.UserLikeRepository;
 import com.learning.ytrep.repository.UserRepository;
 import com.learning.ytrep.repository.VideoRepository;
 
@@ -33,14 +35,16 @@ public class VideoServiceImpl implements VideoService{
     private final ModelMapper modelMapper;
     private final ThumbnailService thumbnailService;
     private final UserRepository userRepository;
+    private final UserLikeRepository userLikeRepository;
 
-    public VideoServiceImpl(VideoRepository videoRepository,StorageService storageService,VideoAnalyticsServiceImpl videoAnalyticsServiceImpl,ModelMapper modelMapper,ThumbnailService thumbnailService,UserRepository userRepository){
+    public VideoServiceImpl(VideoRepository videoRepository,StorageService storageService,VideoAnalyticsServiceImpl videoAnalyticsServiceImpl,ModelMapper modelMapper,ThumbnailService thumbnailService,UserRepository userRepository,UserLikeRepository userLikeRepository){
         this.videoRepository = videoRepository;
         this.storageService = storageService;
         this.videoAnalyticsServiceImpl = videoAnalyticsServiceImpl;
         this.modelMapper = modelMapper;
         this.thumbnailService = thumbnailService;
         this.userRepository = userRepository;
+        this.userLikeRepository = userLikeRepository;
     }
 
     @Override
@@ -119,7 +123,9 @@ public class VideoServiceImpl implements VideoService{
         dto.setVideoStatus(video.getStatus());
         dto.setCreatedAt(video.getCreatedAt());
         dto.setUpdatedAt(video.getUpdatedAt());
-        
+        if (video.getUser() != null) {
+        dto.setUsername(video.getUser().getUsername());
+        }   
         if (video.getVideoAnalytics() != null) {
             dto.setViewCount(video.getVideoAnalytics().getViewCount());
             dto.setLikeCount(video.getVideoAnalytics().getLikeCount());
@@ -164,6 +170,10 @@ public class VideoServiceImpl implements VideoService{
         if(video == null){
             throw new ResourceNotFoundException("Video", "VideoID", videoId.toString());
         }
+        List<UserLike> likes = userLikeRepository.findByVideoVideoId(videoId);
+            if (!likes.isEmpty()) {
+                userLikeRepository.deleteAll(likes);
+                }   
         storageService.deleteVideo(video.getObjectKey());
         if(video.getThumbnailkey() != null){
             thumbnailService.deleteThumbnailCache(videoId);

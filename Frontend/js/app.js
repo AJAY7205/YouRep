@@ -1,22 +1,93 @@
 const API_BASE_URL = 'http://localhost:8080/api';
+let authToken = localStorage.getItem('authToken');
+let currentUser = {
+    username: localStorage.getItem('username'),
+    roles: JSON.parse(localStorage.getItem('userRoles') || '[]')
+};
 
 // Load videos on page load
 document.addEventListener('DOMContentLoaded', () => {
+    updateUIBasedOnAuth();
     loadVideos();
     setupUploadForm();
+    
+    // Load liked videos if user is logged in
+    if (authToken && currentUser.username) {
+        loadLikedVideos();
+    }
 });
+
+function updateUIBasedOnAuth() {
+    const uploadSection = document.getElementById('uploadSection');
+    const authButtons = document.getElementById('authButtons');
+    const userInfo = document.getElementById('userInfo');
+    const likedVideosSection = document.getElementById('likedVideosSection');
+
+    if (authToken && currentUser.username) {
+        // User is logged in
+        if (authButtons) authButtons.style.display = 'none';
+        if (userInfo) {
+            userInfo.style.display = 'block';
+            userInfo.innerHTML = `
+                <span>Welcome, <strong>${currentUser.username}</strong></span>
+                <button onclick="handleLogout()" class="btn-secondary">Logout</button>
+            `;
+        }
+        
+        // Show upload section only for USER or ADMIN
+        if (uploadSection && (currentUser.roles.includes('USER') || currentUser.roles.includes('ADMIN'))) {
+            uploadSection.style.display = 'block';
+        } else if (uploadSection) {
+            uploadSection.style.display = 'none';
+        }
+        
+        // Show liked videos section for authenticated users
+        if (likedVideosSection) {
+            likedVideosSection.style.display = 'block';
+        }
+    } else {
+        // Guest user
+        if (authButtons) authButtons.style.display = 'block';
+        if (userInfo) userInfo.style.display = 'none';
+        if (uploadSection) uploadSection.style.display = 'none';
+        if (likedVideosSection) likedVideosSection.style.display = 'none';
+    }
+}
+
+function handleLogout() {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userRoles');
+    
+    authToken = null;
+    currentUser = { username: null, roles: [] };
+    
+    window.location.reload();
+}
 
 // Setup upload form
 function setupUploadForm() {
     const form = document.getElementById('uploadForm');
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        await uploadVideo();
-    });
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            await uploadVideo();
+        });
+    }
 }
 
 // Upload video
 async function uploadVideo() {
+    if (!authToken) {
+        showMessage('Please login to upload videos', 'error');
+        setTimeout(() => {
+            window.location.href = 'login.html';
+        }, 2000);
+        return;
+    }
+
     const title = document.getElementById('title').value;
     const description = document.getElementById('description').value;
     const videoFile = document.getElementById('videoFile').files[0];
@@ -71,6 +142,8 @@ async function uploadVideo() {
             xhr.addEventListener('load', () => {
                 if (xhr.status >= 200 && xhr.status < 300) {
                     resolve(xhr.response);
+                } else if (xhr.status === 401 || xhr.status === 403) {
+                    reject(new Error('Unauthorized. Please login again.'));
                 } else {
                     reject(new Error(`Upload failed: ${xhr.status}`));
                 }
@@ -79,6 +152,7 @@ async function uploadVideo() {
         });
 
         xhr.open('POST', `${API_BASE_URL}/posting-video`);
+        xhr.setRequestHeader('Authorization', `Bearer ${authToken}`);
         xhr.send(formData);
 
         await uploadPromise;
@@ -89,7 +163,15 @@ async function uploadVideo() {
 
     } catch (error) {
         console.error('Upload error:', error);
-        showMessage('Upload failed: ' + error.message, 'error');
+        if (error.message.includes('Unauthorized')) {
+            showMessage('Session expired. Please login again.', 'error');
+            setTimeout(() => {
+                handleLogout();
+                window.location.href = 'login.html';
+            }, 2000);
+        } else {
+            showMessage('Upload failed: ' + error.message, 'error');
+        }
     } finally {
         progressContainer.style.display = 'none';
         uploadBtn.textContent = 'Upload Video';
@@ -122,6 +204,52 @@ async function loadVideos() {
     }
 }
 
+// Load user's liked videos
+async function loadLikedVideos() {
+    const likedVideosList = document.getElementById('likedVideosList');
+    
+    if (!authToken) {
+        likedVideosList.innerHTML = '<p class="loading">Please login to view your liked videos.</p>';
+        return;
+    }
+    
+    likedVideosList.innerHTML = '<p class="loading">Loading liked videos...</p>';
+
+    try {
+        const response = await fetch(`${API_BASE_URL}/likes/my-likes`, {
+            headers: {
+                'Authorization': `Bearer ${authToken}`
+            }
+        });
+
+        if (response.status === 401 || response.status === 403) {
+            likedVideosList.innerHTML = '<p class="loading">Session expired. Please login again.</p>';
+            setTimeout(() => {
+                handleLogout();
+                window.location.href = 'login.html';
+            }, 2000);
+            return;
+        }
+
+        const likedVideos = await response.json();
+
+        if (!likedVideos || likedVideos.length === 0) {
+            likedVideosList.innerHTML = '<p class="loading">You haven\'t liked any videos yet. ❤️</p>';
+            return;
+        }
+
+        likedVideosList.innerHTML = '';
+        likedVideos.forEach(video => {
+            const card = createVideoCard(video);
+            likedVideosList.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error('Error loading liked videos:', error);
+        likedVideosList.innerHTML = '<p class="loading">Error loading liked videos. Please try again.</p>';
+    }
+}
+
 // Create video card
 function createVideoCard(video) {
     const card = document.createElement('div');
@@ -142,6 +270,7 @@ function createVideoCard(video) {
                 <span>👍 ${video.likeCount}</span>
             </div>
             <div class="video-card-meta">
+                <small>By: ${video.username || 'Unknown'}</small>
                 <small>Uploaded: ${formatDate(video.createdAt)}</small>
             </div>
         </div>
