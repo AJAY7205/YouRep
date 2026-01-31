@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Video - YouRep</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/upload-progress.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <h1>🎥 Upload Your Video</h1>
+        </header>
+
+        <!-- Upload Form -->
+        <div id="upload-form-container" class="upload-section">
+            <form id="upload-form">
+                <div class="form-group">
+                    <label for="title">Title *</label>
+                    <input type="text" id="title" required placeholder="Enter video title">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Enter video description" rows="4"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="video-file">Video File *</label>
+                    <input type="file" id="video-file" accept="video/*" required>
+                    <small>Supported: MP4, AVI, MOV (Max: 500MB)</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="thumbnail-file">Thumbnail (Optional)</label>
+                    <input type="file" id="thumbnail-file" accept="image/*">
+                    <small>Recommended: JPG, PNG (16:9)</small>
+                </div>
+
+                <button type="submit" class="btn-primary">Upload Video</button>
+            </form>
+        </div>
+
+        <!-- Real-Time Progress Display -->
+        <div id="upload-progress-container" style="display: none;">
+            <div class="progress-card">
+                <h2>Uploading Video...</h2>
+                
+                <!-- Percentage Display -->
+                <div class="progress-percentage">
+                    <h1 id="percentage-text">0%</h1>
+                </div>
+                
+                <!-- Progress Bar -->
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                
+                <!-- Upload Details -->
+                <div class="upload-details">
+                    <div class="detail-row">
+                        <span>📊 Speed:</span>
+                        <span id="upload-speed">Calculating...</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>📦 Size:</span>
+                        <span id="upload-size">0 MB / 0 MB</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>⏱️ Remaining:</span>
+                        <span id="time-remaining">Calculating...</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>📁 File:</span>
+                        <span id="file-name">-</span>
+                    </div>
+                </div>
+
+                <button onclick="cancelUpload()" class="btn-danger" id="cancel-btn">Cancel Upload</button>
+            </div>
+        </div>
+
+        <!-- Upload Success -->
+        <div id="upload-success-container" style="display: none;">
+            <div class="success-card">
+                <div class="success-icon">✓</div>
+                <h2>Upload Complete!</h2>
+                <p>Your video has been uploaded successfully.</p>
+                <div class="success-actions">
+                    <a href="index.html" class="btn-primary">View All Videos</a>
+                    <button onclick="location.reload()" class="btn-secondary">Upload Another</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WebSocket Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+    <script src="js/upload-with-progress.js"></script>
+</body>
+</html>

@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -54,16 +55,20 @@ public class VideoServiceImpl implements VideoService{
 //        video.setVideoId(videoDTO.getVideoId());
         User user = userRepository.findByUsername(username)
                     .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
+
+        String uploadId = UUID.randomUUID().toString();
         Video video = new Video();
         video.setVideoId(null);
         video.setTitle(videoUploadRequest.getTitle());
-        video.setStatus(VideoStatus.UPLOADED);
+        video.setStatus(VideoStatus.UPLOADING);
         video.setDescription(videoUploadRequest.getDescription());
         video.setCreatedAt(LocalDateTime.now());
         video.setUpdatedAt(LocalDateTime.now());
         video.setUser(user);
-        String object = storageService.uploadVideo(file);
+        String object = storageService.uploadVideoWithProgress(file,uploadId);
         video.setObjectKey(object);
+
+        video.setStatus(VideoStatus.UPLOADED);
         if(thumbnail != null && !thumbnail.isEmpty()){
             String thumbnailKey = thumbnailService.uploadThumbnail(thumbnail);
             video.setThumbnailkey(thumbnailKey);
