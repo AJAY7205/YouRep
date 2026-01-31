@@ -32,6 +32,7 @@ public class VideoServiceImpl implements VideoService{
     private final VideoRepository videoRepository;
     private final StorageService storageService;
     private final VideoAnalyticsServiceImpl videoAnalyticsServiceImpl;
+    @SuppressWarnings("unused")
     private final ModelMapper modelMapper;
     private final ThumbnailService thumbnailService;
     private final UserRepository userRepository;
@@ -101,6 +102,7 @@ public class VideoServiceImpl implements VideoService{
             throw new ResourceNotFoundException("Video","ID",videoId.toString());
         }
         String objectKey = video.getObjectKey();
+        @SuppressWarnings("unused")
         VideoAnalyticsResponse videoAnalyticsResponse = videoAnalyticsServiceImpl.incrementViewCount(videoId);
         return storageService.getVideoStream(objectKey);
     }

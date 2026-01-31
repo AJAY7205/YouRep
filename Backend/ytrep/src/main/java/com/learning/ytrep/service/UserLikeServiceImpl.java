@@ -26,6 +26,7 @@ public class UserLikeServiceImpl implements UserLikeService {
     private final UserRepository userRepository;
     private final VideoRepository videoRepository;
     private final VideoAnalyticsService videoAnalyticsService;
+    @SuppressWarnings("unused")
     private final ModelMapper modelMapper;
 
     public UserLikeServiceImpl(

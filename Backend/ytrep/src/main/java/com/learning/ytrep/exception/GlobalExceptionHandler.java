@@ -15,6 +15,7 @@ import com.learning.ytrep.payload.APIResponse;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     
+    @SuppressWarnings("null")
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> myMethodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e){
         Map<String, String> resp = new HashMap<>();
