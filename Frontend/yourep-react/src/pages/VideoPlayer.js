@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getVideo, getStreamUrl, updateVideo, deleteVideo } from '../services/api/video.service';
 import { toggleLike, checkLiked, getLikeCount } from '../services/api/like.service';
+import CommentSection from '../components/comment/CommentSection';
 
 const VideoPlayer = () => {
   const { id } = useParams();
@@ -206,6 +207,8 @@ const VideoPlayer = () => {
             </form>
           )}
         </div>
+
+        <CommentSection videoId={video.videoId} />
 
         <Link to="/" className="btn btn-back">
           ← Back to Home

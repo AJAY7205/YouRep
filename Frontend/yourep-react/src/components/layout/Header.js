@@ -34,6 +34,9 @@ const Header = () => {
         <div className="header-auth">
           {isAuthenticated ? (
             <div className="user-menu">
+              <div className="user-avatar">
+                {user?.username?.charAt(0).toUpperCase()}
+              </div>
               <span className="user-greeting">
                 {user?.username}
               </span>

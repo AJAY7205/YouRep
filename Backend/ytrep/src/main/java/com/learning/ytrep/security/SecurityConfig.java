@@ -98,6 +98,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/videos/*/thumbnail").permitAll()
                 .requestMatchers("/api/video-analytics/*").permitAll()
                 .requestMatchers("/api/likes/*/count").permitAll()
+                .requestMatchers("/api/comments/{videoId}").permitAll()
+                .requestMatchers("/api/comments/{videoId}/count").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/error").permitAll()
                 
