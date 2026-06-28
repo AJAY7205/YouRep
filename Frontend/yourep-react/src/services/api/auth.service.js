@@ -15,6 +15,14 @@ export const signup = async (username, email, password) => {
   return response.data;
 };
 
+export const logoutApi = async () => {
+  try {
+    await api.post('/auth/logout');
+  } catch {
+    // ignore — token might already be invalid
+  }
+};
+
 export const logout = () => {
   localStorage.removeItem('authToken');
   localStorage.removeItem('userId');

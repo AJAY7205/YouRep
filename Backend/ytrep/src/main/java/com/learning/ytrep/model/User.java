@@ -67,6 +67,8 @@ public class User {
 
     private int failedLoginAttempts = 0;
 
+    private LocalDateTime lockTime;
+
     public User(String username, String email, String password) {
         this.username = username;
         this.email = email;

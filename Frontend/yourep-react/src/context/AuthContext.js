@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { logoutApi } from '../services/api/auth.service';
 
 const AuthContext = createContext(null);
 
@@ -44,7 +45,8 @@ export const AuthProvider = ({ children }) => {
     setUser({ id, username, email, roles });
   }, []);
 
-  const logout = useCallback(() => {
+  const logout = useCallback(async () => {
+    await logoutApi();
     localStorage.removeItem('authToken');
     localStorage.removeItem('userId');
     localStorage.removeItem('username');

@@ -2,11 +2,11 @@ package com.learning.ytrep.security.jwt;
 
 
 import java.util.Date;
+import java.util.UUID;
 
 import javax.crypto.SecretKey;
 
 import org.springframework.beans.factory.annotation.Value;
-// import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import com.learning.ytrep.security.services.UserDetailsImpl;
@@ -28,6 +28,10 @@ public class JwtUtils {
     @Value("${app.jwt.expiration}")
     private int jwtExpirationMs;
 
+    public long getExpirationMs() {
+        return jwtExpirationMs;
+    }
+
     private SecretKey getSigningKey(){
         return Keys.hmacShaKeyFor(jwtSecret.getBytes());
     }
@@ -35,12 +39,12 @@ public class JwtUtils {
     public String generateJwtToken(Authentication authentication){
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
         return Jwts.builder()
+                .id(UUID.randomUUID().toString())
                 .subject(userPrincipal.getUsername())
                 .issuedAt(new Date())
                 .expiration(new Date((new Date()).getTime() + jwtExpirationMs))
                 .signWith(getSigningKey())
                 .compact();
-
     }
 
     public String getUserNameFromJwtToken(String token){
@@ -51,6 +55,16 @@ public class JwtUtils {
                 .getPayload()
                 .getSubject();
     }
+
+    public String getJtiFromJwtToken(String token){
+        return Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .getId();
+    }
+
     public boolean validateJwtToken(String authToken) {
         try {
             Jwts.parser().verifyWith(getSigningKey()).build().parseSignedClaims(authToken);

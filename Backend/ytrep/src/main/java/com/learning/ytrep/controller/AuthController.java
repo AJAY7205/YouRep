@@ -23,6 +23,7 @@ import com.learning.ytrep.model.User;
 import com.learning.ytrep.repository.RoleRepository;
 import com.learning.ytrep.repository.UserRepository;
 import com.learning.ytrep.security.jwt.JwtUtils;
+import com.learning.ytrep.security.jwt.TokenBlacklistService;
 import com.learning.ytrep.security.request.LoginRequest;
 import com.learning.ytrep.security.request.SignupRequest;
 import com.learning.ytrep.security.response.JwtResponse;
@@ -30,6 +31,7 @@ import com.learning.ytrep.security.response.MessageResponse;
 import com.learning.ytrep.security.services.UserDetailsImpl;
 
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @RestController
@@ -40,30 +42,42 @@ public class AuthController {
     private final RoleRepository roleRepository;
     private final PasswordEncoder encoder;
     private final JwtUtils jwtUtils;
+    private final TokenBlacklistService tokenBlacklistService;
+
+    private static final long LOCK_DURATION_MINUTES = 15;
 
     public AuthController(
             AuthenticationManager authenticationManager,
             UserRepository userRepository,
             RoleRepository roleRepository,
             PasswordEncoder encoder,
-            JwtUtils jwtUtils) {
+            JwtUtils jwtUtils,
+            TokenBlacklistService tokenBlacklistService) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.encoder = encoder;
         this.jwtUtils = jwtUtils;
+        this.tokenBlacklistService = tokenBlacklistService;
     }
     @Operation(summary = "User Login")
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        
-        // Check if account is locked
+
         User user = userRepository.findByUsername(loginRequest.getUsername())
                 .orElse(null);
-        
+
         if (user != null && user.isAccountLocked()) {
-            return ResponseEntity.badRequest()
-                    .body(new MessageResponse("Account is locked due to multiple failed login attempts"));
+            if (user.getLockTime() != null &&
+                    user.getLockTime().plusMinutes(LOCK_DURATION_MINUTES).isBefore(LocalDateTime.now())) {
+                user.setAccountLocked(false);
+                user.setFailedLoginAttempts(0);
+                user.setLockTime(null);
+                userRepository.save(user);
+            } else {
+                return ResponseEntity.badRequest()
+                        .body(new MessageResponse("Account is locked due to multiple failed login attempts"));
+            }
         }
 
         try {
@@ -80,10 +94,10 @@ public class AuthController {
                     .map(item -> item.getAuthority())
                     .collect(Collectors.toList());
 
-            // Reset failed attempts and update last login
             if (user != null) {
                 user.setFailedLoginAttempts(0);
                 user.setAccountLocked(false);
+                user.setLockTime(null);
                 user.setLastLogin(LocalDateTime.now());
                 userRepository.save(user);
             }
@@ -95,11 +109,11 @@ public class AuthController {
                     roles));
 
         } catch (Exception e) {
-            // Increment failed attempts
             if (user != null) {
                 user.setFailedLoginAttempts(user.getFailedLoginAttempts() + 1);
                 if (user.getFailedLoginAttempts() >= 5) {
                     user.setAccountLocked(true);
+                    user.setLockTime(LocalDateTime.now());
                 }
                 userRepository.save(user);
             }
@@ -166,5 +180,19 @@ public class AuthController {
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    @Operation(summary = "User Logout")
+    @PostMapping("/logout")
+    public ResponseEntity<?> logoutUser(HttpServletRequest request) {
+        String authHeader = request.getHeader("Authorization");
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            String jwt = authHeader.substring(7);
+            if (jwtUtils.validateJwtToken(jwt)) {
+                String jti = jwtUtils.getJtiFromJwtToken(jwt);
+                tokenBlacklistService.blacklistToken(jti, jwtUtils.getExpirationMs());
+            }
+        }
+        return ResponseEntity.ok(new MessageResponse("Logged out successfully"));
     }
 }

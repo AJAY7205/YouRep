@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -21,6 +22,9 @@ public class DataInitializer implements CommandLineRunner {
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    @Value("${ADMIN_PASSWORD:Admin@123}")
+    private String adminPassword;
 
     public DataInitializer(
             RoleRepository roleRepository,
@@ -54,7 +58,6 @@ public class DataInitializer implements CommandLineRunner {
     private void createAdminUserIfNotExists() {
         String adminUsername = "admin";
         String adminEmail = "admin@yourep.com";
-        String adminPassword = "Admin@123"; // Change this in production!
 
         if (userRepository.findByUsername(adminUsername).isEmpty()) {
             User admin = new User();

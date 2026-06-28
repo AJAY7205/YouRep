@@ -27,10 +27,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
-    // public AuthTokenFilter(JwtUtils jwtUtils,UserDetailsServiceImpl userDetailsService){
-    //     this.jwtUtils = jwtUtils;
-    //     this.userDetailsService = userDetailsService;
-    // }
+    @Autowired
+    private TokenBlacklistService tokenBlacklistService;
 
     @SuppressWarnings("null")
     @Override
@@ -39,6 +37,14 @@ public class AuthTokenFilter extends OncePerRequestFilter {
         try {
             String jwt = parseJwt(request);
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
+                String jti = jwtUtils.getJtiFromJwtToken(jwt);
+                if (tokenBlacklistService.isBlacklisted(jti)) {
+                    response.setStatus(401);
+                    response.setContentType("application/json");
+                    response.getWriter().write("{\"message\":\"Token has been revoked\"}");
+                    return;
+                }
+
                 String username = jwtUtils.getUserNameFromJwtToken(jwt);
 
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
