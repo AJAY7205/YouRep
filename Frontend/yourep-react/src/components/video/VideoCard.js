@@ -16,9 +16,12 @@ const formatDate = (dateString) => {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 };
 
+const FALLBACK_THUMBNAIL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect fill='%23333' width='320' height='180'/%3E%3Ctext fill='%23999' font-family='sans-serif' font-size='16' text-anchor='middle' x='160' y='95'%3ENo Thumbnail%3C/text%3E%3C/svg%3E";
+
 const VideoCard = ({ video }) => {
   const navigate = useNavigate();
   const thumbnailUrl = getThumbnailUrl(video);
+  const [imgError, setImgError] = React.useState(false);
 
   const handleClick = () => {
     navigate(`/watch/${video.videoId}`);
@@ -28,11 +31,10 @@ const VideoCard = ({ video }) => {
     <div className="video-card" onClick={handleClick}>
       <div className="video-card-thumbnail">
         <img
-          src={thumbnailUrl || 'https://via.placeholder.com/320x180?text=No+Thumbnail'}
+          src={imgError || !thumbnailUrl ? FALLBACK_THUMBNAIL : thumbnailUrl}
           alt={video.title}
-          onError={(e) => {
-            e.target.src = 'https://via.placeholder.com/320x180?text=No+Thumbnail';
-          }}
+          loading="lazy"
+          onError={() => setImgError(true)}
         />
         <div className="video-card-status">
           {video.videoStatus}

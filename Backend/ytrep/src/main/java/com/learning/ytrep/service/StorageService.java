@@ -73,6 +73,23 @@ public class StorageService {
         }
     }
 
+    public String uploadVideoStream(InputStream inputStream, long fileSize, String fileName) {
+        String objectKey = "videos/" + UUID.randomUUID() + "-" + fileName;
+        try {
+            minIOConfig.putObject(
+                PutObjectArgs.builder()
+                    .bucket(VIDEO_BUCKET_NAME)
+                    .object(objectKey)
+                    .stream(inputStream, fileSize, -1)
+                    .contentType("video/mp4")
+                    .build()
+            );
+            return objectKey;
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to upload video stream", e);
+        }
+    }
+
     // Original upload method (keep for backward compatibility)
     public String uploadVideo(MultipartFile file) {
         String objectKey = "videos/" + UUID.randomUUID() + "-" + file.getOriginalFilename();
