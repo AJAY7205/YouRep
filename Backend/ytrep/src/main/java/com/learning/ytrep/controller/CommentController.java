@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.learning.ytrep.config.Idempotent;
 import com.learning.ytrep.payload.APIResponse;
 import com.learning.ytrep.payload.CommentDTO;
 import com.learning.ytrep.payload.CommentRequest;
@@ -49,6 +50,7 @@ public class CommentController {
     }
 
     @Operation(summary = "Create a comment on a video")
+    @Idempotent
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PostMapping("/{videoId}")
     public ResponseEntity<CommentDTO> createComment(
@@ -61,6 +63,7 @@ public class CommentController {
     }
 
     @Operation(summary = "Reply to a comment")
+    @Idempotent
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PostMapping("/{videoId}/reply/{parentId}")
     public ResponseEntity<CommentDTO> replyToComment(

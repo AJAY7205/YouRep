@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosRetry from 'axios-retry';
 
 const API_BASE_URL = 'http://localhost:8080/api';
 
@@ -9,11 +10,25 @@ const api = axios.create({
   },
 });
 
+axiosRetry(api, {
+  retries: 3,
+  retryDelay: axiosRetry.exponentialDelay,
+  retryCondition: (error) => {
+    return !error.response || error.response.status >= 500;
+  },
+  onRetry: (retryCount, error) => {
+    console.warn(`Retry ${retryCount}/3 for ${error.config?.url}`, error.message);
+  },
+});
+
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('authToken');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
+    }
+    if (['post', 'put', 'patch'].includes(config.method?.toLowerCase())) {
+      config.headers['Idempotency-Key'] = crypto.randomUUID();
     }
     return config;
   },

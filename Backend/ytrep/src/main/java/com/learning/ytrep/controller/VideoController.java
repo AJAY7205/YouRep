@@ -1,15 +1,16 @@
 package com.learning.ytrep.controller;
 
+import com.learning.ytrep.config.Idempotent;
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
 import com.learning.ytrep.payload.VideoUploadRequest;
 import com.learning.ytrep.service.VideoService;
+import com.learning.ytrep.service.VideoStreamInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Encoding;
 
-import java.io.InputStream;
 // import java.util.List;
 
 import org.springframework.security.core.Authentication;
@@ -36,6 +37,7 @@ public class VideoController {
     }
 
     @Operation(summary = "Post a new video USER/ADMIN only")
+    @Idempotent
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(
             encoding = @Encoding(name = "metadata", contentType = "application/json")
@@ -60,16 +62,53 @@ public class VideoController {
         return new ResponseEntity<>(get,HttpStatus.OK);
     }
 
-    @Operation(summary = "Stream video (ALL type of Users)")
+    @Operation(summary = "Stream video (ALL type of Users) with HTTP Range support")
     @GetMapping(value = "/videos/{videoId}/stream")
-    public ResponseEntity<Resource> streamVideo(@PathVariable Long videoId){
-    
-        InputStream videoStream = videoService.streamVideo(videoId);
-        InputStreamResource resource = new InputStreamResource(videoStream);
+    public ResponseEntity<Resource> streamVideo(
+            @PathVariable Long videoId,
+            @RequestHeader(value = "Range", required = false) String rangeHeader){
 
-    
+        if (rangeHeader != null && rangeHeader.startsWith("bytes=")) {
+            String[] ranges = rangeHeader.substring(6).split("-");
+            long start;
+            try {
+                start = Long.parseLong(ranges[0]);
+            } catch (NumberFormatException e) {
+                start = 0;
+            }
+            long requestedEnd = (ranges.length > 1 && !ranges[1].isEmpty())
+                    ? Long.parseLong(ranges[1])
+                    : -1;
+
+            VideoStreamInfo info = videoService.getVideoStreamInfo(videoId, start, requestedEnd);
+
+            if (start >= info.totalSize()) {
+                HttpHeaders headers = new HttpHeaders();
+                headers.set("Content-Range", "bytes */" + info.totalSize());
+                return ResponseEntity.status(HttpStatus.REQUESTED_RANGE_NOT_SATISFIABLE)
+                        .headers(headers).build();
+            }
+
+            InputStreamResource resource = new InputStreamResource(info.stream());
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.parseMediaType("video/mp4"));
+            headers.setContentLength(info.contentLength());
+            headers.set("Content-Range", "bytes " + info.start() + "-" + info.end() + "/" + info.totalSize());
+            headers.set("Accept-Ranges", "bytes");
+
+            return ResponseEntity.status(HttpStatus.PARTIAL_CONTENT)
+                    .headers(headers)
+                    .body(resource);
+        }
+
+        VideoStreamInfo info = videoService.getVideoStreamInfo(videoId, 0, -1);
+        InputStreamResource resource = new InputStreamResource(info.stream());
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType("video/mp4"));
+        headers.setContentLength(info.totalSize());
+        headers.set("Accept-Ranges", "bytes");
         return ResponseEntity.ok()
             .headers(headers)
             .body(resource);

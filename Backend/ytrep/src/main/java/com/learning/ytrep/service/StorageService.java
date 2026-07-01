@@ -105,6 +105,21 @@ public class StorageService {
         }
     }
 
+    public InputStream getVideoStreamRange(String objectKey, long offset, long length) {
+        try {
+            return minIOConfig.getObject(
+                GetObjectArgs.builder()
+                    .bucket(VIDEO_BUCKET_NAME)
+                    .object(objectKey)
+                    .offset(offset)
+                    .length(length)
+                    .build()
+            );
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to fetch video range", e);
+        }
+    }
+
     public long getVideoSize(String objectKey) {
         try {
             return minIOConfig.statObject(

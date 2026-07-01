@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { getVideo, getStreamUrl, updateVideo, deleteVideo } from '../services/api/video.service';
@@ -8,6 +8,7 @@ import CommentSection from '../components/comment/CommentSection';
 const VideoPlayer = () => {
   const { id } = useParams();
   const { isAuthenticated, user } = useAuth();
+  const videoRef = useRef(null);
   const [video, setVideo] = useState(null);
   const [liked, setLiked] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
@@ -16,6 +17,8 @@ const VideoPlayer = () => {
   const [editDescription, setEditDescription] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [buffering, setBuffering] = useState(false);
+  const [videoError, setVideoError] = useState('');
 
   const fetchVideo = useCallback(async () => {
     try {
@@ -90,6 +93,14 @@ const VideoPlayer = () => {
     }
   };
 
+  const retryVideo = () => {
+    setVideoError('');
+    setBuffering(false);
+    if (videoRef.current) {
+      videoRef.current.load();
+    }
+  };
+
   const isOwner = video && user && video.username === user.username;
   const isAdmin = user?.roles?.includes('ADMIN');
   const canModify = isOwner || isAdmin;
@@ -127,11 +138,33 @@ const VideoPlayer = () => {
     <div className="player-page">
       <div className="player-container">
         <div className="video-player-wrapper">
+          {videoError && (
+            <div className="video-error-overlay">
+              <p>⚠️ {videoError}</p>
+              <button onClick={retryVideo} className="btn btn-primary">Retry</button>
+            </div>
+          )}
+          {buffering && !videoError && (
+            <div className="buffering-overlay">
+              <div className="spinner" />
+              <p>Buffering...</p>
+            </div>
+          )}
           <video
+            ref={videoRef}
             className="video-player"
             controls
             autoPlay
             src={streamUrl}
+            onError={(e) => {
+              const code = e.target?.error?.code;
+              console.warn(`Video error (code ${code}): MEDIA_ERR_${['ABORTED','NETWORK','DECODE','SRC_NOT_SUPPORTED'][code-1] || 'UNKNOWN'}`);
+              setVideoError('Failed to load video stream. Check your connection.');
+            }}
+            onStalled={() => setBuffering(true)}
+            onWaiting={() => setBuffering(true)}
+            onCanPlay={() => { setBuffering(false); setVideoError(''); }}
+            onPlaying={() => setBuffering(false)}
           >
             Your browser does not support video playback.
           </video>

@@ -113,6 +113,36 @@ public class VideoServiceImpl implements VideoService{
     }
 
     @Override
+    public InputStream streamVideoRange(Long videoId, long offset, long length){
+        Video video = videoRepository.findByVideoId(videoId);
+        if(video == null){
+            throw new ResourceNotFoundException("Video","ID",videoId.toString());
+        }
+        if (offset == 0) {
+            @SuppressWarnings("unused")
+            VideoAnalyticsResponse videoAnalyticsResponse = videoAnalyticsServiceImpl.incrementViewCount(videoId);
+        }
+        return storageService.getVideoStreamRange(video.getObjectKey(), offset, length);
+    }
+
+    @Override
+    public VideoStreamInfo getVideoStreamInfo(Long videoId, long start, long requestedEnd) {
+        Video video = videoRepository.findByVideoId(videoId);
+        if (video == null) {
+            throw new ResourceNotFoundException("Video", "ID", videoId.toString());
+        }
+        long totalSize = storageService.getVideoSize(video.getObjectKey());
+        if (start == 0) {
+            @SuppressWarnings("unused")
+            VideoAnalyticsResponse videoAnalyticsResponse = videoAnalyticsServiceImpl.incrementViewCount(videoId);
+        }
+        long end = (requestedEnd <= 0 || requestedEnd >= totalSize) ? totalSize - 1 : requestedEnd;
+        long contentLength = end - start + 1;
+        InputStream stream = storageService.getVideoStreamRange(video.getObjectKey(), start, contentLength);
+        return new VideoStreamInfo(stream, totalSize, start, end, contentLength);
+    }
+
+    @Override
     public long getVideoSize(Long videoId){
         Video video = videoRepository.findByVideoId(videoId);
         if(video == null){

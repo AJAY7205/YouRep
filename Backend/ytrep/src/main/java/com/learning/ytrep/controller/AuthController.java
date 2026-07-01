@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.learning.ytrep.config.Idempotent;
 import com.learning.ytrep.model.AppRole;
 import com.learning.ytrep.model.Role;
 import com.learning.ytrep.model.User;
@@ -122,6 +123,7 @@ public class AuthController {
         }
     }
     @Operation(summary = "User Registration")
+    @Idempotent
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         

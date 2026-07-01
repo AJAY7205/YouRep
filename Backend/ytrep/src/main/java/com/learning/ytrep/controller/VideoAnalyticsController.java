@@ -2,6 +2,7 @@ package com.learning.ytrep.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,7 @@ public class VideoAnalyticsController {
     }
 
     @Operation(summary = "Increasing the views")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PostMapping("/video-analyitcs/{videoId}/increment-views")
     public ResponseEntity<VideoAnalyticsResponse> updateViews(@PathVariable Long videoId){
         VideoAnalyticsResponse response = videoAnalyticsService.incrementViewCount(videoId);
@@ -38,6 +40,7 @@ public class VideoAnalyticsController {
     }
 
     @Operation(summary = "Increasing the likes")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PostMapping("/video-analyitcs/{videoId}/increment-likes")
     public ResponseEntity<VideoAnalyticsResponse> incrementLikes(@PathVariable Long videoId){
         VideoAnalyticsResponse response = videoAnalyticsService.incrementLikeCount(videoId);
@@ -45,6 +48,7 @@ public class VideoAnalyticsController {
     }
 
     @Operation(summary = "Decreasing the likes")
+    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
     @PostMapping("/video-analyitcs/{videoId}/decrement-likes")
     public ResponseEntity<VideoAnalyticsResponse> decrementLikes(@PathVariable Long videoId){
         VideoAnalyticsResponse response = videoAnalyticsService.decrementLikeCount(videoId);

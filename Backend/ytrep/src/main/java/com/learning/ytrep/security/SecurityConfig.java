@@ -2,6 +2,7 @@ package com.learning.ytrep.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 // import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -98,10 +99,11 @@ public class SecurityConfig {
                 .requestMatchers("/api/videos/*/thumbnail").permitAll()
                 .requestMatchers("/api/video-analytics/*").permitAll()
                 .requestMatchers("/api/likes/*/count").permitAll()
-                .requestMatchers("/api/comments/{videoId}").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/comments/{videoId}").permitAll()
                 .requestMatchers("/api/comments/{videoId}/count").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/error").permitAll()
+                .requestMatchers("/actuator/**").permitAll()
                 
                 // Authenticated endpoints
                 .anyRequest().authenticated()
