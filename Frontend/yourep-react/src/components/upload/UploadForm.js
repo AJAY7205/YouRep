@@ -36,6 +36,13 @@ const UploadForm = () => {
         e.target.value = '';
         return;
       }
+      if (file.type !== 'video/mp4') {
+        setError(
+          <>Only MP4 format is supported. Use <a href="https://cloudconvert.com/" target="_blank" rel="noopener noreferrer">cloudconvert.com</a> to convert your video.</>
+        );
+        e.target.value = '';
+        return;
+      }
       setVideoFile(file);
       setError('');
     }
@@ -199,7 +206,7 @@ const UploadForm = () => {
             <input
               id="videoFile"
               type="file"
-              accept="video/*"
+              accept=".mp4,video/mp4"
               onChange={handleVideoChange}
               disabled={uploading}
               className="file-input"

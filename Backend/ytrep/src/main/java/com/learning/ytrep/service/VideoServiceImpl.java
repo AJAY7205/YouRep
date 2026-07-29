@@ -6,7 +6,6 @@ import com.learning.ytrep.model.User;
 import com.learning.ytrep.model.UserLike;
 import com.learning.ytrep.model.Video;
 import com.learning.ytrep.model.VideoAnalytics;
-//import com.learning.ytrep.model.VideoAnalytics;
 import com.learning.ytrep.model.VideoStatus;
 import com.learning.ytrep.payload.VideoAnalyticsResponse;
 import com.learning.ytrep.payload.VideoDTO;
@@ -17,15 +16,12 @@ import com.learning.ytrep.repository.UserRepository;
 import com.learning.ytrep.repository.VideoRepository;
 
 import org.modelmapper.ModelMapper;
-// import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -44,9 +40,8 @@ public class VideoServiceImpl implements VideoService{
     private final ThumbnailService thumbnailService;
     private final UserRepository userRepository;
     private final UserLikeRepository userLikeRepository;
-    private final VideoTranscodingService transcodingService;
 
-    public VideoServiceImpl(VideoRepository videoRepository, StorageService storageService, VideoAnalyticsServiceImpl videoAnalyticsServiceImpl, ModelMapper modelMapper, ThumbnailService thumbnailService, UserRepository userRepository, UserLikeRepository userLikeRepository, VideoTranscodingService transcodingService){
+    public VideoServiceImpl(VideoRepository videoRepository, StorageService storageService, VideoAnalyticsServiceImpl videoAnalyticsServiceImpl, ModelMapper modelMapper, ThumbnailService thumbnailService, UserRepository userRepository, UserLikeRepository userLikeRepository){
         this.videoRepository = videoRepository;
         this.storageService = storageService;
         this.videoAnalyticsServiceImpl = videoAnalyticsServiceImpl;
@@ -54,7 +49,6 @@ public class VideoServiceImpl implements VideoService{
         this.thumbnailService = thumbnailService;
         this.userRepository = userRepository;
         this.userLikeRepository = userLikeRepository;
-        this.transcodingService = transcodingService;
     }
 
     @Override
@@ -62,7 +56,6 @@ public class VideoServiceImpl implements VideoService{
         User user = userRepository.findByUsername(username)
                     .orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
 
-        String uploadId = UUID.randomUUID().toString();
         Video video = new Video();
         video.setVideoId(null);
         video.setTitle(videoUploadRequest.getTitle());
@@ -72,41 +65,15 @@ public class VideoServiceImpl implements VideoService{
         video.setUpdatedAt(LocalDateTime.now());
         video.setUser(user);
 
-        String objectKey;
-        Path tempInput = null;
-        Path tempOutput = null;
-        try {
-            tempInput = Files.createTempFile("upload_", "_" + file.getOriginalFilename());
-
-            file.transferTo(tempInput.toFile());
-
-            if (transcodingService.isAvailable()) {
-                video.setStatus(VideoStatus.PROCESSING);
-                log.info("Transcoding {} (size: {})", file.getOriginalFilename(), file.getSize());
-                tempOutput = transcodingService.transcodeToMp4(tempInput);
-                String mp4Name = file.getOriginalFilename().replaceAll("\\.[^.]+$", "") + ".mp4";
-                try (InputStream in = Files.newInputStream(tempOutput)) {
-                    objectKey = storageService.uploadVideoStream(in, Files.size(tempOutput), mp4Name);
-                }
-            } else {
-                log.warn("FFmpeg not available, uploading original file as-is");
-                try (InputStream in = Files.newInputStream(tempInput)) {
-                    objectKey = storageService.uploadVideoStream(in, file.getSize(), file.getOriginalFilename());
-                }
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to process video: " + e.getMessage(), e);
-        } finally {
-            try { if (tempInput != null) Files.deleteIfExists(tempInput); } catch (Exception ignored) {}
-            try { if (tempOutput != null) Files.deleteIfExists(tempOutput); } catch (Exception ignored) {}
-        }
-
+        String objectKey = storageService.uploadVideo(file);
         video.setObjectKey(objectKey);
         video.setStatus(VideoStatus.UPLOADED);
+
         if(thumbnail != null && !thumbnail.isEmpty()){
             String thumbnailKey = thumbnailService.uploadThumbnail(thumbnail);
             video.setThumbnailkey(thumbnailKey);
         }
+
         VideoAnalytics videoAnalytics = new VideoAnalytics();
         videoAnalytics.setVideo(video);
         videoAnalytics.setViewCount(0);
@@ -115,6 +82,7 @@ public class VideoServiceImpl implements VideoService{
         videoAnalytics.setUpdatedAt(LocalDateTime.now());
         video.setVideoAnalytics(videoAnalytics);
         Video savedVideo = videoRepository.save(video);
+
         return mapToDTO(savedVideo);
     }
 

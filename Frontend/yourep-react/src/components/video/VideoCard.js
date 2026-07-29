@@ -36,9 +36,11 @@ const VideoCard = ({ video }) => {
           loading="lazy"
           onError={() => setImgError(true)}
         />
-        <div className="video-card-status">
-          {video.videoStatus}
-        </div>
+        {video.videoStatus !== 'UPLOADED' && (
+          <div className="video-card-status">
+            {video.videoStatus}
+          </div>
+        )}
       </div>
       <div className="video-card-body">
         <h3 className="video-card-title">{video.title}</h3>
