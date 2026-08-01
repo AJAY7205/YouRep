@@ -7,6 +7,7 @@ import com.learning.ytrep.model.Comment;
 import com.learning.ytrep.repository.CommentRepository;
 
 @Component("commentSecurityService")
+@SuppressWarnings("null")
 public class CommentSecurityService {
 
     private final CommentRepository commentRepository;

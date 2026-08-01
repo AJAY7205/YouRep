@@ -18,6 +18,24 @@ const formatDate = (dateString) => {
 
 const FALLBACK_THUMBNAIL = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='180'%3E%3Crect fill='%23333' width='320' height='180'/%3E%3Ctext fill='%23999' font-family='sans-serif' font-size='16' text-anchor='middle' x='160' y='95'%3ENo Thumbnail%3C/text%3E%3C/svg%3E";
 
+const StatusBadge = ({ status }) => {
+  if (status === 'PROCESSING') {
+    return (
+      <div className="video-card-status processing">
+        <span className="processing-spinner" />
+        Processing
+      </div>
+    );
+  }
+  if (status === 'FAILED') {
+    return <div className="video-card-status failed">Failed</div>;
+  }
+  if (status === 'UPLOADED') {
+    return <div className="video-card-status">Queued</div>;
+  }
+  return null;
+};
+
 const VideoCard = ({ video }) => {
   const navigate = useNavigate();
   const thumbnailUrl = getThumbnailUrl(video);
@@ -36,11 +54,7 @@ const VideoCard = ({ video }) => {
           loading="lazy"
           onError={() => setImgError(true)}
         />
-        {video.videoStatus !== 'UPLOADED' && (
-          <div className="video-card-status">
-            {video.videoStatus}
-          </div>
-        )}
+        <StatusBadge status={video.videoStatus} />
       </div>
       <div className="video-card-body">
         <h3 className="video-card-title">{video.title}</h3>

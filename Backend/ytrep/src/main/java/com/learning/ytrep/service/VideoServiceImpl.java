@@ -7,6 +7,7 @@ import com.learning.ytrep.model.UserLike;
 import com.learning.ytrep.model.Video;
 import com.learning.ytrep.model.VideoAnalytics;
 import com.learning.ytrep.model.VideoStatus;
+import com.learning.ytrep.payload.TranscodeRequestDTO;
 import com.learning.ytrep.payload.VideoAnalyticsResponse;
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
@@ -40,8 +41,9 @@ public class VideoServiceImpl implements VideoService{
     private final ThumbnailService thumbnailService;
     private final UserRepository userRepository;
     private final UserLikeRepository userLikeRepository;
+    private final TranscodeRequestProducer transcodeRequestProducer;
 
-    public VideoServiceImpl(VideoRepository videoRepository, StorageService storageService, VideoAnalyticsServiceImpl videoAnalyticsServiceImpl, ModelMapper modelMapper, ThumbnailService thumbnailService, UserRepository userRepository, UserLikeRepository userLikeRepository){
+    public VideoServiceImpl(VideoRepository videoRepository, StorageService storageService, VideoAnalyticsServiceImpl videoAnalyticsServiceImpl, ModelMapper modelMapper, ThumbnailService thumbnailService, UserRepository userRepository, UserLikeRepository userLikeRepository, TranscodeRequestProducer transcodeRequestProducer){
         this.videoRepository = videoRepository;
         this.storageService = storageService;
         this.videoAnalyticsServiceImpl = videoAnalyticsServiceImpl;
@@ -49,6 +51,7 @@ public class VideoServiceImpl implements VideoService{
         this.thumbnailService = thumbnailService;
         this.userRepository = userRepository;
         this.userLikeRepository = userLikeRepository;
+        this.transcodeRequestProducer = transcodeRequestProducer;
     }
 
     @Override
@@ -83,6 +86,13 @@ public class VideoServiceImpl implements VideoService{
         video.setVideoAnalytics(videoAnalytics);
         Video savedVideo = videoRepository.save(video);
 
+        // Queue for transcoding
+        savedVideo.setStatus(VideoStatus.PROCESSING);
+        savedVideo.setUpdatedAt(LocalDateTime.now());
+        videoRepository.save(savedVideo);
+        transcodeRequestProducer.sendTranscodeRequest(
+                new TranscodeRequestDTO(savedVideo.getVideoId(), savedVideo.getObjectKey()));
+
         return mapToDTO(savedVideo);
     }
 
@@ -107,7 +117,7 @@ public class VideoServiceImpl implements VideoService{
         if(video == null){
             throw new ResourceNotFoundException("Video","ID",videoId.toString());
         }
-        String objectKey = video.getObjectKey();
+        String objectKey = resolveStreamKey(video);
         @SuppressWarnings("unused")
         VideoAnalyticsResponse videoAnalyticsResponse = videoAnalyticsServiceImpl.incrementViewCount(videoId);
         return storageService.getVideoStream(objectKey);
@@ -123,7 +133,7 @@ public class VideoServiceImpl implements VideoService{
             @SuppressWarnings("unused")
             VideoAnalyticsResponse videoAnalyticsResponse = videoAnalyticsServiceImpl.incrementViewCount(videoId);
         }
-        return storageService.getVideoStreamRange(video.getObjectKey(), offset, length);
+        return storageService.getVideoStreamRange(resolveStreamKey(video), offset, length);
     }
 
     @Override
@@ -132,14 +142,15 @@ public class VideoServiceImpl implements VideoService{
         if (video == null) {
             throw new ResourceNotFoundException("Video", "ID", videoId.toString());
         }
-        long totalSize = storageService.getVideoSize(video.getObjectKey());
+        String objectKey = resolveStreamKey(video);
+        long totalSize = storageService.getVideoSize(objectKey);
         if (start == 0) {
             @SuppressWarnings("unused")
             VideoAnalyticsResponse videoAnalyticsResponse = videoAnalyticsServiceImpl.incrementViewCount(videoId);
         }
         long end = (requestedEnd <= 0 || requestedEnd >= totalSize) ? totalSize - 1 : requestedEnd;
         long contentLength = end - start + 1;
-        InputStream stream = storageService.getVideoStreamRange(video.getObjectKey(), start, contentLength);
+        InputStream stream = storageService.getVideoStreamRange(objectKey, start, contentLength);
         return new VideoStreamInfo(stream, totalSize, start, end, contentLength);
     }
 
@@ -149,7 +160,14 @@ public class VideoServiceImpl implements VideoService{
         if(video == null){
             throw new APIException("Video Not Found");
         }
-        return storageService.getVideoSize(video.getObjectKey());
+        return storageService.getVideoSize(resolveStreamKey(video));
+    }
+
+    private String resolveStreamKey(Video video) {
+        if (video.getTranscodedKey() != null && !video.getTranscodedKey().isBlank()) {
+            return video.getTranscodedKey();
+        }
+        return video.getObjectKey();
     }
     
     private VideoDTO mapToDTO(Video video) {
@@ -213,6 +231,9 @@ public class VideoServiceImpl implements VideoService{
                 userLikeRepository.deleteAll(likes);
                 }   
         storageService.deleteVideo(video.getObjectKey());
+        if(video.getTranscodedKey() != null){
+            storageService.deleteVideo(video.getTranscodedKey());
+        }
         if(video.getThumbnailkey() != null){
             thumbnailService.deleteThumbnailCache(videoId);
             storageService.deleteThumbnail(video.getThumbnailkey());

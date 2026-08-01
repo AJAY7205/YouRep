@@ -12,6 +12,11 @@ export const getVideo = async (videoId) => {
   return response.data;
 };
 
+export const getTranscodeProgress = async (videoId) => {
+  const response = await api.get(`/videos/${videoId}/transcode-progress`);
+  return response.data;
+};
+
 export const uploadVideo = (formData, onProgress) => {
   return new Promise((resolve, reject) => {
     const token = localStorage.getItem('authToken');

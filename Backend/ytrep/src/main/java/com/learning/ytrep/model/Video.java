@@ -26,6 +26,9 @@ public class Video {
     @Column(nullable = false)
     private String objectKey;
 
+    @Column
+    private String transcodedKey;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private VideoStatus status;

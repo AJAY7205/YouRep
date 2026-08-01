@@ -6,5 +6,6 @@ public enum VideoStatus {
     PUBLISHED,
     UPLOADING,
     PRIVATE,
-    DELETED
+    DELETED,
+    FAILED
 }

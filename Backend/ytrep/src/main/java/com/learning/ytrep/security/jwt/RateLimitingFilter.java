@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 @Order(1)
+@SuppressWarnings("null")
 public class RateLimitingFilter extends OncePerRequestFilter {
 
     private static final int MAX_REQUESTS = 10;

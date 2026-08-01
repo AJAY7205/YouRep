@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { getVideo, getStreamUrl, updateVideo, deleteVideo } from '../services/api/video.service';
+import { getVideo, getTranscodeProgress, getStreamUrl, updateVideo, deleteVideo } from '../services/api/video.service';
 import { toggleLike, checkLiked, getLikeCount } from '../services/api/like.service';
 import CommentSection from '../components/comment/CommentSection';
 
@@ -19,6 +19,7 @@ const VideoPlayer = () => {
   const [error, setError] = useState('');
   const [buffering, setBuffering] = useState(false);
   const [videoError, setVideoError] = useState('');
+  const [progress, setProgress] = useState({ percent: 0, etaSeconds: null });
 
   const fetchVideo = useCallback(async () => {
     try {
@@ -60,6 +61,44 @@ const VideoPlayer = () => {
     fetchLikeStatus();
     fetchLikeCount();
   }, [fetchVideo, fetchLikeStatus, fetchLikeCount]);
+
+  useEffect(() => {
+    if (!video || (video.videoStatus !== 'PROCESSING' && video.videoStatus !== 'UPLOADED')) return;
+    let active = true;
+
+    const loadProgress = async () => {
+      try {
+        const p = await getTranscodeProgress(id);
+        if (active) setProgress(p);
+      } catch (err) {
+        console.error('Fetching transcode progress failed:', err);
+      }
+    };
+
+    loadProgress();
+    const interval = setInterval(async () => {
+      try {
+        const response = await getVideo(id);
+        const v = response.content[0];
+        setVideo(v);
+        if (v.videoStatus === 'PROCESSING' || v.videoStatus === 'UPLOADED') {
+          loadProgress();
+        }
+      } catch (err) {
+        console.error('Polling video status failed:', err);
+      }
+    }, 5000);
+    return () => { active = false; clearInterval(interval); };
+  }, [video, id]);
+
+  const formatEta = (seconds) => {
+    if (seconds == null || seconds <= 0) return null;
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.round(seconds % 60);
+    return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+  };
+
+  const etaLabel = formatEta(progress.etaSeconds);
 
   const handleLike = async () => {
     if (!isAuthenticated) return;
@@ -127,6 +166,41 @@ const VideoPlayer = () => {
     return (
       <div className="error-state">
         <p>Video not found</p>
+        <Link to="/" className="btn btn-primary">Back to Home</Link>
+      </div>
+    );
+  }
+
+  if (video.videoStatus === 'PROCESSING' || video.videoStatus === 'UPLOADED') {
+    const percent = progress.percent || 0;
+    return (
+      <div className="processing-screen">
+        <div className="spinner" />
+        <h2>This video is being processed</h2>
+        {percent > 0 ? (
+          <div className="processing-progress">
+            <div className="progress-bar">
+              <div className="progress-bar-fill" style={{ width: `${Math.min(100, percent)}%` }} />
+            </div>
+            <p className="processing-sub">
+              {Math.round(percent)}% complete
+              {etaLabel ? ` — about ${etaLabel} remaining` : ''}
+            </p>
+          </div>
+        ) : (
+          <p className="processing-sub">Preparing to transcode…</p>
+        )}
+        <p className="processing-sub">It will be available for playback once transcoding completes.</p>
+        <p className="processing-sub">You can keep browsing other videos in the meantime.</p>
+        <Link to="/" className="btn btn-primary">Back to Home</Link>
+      </div>
+    );
+  }
+
+  if (video.videoStatus === 'FAILED') {
+    return (
+      <div className="error-state">
+        <p>This video failed to process and cannot be played.</p>
         <Link to="/" className="btn btn-primary">Back to Home</Link>
       </div>
     );

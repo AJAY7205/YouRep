@@ -6,6 +6,7 @@ import com.learning.ytrep.payload.VideoResponse;
 import com.learning.ytrep.payload.VideoUploadRequest;
 import com.learning.ytrep.service.VideoService;
 import com.learning.ytrep.service.VideoStreamInfo;
+import com.learning.ytrep.service.TranscodeProgressService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -31,9 +32,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class VideoController {
 
     private final VideoService videoService;
+    private final TranscodeProgressService progressService;
 
-    public VideoController(VideoService videoService) {
+    public VideoController(VideoService videoService, TranscodeProgressService progressService) {
         this.videoService = videoService;
+        this.progressService = progressService;
     }
 
     @Operation(summary = "Post a new video USER/ADMIN only")
@@ -52,7 +55,7 @@ public class VideoController {
                                               Authentication authentication){
         String username = authentication.getName();
         VideoDTO videoDTO1 = videoService.postVideo(videoUploadRequest,file,thumbnail,username);
-        return new ResponseEntity<>(videoDTO1.toString(),HttpStatus.CREATED);
+        return new ResponseEntity<>(videoDTO1.toString(),HttpStatus.ACCEPTED);
     }
 
     @Operation(summary = "Get video details (ALL type of Users)")
@@ -136,6 +139,12 @@ public class VideoController {
     public ResponseEntity<VideoResponse> getAllVideo(){
         VideoResponse videoResponses = videoService.getAllVideo();
         return new ResponseEntity<>(videoResponses,HttpStatus.OK);
+    }
+
+    @Operation(summary = "Get live transcode progress + ETA (All users)")
+    @GetMapping(value = "/videos/{videoId}/transcode-progress")
+    public ResponseEntity<java.util.Map<String, Object>> getTranscodeProgress(@PathVariable Long videoId){
+        return new ResponseEntity<>(progressService.getProgress(videoId), HttpStatus.OK);
     }
 
 

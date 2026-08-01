@@ -23,6 +23,7 @@ import com.learning.ytrep.repository.UserRepository;
 import com.learning.ytrep.repository.VideoRepository;
 
 @Service
+@SuppressWarnings("null")
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;

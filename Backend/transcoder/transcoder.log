@@ -1,0 +1,142 @@
+2026-07-31 12:33:52,488 INFO [transcoder] Transcoder pool ready: 11 workers (preset=veryfast, crf=23)
+2026-07-31 12:33:52,491 INFO [kafka.net.manager] Attempting bootstrap to bootstrap-0 at localhost:9092 (rack None)
+2026-07-31 12:33:52,491 INFO [kafka.net.manager] Initializing connection for node_id bootstrap-0 at localhost:9092 (rack=None)
+2026-07-31 12:33:52,503 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-62631]>: connected to <socket.socket fd=316, family=23, type=1, proto=0, laddr=('::1', 62631, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-07-31 12:33:52,508 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-62631] broker_version=unknown (initializing)>: Broker version identified as 4.3
+2026-07-31 12:33:52,509 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-62631] broker_version=(4, 3) (connected)>: Connected
+2026-07-31 12:33:52,517 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-07-31 12:33:52,517 INFO [kafka.net.manager] Bootstrap complete: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-07-31 12:33:52,518 INFO [kafka.net.manager] Closing bootstrap connection bootstrap-0
+2026-07-31 12:33:52,518 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-62631]>: Closing transport
+2026-07-31 12:33:52,518 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 broker_version=(4, 3) (disconnected)>: Connection closed
+2026-07-31 12:33:52,519 INFO [kafka.cluster] Starting metadata refresh loop
+2026-07-31 12:33:52,519 INFO [kafka.producer.kafka] <KafkaProducer client_id=kafka-python-producer-1 transactional_id=None>: Instantiated an idempotent producer.
+2026-07-31 12:33:52,520 INFO [kafka.producer.transaction_manager] ProducerId set to -1 with epoch -1
+2026-07-31 12:33:52,520 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-07-31 12:33:52,522 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-62634]>: connected to <socket.socket fd=696, family=23, type=1, proto=0, laddr=('::1', 62634, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-07-31 12:33:52,523 INFO [kafka.net.selector] IO loop starting (client_id=kafka-python-3.0.9)
+2026-07-31 12:33:52,524 INFO [kafka.net.manager] Attempting bootstrap to bootstrap-0 at localhost:9092 (rack None)
+2026-07-31 12:33:52,525 INFO [kafka.net.manager] Initializing connection for node_id bootstrap-0 at localhost:9092 (rack=None)
+2026-07-31 12:33:52,527 INFO [kafka.net.connection] <KafkaConnection node_id=1 host=[::1:9092<-62634] broker_version=(4, 3) (connected)>: Connected
+2026-07-31 12:33:52,529 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-62635]>: connected to <socket.socket fd=800, family=23, type=1, proto=0, laddr=('::1', 62635, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-07-31 12:33:52,531 INFO [kafka.producer.transaction_manager] ProducerId set to 4 with epoch 0
+2026-07-31 12:33:52,531 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-62635] broker_version=unknown (initializing)>: Broker version identified as 4.3
+2026-07-31 12:33:52,532 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-62635] broker_version=(4, 3) (connected)>: Connected
+2026-07-31 12:33:52,534 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-07-31 12:33:52,534 INFO [kafka.net.manager] Bootstrap complete: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-07-31 12:33:52,534 INFO [kafka.net.manager] Closing bootstrap connection bootstrap-0
+2026-07-31 12:33:52,535 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-62635]>: Closing transport
+2026-07-31 12:33:52,535 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 broker_version=(4, 3) (disconnected)>: Connection closed
+2026-07-31 12:33:52,535 INFO [kafka.cluster] Starting metadata refresh loop
+2026-07-31 12:33:52,537 INFO [kafka.consumer.subscription_state] Updating subscribed topics to: ('transcode-requests',)
+2026-07-31 12:33:52,538 INFO [transcoder] Transcoder listening on 'transcode-requests' (bootstrap=localhost:9092)
+2026-07-31 12:33:52,538 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-07-31 12:33:52,540 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-62636]>: connected to <socket.socket fd=808, family=23, type=1, proto=0, laddr=('::1', 62636, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-07-31 12:33:52,545 INFO [kafka.net.connection] <KafkaConnection node_id=1 host=[::1:9092<-62636] broker_version=(4, 3) (connected)>: Connected
+2026-07-31 12:33:52,549 INFO [kafka.cluster] Coordinator for GROUP/python-transcoder-group is MetadataResponseBroker(node_id='coordinator-1', host='localhost', port=9092, rack=None)
+2026-07-31 12:33:52,549 INFO [kafka.coordinator] Discovered coordinator coordinator-1 for group python-transcoder-group
+2026-07-31 12:33:52,549 INFO [kafka.net.manager] Initializing connection for node_id coordinator-1 at localhost:9092 (rack=None)
+2026-07-31 12:33:52,552 INFO [kafka.coordinator.consumer] Revoking previously assigned partitions set() for group python-transcoder-group
+2026-07-31 12:33:52,552 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-62637]>: connected to <socket.socket fd=584, family=23, type=1, proto=0, laddr=('::1', 62637, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-07-31 12:33:52,553 INFO [kafka.coordinator] (Re-)joining group python-transcoder-group
+2026-07-31 12:33:52,559 INFO [kafka.net.connection] <KafkaConnection node_id=coordinator-1 host=[::1:9092<-62637] broker_version=(4, 3) (connected)>: Connected
+2026-07-31 12:33:52,566 INFO [kafka.coordinator] Received member id kafka-python-3.0.9-952ecca7-c2d5-48eb-8b6f-e76198fe4dd5 for group python-transcoder-group; will retry join-group
+2026-07-31 12:33:52,566 INFO [kafka.coordinator] (Re-)joining group python-transcoder-group
+2026-07-31 12:33:52,650 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-07-31 12:34:34,332 INFO [kafka.coordinator] Successfully joined group python-transcoder-group <Generation 6 (member_id: kafka-python-3.0.9-952ecca7-c2d5-48eb-8b6f-e76198fe4dd5, protocol: range)>
+2026-07-31 12:34:34,332 INFO [kafka.coordinator] Elected group leader -- performing partition assignments using range
+2026-07-31 12:34:34,338 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-07-31 12:34:34,340 INFO [kafka.consumer.subscription_state] Updated partition assignment: [TopicPartition(topic='transcode-requests', partition=0)]
+2026-07-31 12:34:34,340 INFO [kafka.coordinator.consumer] Setting newly assigned partitions {TopicPartition(topic='transcode-requests', partition=0)} for group python-transcoder-group
+2026-07-31 12:34:34,359 INFO [transcoder] Processing video 1 (objectKey=videos/f75e065b-35a4-4efd-8cc6-97223f5c1612-Cricket Bowling 150fps 1200.avi)
+2026-07-31 12:34:39,525 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 0)
+2026-07-31 12:34:39,536 INFO [transcoder] Completion SUCCESS for video 1 delivered to transcode-completion[0]@1
+2026-07-31 12:34:39,537 INFO [transcoder] Video 1 transcoded successfully -> transcoded/1.mp4
+2026-07-31 12:37:38,415 INFO [transcoder] Processing video 2 (objectKey=videos/7c2da791-4cf7-4e5b-b5b9-20ced9ba181c-100mb.mp4)
+2026-07-31 12:39:34,460 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-07-31 12:39:39,545 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 0)
+2026-07-31 12:44:34,710 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-07-31 12:44:39,566 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 0)
+2026-07-31 12:45:30,225 INFO [transcoder] Completion SUCCESS for video 2 delivered to transcode-completion[0]@2
+2026-07-31 12:45:30,226 INFO [transcoder] Video 2 transcoded successfully -> transcoded/2.mp4
+2026-07-31 12:49:34,951 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-07-31 12:49:39,578 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 0)
+2026-07-31 13:11:56,990 INFO [transcoder] Transcoder pool ready: 11 workers (preset=veryfast, crf=23)
+2026-07-31 13:11:56,994 INFO [kafka.net.manager] Attempting bootstrap to bootstrap-0 at localhost:9092 (rack None)
+2026-07-31 13:11:56,994 INFO [kafka.net.manager] Initializing connection for node_id bootstrap-0 at localhost:9092 (rack=None)
+2026-07-31 13:11:57,004 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53060]>: connected to <socket.socket fd=568, family=23, type=1, proto=0, laddr=('::1', 53060, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-07-31 13:11:57,018 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-53060] broker_version=unknown (initializing)>: Broker version identified as 4.3
+2026-07-31 13:11:57,019 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-53060] broker_version=(4, 3) (connected)>: Connected
+2026-07-31 13:11:57,027 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-07-31 13:11:57,027 INFO [kafka.net.manager] Bootstrap complete: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-07-31 13:11:57,028 INFO [kafka.net.manager] Closing bootstrap connection bootstrap-0
+2026-07-31 13:11:57,028 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53060]>: Closing transport
+2026-07-31 13:11:57,029 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 broker_version=(4, 3) (disconnected)>: Connection closed
+2026-07-31 13:11:57,030 INFO [kafka.cluster] Starting metadata refresh loop
+2026-07-31 13:11:57,031 INFO [kafka.producer.kafka] <KafkaProducer client_id=kafka-python-producer-1 transactional_id=None>: Instantiated an idempotent producer.
+2026-07-31 13:11:57,032 INFO [kafka.producer.transaction_manager] ProducerId set to -1 with epoch -1
+2026-07-31 13:11:57,032 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-07-31 13:11:57,034 INFO [kafka.net.selector] IO loop starting (client_id=kafka-python-3.0.9)
+2026-07-31 13:11:57,035 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53063]>: connected to <socket.socket fd=728, family=23, type=1, proto=0, laddr=('::1', 53063, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-07-31 13:11:57,035 INFO [kafka.net.manager] Attempting bootstrap to bootstrap-0 at localhost:9092 (rack None)
+2026-07-31 13:11:57,036 INFO [kafka.net.manager] Initializing connection for node_id bootstrap-0 at localhost:9092 (rack=None)
+2026-07-31 13:11:57,039 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53064]>: connected to <socket.socket fd=772, family=23, type=1, proto=0, laddr=('::1', 53064, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-07-31 13:11:57,039 INFO [kafka.net.connection] <KafkaConnection node_id=1 host=[::1:9092<-53063] broker_version=(4, 3) (connected)>: Connected
+2026-07-31 13:11:57,044 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-53064] broker_version=unknown (initializing)>: Broker version identified as 4.3
+2026-07-31 13:11:57,045 INFO [kafka.producer.transaction_manager] ProducerId set to 5 with epoch 0
+2026-07-31 13:11:57,045 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-53064] broker_version=(4, 3) (connected)>: Connected
+2026-07-31 13:11:57,048 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-07-31 13:11:57,048 INFO [kafka.net.manager] Bootstrap complete: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-07-31 13:11:57,049 INFO [kafka.net.manager] Closing bootstrap connection bootstrap-0
+2026-07-31 13:11:57,049 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53064]>: Closing transport
+2026-07-31 13:11:57,049 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 broker_version=(4, 3) (disconnected)>: Connection closed
+2026-07-31 13:11:57,050 INFO [kafka.cluster] Starting metadata refresh loop
+2026-07-31 13:11:57,051 INFO [kafka.consumer.subscription_state] Updating subscribed topics to: ('transcode-requests',)
+2026-07-31 13:11:57,052 INFO [transcoder] Transcoder listening on 'transcode-requests' (bootstrap=localhost:9092)
+2026-07-31 13:11:57,052 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-07-31 13:11:57,054 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53065]>: connected to <socket.socket fd=540, family=23, type=1, proto=0, laddr=('::1', 53065, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-07-31 13:11:57,058 INFO [kafka.net.connection] <KafkaConnection node_id=1 host=[::1:9092<-53065] broker_version=(4, 3) (connected)>: Connected
+2026-07-31 13:11:57,064 INFO [kafka.cluster] Coordinator for GROUP/python-transcoder-group is MetadataResponseBroker(node_id='coordinator-1', host='localhost', port=9092, rack=None)
+2026-07-31 13:11:57,064 INFO [kafka.coordinator] Discovered coordinator coordinator-1 for group python-transcoder-group
+2026-07-31 13:11:57,064 INFO [kafka.net.manager] Initializing connection for node_id coordinator-1 at localhost:9092 (rack=None)
+2026-07-31 13:11:57,066 INFO [kafka.coordinator.consumer] Revoking previously assigned partitions set() for group python-transcoder-group
+2026-07-31 13:11:57,067 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53066]>: connected to <socket.socket fd=792, family=23, type=1, proto=0, laddr=('::1', 53066, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-07-31 13:11:57,068 INFO [kafka.coordinator] (Re-)joining group python-transcoder-group
+2026-07-31 13:11:57,074 INFO [kafka.net.connection] <KafkaConnection node_id=coordinator-1 host=[::1:9092<-53066] broker_version=(4, 3) (connected)>: Connected
+2026-07-31 13:11:57,079 INFO [kafka.coordinator] Received member id kafka-python-3.0.9-50fb4423-d411-4112-8e7d-7282e810aa26 for group python-transcoder-group; will retry join-group
+2026-07-31 13:11:57,080 INFO [kafka.coordinator] (Re-)joining group python-transcoder-group
+2026-07-31 13:11:57,152 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-07-31 13:12:00,084 INFO [kafka.coordinator] Successfully joined group python-transcoder-group <Generation 8 (member_id: kafka-python-3.0.9-50fb4423-d411-4112-8e7d-7282e810aa26, protocol: range)>
+2026-07-31 13:12:00,084 INFO [kafka.coordinator] Elected group leader -- performing partition assignments using range
+2026-07-31 13:12:00,090 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-07-31 13:12:00,092 INFO [kafka.consumer.subscription_state] Updated partition assignment: [TopicPartition(topic='transcode-requests', partition=0)]
+2026-07-31 13:12:00,092 INFO [kafka.coordinator.consumer] Setting newly assigned partitions {TopicPartition(topic='transcode-requests', partition=0)} for group python-transcoder-group
+2026-07-31 13:12:00,114 INFO [transcoder] Processing video 1 (objectKey=videos/f75e065b-35a4-4efd-8cc6-97223f5c1612-Cricket Bowling 150fps 1200.avi)
+2026-07-31 13:12:00,115 INFO [transcoder] Processing video 2 (objectKey=videos/7c2da791-4cf7-4e5b-b5b9-20ced9ba181c-100mb.mp4)
+2026-07-31 13:12:02,101 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 0)
+2026-07-31 13:12:10,872 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 2, coordinators: 0)
+2026-07-31 13:12:10,878 INFO [transcoder] Completion SUCCESS for video 1 delivered to transcode-completion[0]@3
+2026-07-31 13:12:10,879 INFO [transcoder] Video 1 transcoded successfully -> transcoded/1.mp4
+2026-07-31 13:12:56,927 INFO [transcoder] Processing video 1 (objectKey=videos/13b530b4-8859-40c9-86bb-0e3470c94989-Cricket Bowling 150fps 1200.avi)
+2026-07-31 13:13:06,586 INFO [transcoder] Completion SUCCESS for video 1 delivered to transcode-completion[0]@4
+2026-07-31 13:13:06,586 INFO [transcoder] Video 1 transcoded successfully -> transcoded/1.mp4
+2026-07-31 13:13:27,091 INFO [transcoder] Shutdown requested, draining workers...
+2026-07-31 13:13:27,189 INFO [transcoder] Waiting for in-flight transcodes to finish...
+2026-07-31 13:13:27,671 ERROR [transcoder] FFmpeg failed (rc=255) for video 2:
+
+2026-07-31 13:13:27,675 INFO [transcoder] Completion FAILED for video 2 delivered to transcode-completion[0]@5
+2026-07-31 13:13:27,692 INFO [kafka.coordinator.consumer] Revoking previously assigned partitions {TopicPartition(topic='transcode-requests', partition=0)} for group python-transcoder-group on close
+2026-07-31 13:13:27,692 INFO [kafka.consumer.subscription_state] Updated partition assignment: []
+2026-07-31 13:13:27,693 INFO [kafka.coordinator] Leaving consumer group python-transcoder-group (member kafka-python-3.0.9-50fb4423-d411-4112-8e7d-7282e810aa26).
+2026-07-31 13:13:27,701 INFO [kafka.coordinator] LeaveGroup request for group python-transcoder-group returned successfully
+2026-07-31 13:13:27,701 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53065]>: Closing transport
+2026-07-31 13:13:27,702 INFO [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection closed
+2026-07-31 13:13:27,702 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53066]>: Closing transport
+2026-07-31 13:13:27,702 INFO [kafka.net.connection] <KafkaConnection node_id=coordinator-1 broker_version=(4, 3) (disconnected)>: Connection closed
+2026-07-31 13:13:27,703 INFO [kafka.cluster] Stopping metadata refresh loop
+2026-07-31 13:13:27,703 INFO [kafka.net.selector] IO loop exited cleanly (client_id=kafka-python-3.0.9, stop=True)
+2026-07-31 13:13:27,704 INFO [kafka.producer.kafka] <KafkaProducer client_id=kafka-python-producer-1 transactional_id=None>: Closing the Kafka producer with 4294967.0 secs timeout.
+2026-07-31 13:13:27,705 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53063]>: Closing transport
+2026-07-31 13:13:27,705 INFO [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection closed
+2026-07-31 13:13:27,706 INFO [kafka.cluster] Stopping metadata refresh loop
+2026-07-31 13:13:27,706 INFO [transcoder] Transcoder stopped.

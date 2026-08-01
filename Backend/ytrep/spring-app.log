@@ -1,0 +1,438 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.9)
+
+2026-07-31T12:53:29.667+05:30  INFO 19176 --- [ytrep] [           main] com.learning.ytrep.YtrepApplication      : Starting YtrepApplication using Java 21.0.9 with PID 19176 (D:\Projects\YouRep\Backend\ytrep\target\classes started by ajayl in D:\Projects\YouRep\Backend\ytrep)
+2026-07-31T12:53:29.677+05:30  INFO 19176 --- [ytrep] [           main] com.learning.ytrep.YtrepApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-07-31T12:53:32.358+05:30  INFO 19176 --- [ytrep] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-07-31T12:53:32.362+05:30  INFO 19176 --- [ytrep] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-31T12:53:32.654+05:30  INFO 19176 --- [ytrep] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 267 ms. Found 7 JPA repository interfaces.
+2026-07-31T12:53:32.676+05:30  INFO 19176 --- [ytrep] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-07-31T12:53:32.678+05:30  INFO 19176 --- [ytrep] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-07-31T12:53:32.709+05:30  INFO 19176 --- [ytrep] [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.CommentLikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-07-31T12:53:32.710+05:30  INFO 19176 --- [ytrep] [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.CommentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-07-31T12:53:32.710+05:30  INFO 19176 --- [ytrep] [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-07-31T12:53:32.711+05:30  INFO 19176 --- [ytrep] [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.UserLikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-07-31T12:53:32.711+05:30  INFO 19176 --- [ytrep] [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-07-31T12:53:32.712+05:30  INFO 19176 --- [ytrep] [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.VideoAnalyticsRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-07-31T12:53:32.712+05:30  INFO 19176 --- [ytrep] [           main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.VideoRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-07-31T12:53:32.712+05:30  INFO 19176 --- [ytrep] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2026-07-31T12:53:34.166+05:30  INFO 19176 --- [ytrep] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-07-31T12:53:34.192+05:30  INFO 19176 --- [ytrep] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-07-31T12:53:34.193+05:30  INFO 19176 --- [ytrep] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-07-31T12:53:34.318+05:30  INFO 19176 --- [ytrep] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-07-31T12:53:34.319+05:30  INFO 19176 --- [ytrep] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4562 ms
+2026-07-31T12:53:34.793+05:30  INFO 19176 --- [ytrep] [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-31T12:53:34.872+05:30  INFO 19176 --- [ytrep] [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.39.Final
+2026-07-31T12:53:34.914+05:30  INFO 19176 --- [ytrep] [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-07-31T12:53:35.335+05:30  INFO 19176 --- [ytrep] [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-31T12:53:35.399+05:30  WARN 19176 --- [ytrep] [           main] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2026-07-31T12:53:35.400+05:30  INFO 19176 --- [ytrep] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-07-31T12:53:35.685+05:30  INFO 19176 --- [ytrep] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1be4a7e3
+2026-07-31T12:53:35.689+05:30  INFO 19176 --- [ytrep] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-07-31T12:53:35.740+05:30  WARN 19176 --- [ytrep] [           main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-31T12:53:35.770+05:30  INFO 19176 --- [ytrep] [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-07-31T12:53:37.285+05:30  INFO 19176 --- [ytrep] [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+Hibernate: set client_min_messages = WARNING
+Hibernate: alter table if exists comment drop constraint if exists FKde3rfu96lep00br5ov0mdieyt
+Hibernate: alter table if exists comment drop constraint if exists FKqm52p1v3o13hy268he0wcngr5
+Hibernate: alter table if exists comment drop constraint if exists FKbsuh08kv1lyh8v6ivufrollr6
+Hibernate: alter table if exists comment_likes drop constraint if exists FKd0epu3dcjc57pwe7lt5jgfqsi
+Hibernate: alter table if exists comment_likes drop constraint if exists FK6h3lbneryl5pyb9ykaju7werx
+Hibernate: alter table if exists user_likes drop constraint if exists FK6aog39hkl1hs1amxef5i9g4fv
+Hibernate: alter table if exists user_likes drop constraint if exists FKbb8jqqetge7495p4k1xujox1g
+Hibernate: alter table if exists user_role drop constraint if exists FKa68196081fvovjhkek5m97n3y
+Hibernate: alter table if exists user_role drop constraint if exists FKj345gk1bovqvfame88rcx7yyx
+Hibernate: alter table if exists video drop constraint if exists FK2k5fkq9vwjoxc3ne82hh280t0
+Hibernate: alter table if exists video_analytics drop constraint if exists FK56tcfdg83kjrcku3i9gom6qmp
+Hibernate: drop table if exists comment cascade
+Hibernate: drop table if exists comment_likes cascade
+Hibernate: drop table if exists role cascade
+Hibernate: drop table if exists user_likes cascade
+Hibernate: drop table if exists user_role cascade
+Hibernate: drop table if exists users cascade
+Hibernate: drop table if exists video cascade
+Hibernate: drop table if exists video_analytics cascade
+Hibernate: create table comment (comment_id bigint generated by default as identity, created_at timestamp(6) not null, like_count bigint not null, parent_id bigint, updated_at timestamp(6) not null, user_id bigint not null, video_id bigint not null, content TEXT not null, primary key (comment_id))
+Hibernate: create table comment_likes (comment_id bigint not null, comment_like_id bigint generated by default as identity, created_at timestamp(6) not null, user_id bigint not null, primary key (comment_like_id), unique (user_id, comment_id))
+Hibernate: create table role (role_id bigint generated by default as identity, role_name varchar(255) check (role_name in ('USER','ADMIN','GUEST')), primary key (role_id))
+Hibernate: create table user_likes (liked_at timestamp(6) not null, user_id bigint not null, user_like_id bigint generated by default as identity, video_id bigint not null, primary key (user_like_id), unique (user_id, video_id))
+Hibernate: create table user_role (role_id bigint not null, user_id bigint not null, primary key (role_id, user_id))
+Hibernate: create table users (account_locked boolean not null, failed_login_attempts integer not null, created_at timestamp(6) not null, last_login timestamp(6), lock_time timestamp(6), user_id bigint generated by default as identity, username varchar(20) not null unique, password varchar(120) not null, email varchar(255) not null unique, primary key (user_id))
+Hibernate: create table video (created_at timestamp(6) not null, updated_at timestamp(6) not null, user_id bigint not null, video_id bigint generated by default as identity, description varchar(255) not null, object_key varchar(255) not null, status varchar(255) not null check (status in ('UPLOADED','PROCESSING','PUBLISHED','UPLOADING','PRIVATE','DELETED','FAILED')), thumbnailkey varchar(255), title varchar(255) not null, transcoded_key varchar(255), primary key (video_id))
+Hibernate: create table video_analytics (created_at timestamp(6) not null, like_count bigint not null, updated_at timestamp(6) not null, video_id bigint not null, view_count bigint not null, primary key (video_id))
+Hibernate: alter table if exists comment add constraint FKde3rfu96lep00br5ov0mdieyt foreign key (parent_id) references comment
+Hibernate: alter table if exists comment add constraint FKqm52p1v3o13hy268he0wcngr5 foreign key (user_id) references users
+Hibernate: alter table if exists comment add constraint FKbsuh08kv1lyh8v6ivufrollr6 foreign key (video_id) references video
+Hibernate: alter table if exists comment_likes add constraint FKd0epu3dcjc57pwe7lt5jgfqsi foreign key (comment_id) references comment
+Hibernate: alter table if exists comment_likes add constraint FK6h3lbneryl5pyb9ykaju7werx foreign key (user_id) references users
+Hibernate: alter table if exists user_likes add constraint FK6aog39hkl1hs1amxef5i9g4fv foreign key (user_id) references users
+Hibernate: alter table if exists user_likes add constraint FKbb8jqqetge7495p4k1xujox1g foreign key (video_id) references video
+Hibernate: alter table if exists user_role add constraint FKa68196081fvovjhkek5m97n3y foreign key (role_id) references role
+Hibernate: alter table if exists user_role add constraint FKj345gk1bovqvfame88rcx7yyx foreign key (user_id) references users
+Hibernate: alter table if exists video add constraint FK2k5fkq9vwjoxc3ne82hh280t0 foreign key (user_id) references users
+Hibernate: alter table if exists video_analytics add constraint FK56tcfdg83kjrcku3i9gom6qmp foreign key (video_id) references video
+2026-07-31T12:53:37.616+05:30  INFO 19176 --- [ytrep] [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-31T12:53:38.637+05:30  INFO 19176 --- [ytrep] [           main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-07-31T12:53:38.639+05:30  WARN 19176 --- [ytrep] [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-07-31T12:53:39.662+05:30  WARN 19176 --- [ytrep] [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-31T12:53:40.335+05:30  INFO 19176 --- [ytrep] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-07-31T12:53:40.586+05:30 DEBUG 19176 --- [ytrep] [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, AuthTokenFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-07-31T12:53:41.465+05:30  INFO 19176 --- [ytrep] [           main] o.a.k.clients.admin.AdminClientConfig    : AdminClientConfig values: 
+	auto.include.jmx.reporter = true
+	bootstrap.controllers = []
+	bootstrap.servers = [localhost:9092]
+	client.dns.lookup = use_all_dns_ips
+	client.id = ytrep-admin-0
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	enable.metrics.push = true
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2026-07-31T12:53:41.676+05:30  INFO 19176 --- [ytrep] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.1
+2026-07-31T12:53:41.677+05:30  INFO 19176 --- [ytrep] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: f745dfdcee2b9851
+2026-07-31T12:53:41.677+05:30  INFO 19176 --- [ytrep] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1785482621674
+2026-07-31T12:53:42.527+05:30  INFO 19176 --- [ytrep] [| ytrep-admin-0] o.a.kafka.common.utils.AppInfoParser     : App info kafka.admin.client for ytrep-admin-0 unregistered
+2026-07-31T12:53:42.532+05:30  INFO 19176 --- [ytrep] [| ytrep-admin-0] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-07-31T12:53:42.533+05:30  INFO 19176 --- [ytrep] [| ytrep-admin-0] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-07-31T12:53:42.533+05:30  INFO 19176 --- [ytrep] [| ytrep-admin-0] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-07-31T12:53:42.541+05:30  INFO 19176 --- [ytrep] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Starting...
+2026-07-31T12:53:42.542+05:30  INFO 19176 --- [ytrep] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@22fc72e8]]
+2026-07-31T12:53:42.543+05:30  INFO 19176 --- [ytrep] [           main] o.s.m.s.b.SimpleBrokerMessageHandler     : Started.
+2026-07-31T12:53:42.556+05:30  INFO 19176 --- [ytrep] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-07-31T12:53:42.586+05:30  INFO 19176 --- [ytrep] [           main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-video-processing-group-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = video-processing-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.JsonDeserializer
+
+2026-07-31T12:53:42.635+05:30  INFO 19176 --- [ytrep] [           main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-07-31T12:53:42.761+05:30  INFO 19176 --- [ytrep] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.1
+2026-07-31T12:53:42.762+05:30  INFO 19176 --- [ytrep] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: f745dfdcee2b9851
+2026-07-31T12:53:42.762+05:30  INFO 19176 --- [ytrep] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1785482622761
+2026-07-31T12:53:42.775+05:30  INFO 19176 --- [ytrep] [           main] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Subscribed to topic(s): transcode-completion
+2026-07-31T12:53:42.788+05:30  INFO 19176 --- [ytrep] [           main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-video-processing-group-2
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = video-processing-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2026-07-31T12:53:42.789+05:30  INFO 19176 --- [ytrep] [           main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-07-31T12:53:42.797+05:30  INFO 19176 --- [ytrep] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.1
+2026-07-31T12:53:42.799+05:30  INFO 19176 --- [ytrep] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: f745dfdcee2b9851
+2026-07-31T12:53:42.800+05:30  INFO 19176 --- [ytrep] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1785482622797
+2026-07-31T12:53:42.802+05:30  INFO 19176 --- [ytrep] [           main] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Subscribed to topic(s): transcode-progress
+2026-07-31T12:53:42.817+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Cluster ID: 
+2026-07-31T12:53:42.817+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Cluster ID: 
+2026-07-31T12:53:42.820+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+2026-07-31T12:53:42.820+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+2026-07-31T12:53:42.824+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] (Re-)joining group
+2026-07-31T12:53:42.824+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] (Re-)joining group
+2026-07-31T12:53:42.830+05:30  INFO 19176 --- [ytrep] [           main] com.learning.ytrep.YtrepApplication      : Started YtrepApplication in 13.898 seconds (process running for 14.546)
+2026-07-31T12:53:42.854+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Request joining group due to: need to re-join with the given member-id: consumer-video-processing-group-1-af4e8e93-7719-4961-9b3b-699756525c04
+2026-07-31T12:53:42.854+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Request joining group due to: need to re-join with the given member-id: consumer-video-processing-group-2-924faa82-181b-4a59-abd8-d0622c90e43e
+2026-07-31T12:53:42.855+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] (Re-)joining group
+2026-07-31T12:53:42.855+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] (Re-)joining group
+Hibernate: select r1_0.role_id,r1_0.role_name from role r1_0 where r1_0.role_name=?
+Hibernate: insert into role (role_name) values (?)
+Created role: USER
+Hibernate: select r1_0.role_id,r1_0.role_name from role r1_0 where r1_0.role_name=?
+Hibernate: insert into role (role_name) values (?)
+Created role: ADMIN
+Hibernate: select r1_0.role_id,r1_0.role_name from role r1_0 where r1_0.role_name=?
+Hibernate: insert into role (role_name) values (?)
+Created role: GUEST
+Hibernate: select u1_0.user_id,u1_0.account_locked,u1_0.created_at,u1_0.email,u1_0.failed_login_attempts,u1_0.last_login,u1_0.lock_time,u1_0.password,u1_0.username from users u1_0 where u1_0.username=?
+Hibernate: select r1_0.role_id,r1_0.role_name from role r1_0 where r1_0.role_name=?
+Hibernate: insert into users (account_locked,created_at,email,failed_login_attempts,last_login,lock_time,password,username) values (?,?,?,?,?,?,?,?)
+============================================
+ADMIN USER CREATED
+Username: admin
+Password: Admin@123
+??  CHANGE PASSWORD IN PRODUCTION!
+============================================
+Hibernate: insert into user_role (user_id,role_id) values (?,?)
+2026-07-31T12:53:43.376+05:30  WARN 19176 --- [ytrep] [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-07-31T12:53:43.377+05:30  WARN 19176 --- [ytrep] [           main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-07-31T12:54:03.131+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Successfully joined group with generation Generation{generationId=2, memberId='consumer-video-processing-group-1-af4e8e93-7719-4961-9b3b-699756525c04', protocol='range'}
+2026-07-31T12:54:03.131+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Successfully joined group with generation Generation{generationId=2, memberId='consumer-video-processing-group-2-924faa82-181b-4a59-abd8-d0622c90e43e', protocol='range'}
+2026-07-31T12:54:03.151+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Finished assignment for group at generation 2: {consumer-video-processing-group-2-924faa82-181b-4a59-abd8-d0622c90e43e=Assignment(partitions=[transcode-progress-0]), consumer-video-processing-group-1-af4e8e93-7719-4961-9b3b-699756525c04=Assignment(partitions=[transcode-completion-0])}
+2026-07-31T12:54:03.161+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Successfully synced group in generation Generation{generationId=2, memberId='consumer-video-processing-group-1-af4e8e93-7719-4961-9b3b-699756525c04', protocol='range'}
+2026-07-31T12:54:03.161+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Successfully synced group in generation Generation{generationId=2, memberId='consumer-video-processing-group-2-924faa82-181b-4a59-abd8-d0622c90e43e', protocol='range'}
+2026-07-31T12:54:03.162+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Notifying assignor about the new Assignment(partitions=[transcode-completion-0])
+2026-07-31T12:54:03.162+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Notifying assignor about the new Assignment(partitions=[transcode-progress-0])
+2026-07-31T12:54:03.166+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Adding newly assigned partitions: transcode-progress-0
+2026-07-31T12:54:03.166+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Adding newly assigned partitions: transcode-completion-0
+2026-07-31T12:54:03.172+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Found no committed offset for partition transcode-progress-0
+2026-07-31T12:54:03.175+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition transcode-completion-0 to the committed offset FetchPosition{offset=3, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=0}}
+2026-07-31T12:54:03.177+05:30  INFO 19176 --- [ytrep] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : video-processing-group: partitions assigned: [transcode-completion-0]
+2026-07-31T12:54:03.177+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Found no committed offset for partition transcode-progress-0
+2026-07-31T12:54:03.185+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.a.k.c.c.internals.SubscriptionState    : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Resetting offset for partition transcode-progress-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=0}}.
+2026-07-31T12:54:03.192+05:30  INFO 19176 --- [ytrep] [ntainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : video-processing-group: partitions assigned: [transcode-progress-0]
+2026-07-31T12:54:41.341+05:30  INFO 19176 --- [ytrep] [MessageBroker-1] o.s.w.s.c.WebSocketMessageBrokerStats    : WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]

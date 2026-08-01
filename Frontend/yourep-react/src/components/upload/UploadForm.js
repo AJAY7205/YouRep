@@ -36,13 +36,6 @@ const UploadForm = () => {
         e.target.value = '';
         return;
       }
-      if (file.type !== 'video/mp4') {
-        setError(
-          <>Only MP4 format is supported. Use <a href="https://cloudconvert.com/" target="_blank" rel="noopener noreferrer">cloudconvert.com</a> to convert your video.</>
-        );
-        e.target.value = '';
-        return;
-      }
       setVideoFile(file);
       setError('');
     }
@@ -96,7 +89,7 @@ const UploadForm = () => {
         }
       },
       () => {
-        setSuccess('Video uploaded successfully!');
+        setSuccess('Video uploaded! It is now being processed and will be available soon.');
         setUploading(false);
         setTitle('');
         setDescription('');
@@ -137,7 +130,7 @@ const UploadForm = () => {
         lastTimeRef.current = now;
       });
 
-      setSuccess('Video uploaded successfully!');
+      setSuccess('Video uploaded! It is now being processed and will be available soon.');
       setUploading(false);
       setTitle('');
       setDescription('');
@@ -206,7 +199,7 @@ const UploadForm = () => {
             <input
               id="videoFile"
               type="file"
-              accept=".mp4,video/mp4"
+              accept="video/*"
               onChange={handleVideoChange}
               disabled={uploading}
               className="file-input"

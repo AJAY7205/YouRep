@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
@@ -20,7 +21,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.learning.ytrep.security.jwt.AuthTokenFilter;
-import com.learning.ytrep.security.services.UserDetailsServiceImpl;
 
 import java.util.Arrays;
 
@@ -29,12 +29,6 @@ import java.util.Arrays;
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
-    private final UserDetailsServiceImpl userDetailsServiceImpl;
-
-    public SecurityConfig(UserDetailsServiceImpl userDetailsServiceImpl) {
-        this.userDetailsServiceImpl = userDetailsServiceImpl;
-    }
-
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
@@ -42,14 +36,12 @@ public class SecurityConfig {
 
     @SuppressWarnings("deprecation")
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    public DaoAuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(userDetailsServiceImpl);
+        authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
-
-    
 
     @Bean
     AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
@@ -82,7 +74,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, DaoAuthenticationProvider authProvider, AuthTokenFilter authTokenFilter) throws Exception {
         http
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))  // Enable CORS
             .csrf(csrf -> csrf.disable())  // Disable CSRF for REST API
@@ -97,6 +89,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/getVideo/*").permitAll()
                 .requestMatchers("/api/videos/*/stream").permitAll()
                 .requestMatchers("/api/videos/*/thumbnail").permitAll()
+                .requestMatchers("/api/videos/*/transcode-progress").permitAll()
                 .requestMatchers("/api/video-analytics/*").permitAll()
                 .requestMatchers("/api/likes/*/count").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/comments/{videoId}").permitAll()
@@ -108,8 +101,8 @@ public class SecurityConfig {
                 // Authenticated endpoints
                 .anyRequest().authenticated()
             )
-            .authenticationProvider(authenticationProvider())
-            .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+            .authenticationProvider(authProvider)
+            .addFilterBefore(authTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
