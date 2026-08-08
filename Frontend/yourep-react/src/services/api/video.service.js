@@ -51,6 +51,7 @@ export const uploadVideo = (formData, onProgress) => {
     if (token) {
       xhr.setRequestHeader('Authorization', `Bearer ${token}`);
     }
+    xhr.setRequestHeader('Idempotency-Key', crypto.randomUUID());
     xhr.send(formData);
   });
 };

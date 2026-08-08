@@ -12,12 +12,12 @@ import com.learning.ytrep.exception.ResourceNotFoundException;
 import com.learning.ytrep.model.User;
 import com.learning.ytrep.model.UserLike;
 import com.learning.ytrep.model.Video;
+import com.learning.ytrep.model.VideoAnalytics;
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.repository.UserLikeRepository;
 import com.learning.ytrep.repository.UserRepository;
-// import com.learning.ytrep.repository.VideoAnalyticsRepository;
+import com.learning.ytrep.repository.VideoAnalyticsRepository;
 import com.learning.ytrep.repository.VideoRepository;
-// import com.learning.ytrep.service.VideoAnalyticsService;
 
 @Service
 public class UserLikeServiceImpl implements UserLikeService {
@@ -25,6 +25,7 @@ public class UserLikeServiceImpl implements UserLikeService {
     private final UserLikeRepository userLikeRepository;
     private final UserRepository userRepository;
     private final VideoRepository videoRepository;
+    private final VideoAnalyticsRepository videoAnalyticsRepository;
     private final VideoAnalyticsService videoAnalyticsService;
     @SuppressWarnings("unused")
     private final ModelMapper modelMapper;
@@ -33,11 +34,13 @@ public class UserLikeServiceImpl implements UserLikeService {
             UserLikeRepository userLikeRepository,
             UserRepository userRepository,
             VideoRepository videoRepository,
+            VideoAnalyticsRepository videoAnalyticsRepository,
             VideoAnalyticsService videoAnalyticsService,
             ModelMapper modelMapper) {
         this.userLikeRepository = userLikeRepository;
         this.userRepository = userRepository;
         this.videoRepository = videoRepository;
+        this.videoAnalyticsRepository = videoAnalyticsRepository;
         this.videoAnalyticsService = videoAnalyticsService;
         this.modelMapper = modelMapper;
     }
@@ -120,9 +123,7 @@ public class UserLikeServiceImpl implements UserLikeService {
 
     @Override
     public long getLikeCount(Long videoId) {
-        // return userLikeRepository.findAll().stream()
-        //         .filter(like -> like.getVideo().getVideoId().equals(videoId))
-        //         .count();
-                return userLikeRepository.countByVideoVideoId(videoId);
+        VideoAnalytics analytics = videoAnalyticsRepository.findByVideoId(videoId);
+        return analytics == null ? 0 : analytics.getLikeCount();
     }
 }

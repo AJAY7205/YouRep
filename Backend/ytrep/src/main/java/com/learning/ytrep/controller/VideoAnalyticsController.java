@@ -2,10 +2,8 @@ package com.learning.ytrep.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,29 +27,5 @@ public class VideoAnalyticsController {
     public ResponseEntity<VideoAnalyticsResponse> getVideoAnalytics(@PathVariable Long videoId){
         VideoAnalyticsResponse response = videoAnalyticsService.getVideoAnalytics(videoId);
         return new ResponseEntity<>(response, HttpStatus.OK);
-    }
-
-    @Operation(summary = "Increasing the views")
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-    @PostMapping("/video-analyitcs/{videoId}/increment-views")
-    public ResponseEntity<VideoAnalyticsResponse> updateViews(@PathVariable Long videoId){
-        VideoAnalyticsResponse response = videoAnalyticsService.incrementViewCount(videoId);
-        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
-    }
-
-    @Operation(summary = "Increasing the likes")
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-    @PostMapping("/video-analyitcs/{videoId}/increment-likes")
-    public ResponseEntity<VideoAnalyticsResponse> incrementLikes(@PathVariable Long videoId){
-        VideoAnalyticsResponse response = videoAnalyticsService.incrementLikeCount(videoId);
-        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
-    }
-
-    @Operation(summary = "Decreasing the likes")
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
-    @PostMapping("/video-analyitcs/{videoId}/decrement-likes")
-    public ResponseEntity<VideoAnalyticsResponse> decrementLikes(@PathVariable Long videoId){
-        VideoAnalyticsResponse response = videoAnalyticsService.decrementLikeCount(videoId);
-        return new ResponseEntity<>(response,HttpStatus.ACCEPTED);
     }
 }

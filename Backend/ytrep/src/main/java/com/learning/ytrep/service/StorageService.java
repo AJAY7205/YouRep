@@ -1,12 +1,10 @@
 package com.learning.ytrep.service;
 
 import com.learning.ytrep.exception.APIException;
-import com.learning.ytrep.util.ProgressTrackingInputStream;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.GetObjectArgs;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,53 +22,9 @@ public class StorageService {
     private String THUMBNAIL_BUCKET_NAME;
 
     private final MinioClient minIOConfig;
-    
-    @Autowired(required = false)
-    private UploadProgressTracker progressTracker;
 
     public StorageService(MinioClient minIOConfig) {
         this.minIOConfig = minIOConfig;
-    }
-
-    public String uploadVideoWithProgress(MultipartFile file, String uploadId) {
-        String objectKey = "videos/" + UUID.randomUUID() + "-" + file.getOriginalFilename();
-        
-        try {
-            long fileSize = file.getSize();
-            InputStream inputStream = file.getInputStream();
-            
-            ProgressTrackingInputStream progressStream = new ProgressTrackingInputStream(
-                inputStream,
-                fileSize,
-                (bytesRead, totalBytes, percentage) -> {
-                    
-                    if (progressTracker != null) {
-                        progressTracker.updateProgress(uploadId, bytesRead, totalBytes, percentage);
-                    }
-                }
-            );
-            
-            minIOConfig.putObject(
-                PutObjectArgs.builder()
-                    .bucket(VIDEO_BUCKET_NAME)
-                    .object(objectKey)
-                    .stream(progressStream, fileSize, -1)
-                    .contentType(file.getContentType())
-                    .build()
-            );
-            
-            if (progressTracker != null) {
-                progressTracker.completeUpload(uploadId);
-            }
-            
-            return objectKey;
-            
-        } catch (Exception e) {
-            if (progressTracker != null) {
-                progressTracker.failUpload(uploadId, e.getMessage());
-            }
-            throw new RuntimeException("Failed to upload video: " + e.getMessage(), e);
-        }
     }
 
     public String uploadVideoStream(InputStream inputStream, long fileSize, String fileName) {

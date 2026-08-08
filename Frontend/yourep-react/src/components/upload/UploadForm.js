@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { uploadVideo } from '../../services/api/video.service';
-import websocketService from '../../services/websocket/websocket.service';
 
 const MAX_FILE_SIZE = 500 * 1024 * 1024;
 
@@ -16,17 +15,8 @@ const UploadForm = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const xhrRef = useRef(null);
-  const uploadIdRef = useRef(null);
   const lastLoadedRef = useRef(0);
   const lastTimeRef = useRef(0);
-
-  const generateUUID = () => {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-      const r = (Math.random() * 16) | 0;
-      const v = c === 'x' ? r : (r & 0x3) | 0x8;
-      return v.toString(16);
-    });
-  };
 
   const handleVideoChange = (e) => {
     const file = e.target.files[0];
@@ -63,9 +53,6 @@ const UploadForm = () => {
       return;
     }
 
-    const uploadId = generateUUID();
-    uploadIdRef.current = uploadId;
-
     const formData = new FormData();
     const metadata = { title: title.trim(), description: description.trim() };
     formData.append('metadata', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
@@ -80,29 +67,6 @@ const UploadForm = () => {
     lastTimeRef.current = Date.now();
     setSpeed('');
     setTimeRemaining('');
-
-    websocketService.connect(
-      uploadId,
-      (serverProgress) => {
-        if (serverProgress.status === 'COMPLETED') {
-          setProgress({ percentage: 100, loaded: videoFile.size, total: videoFile.size });
-        }
-      },
-      () => {
-        setSuccess('Video uploaded! It is now being processed and will be available soon.');
-        setUploading(false);
-        setTitle('');
-        setDescription('');
-        setVideoFile(null);
-        setThumbnailFile(null);
-        websocketService.disconnect();
-      },
-      (err) => {
-        setError(err || 'Upload failed');
-        setUploading(false);
-        websocketService.disconnect();
-      }
-    );
 
     try {
       await uploadVideo(formData, (clientProgress) => {
@@ -136,7 +100,6 @@ const UploadForm = () => {
       setDescription('');
       setVideoFile(null);
       setThumbnailFile(null);
-      websocketService.disconnect();
     } catch (err) {
       if (err.message === 'Upload cancelled') {
         setError('Upload cancelled');
@@ -144,7 +107,6 @@ const UploadForm = () => {
         setError(err.message || 'Upload failed');
       }
       setUploading(false);
-      websocketService.disconnect();
     }
   };
 
@@ -153,7 +115,6 @@ const UploadForm = () => {
       xhrRef.current.abort();
     }
     setUploading(false);
-    websocketService.disconnect();
     setError('Upload cancelled');
   };
 
