@@ -145,7 +145,32 @@ services:
 
 volumes:
   postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/yourep-data/postgres
   redis_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/yourep-data/redis
   minio_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/yourep-data/minio
   caddy_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/yourep-data/caddy_data
   caddy_config:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/yourep-data/caddy_config
