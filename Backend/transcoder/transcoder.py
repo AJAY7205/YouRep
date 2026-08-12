@@ -19,6 +19,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from dotenv import load_dotenv
 from kafka import KafkaConsumer, KafkaProducer, TopicPartition, OffsetAndMetadata
@@ -56,7 +57,11 @@ MINIO_SECURE = os.getenv("MINIO_SECURE", "false").lower() == "true"
 FFMPEG_PRESET = os.getenv("FFMPEG_PRESET", "veryfast")
 FFMPEG_CRF = os.getenv("FFMPEG_CRF", "23")
 CORES = os.cpu_count() or 2
-MAX_WORKERS = int(os.getenv("MAX_WORKERS", "0")) or max(1, CORES - 1)
+try:
+    _max_workers = int(os.getenv("MAX_WORKERS", "0"))
+except ValueError:
+    _max_workers = 0
+MAX_WORKERS = _max_workers if _max_workers > 0 else max(1, CORES - 1)
 POLL_TIMEOUT_MS = 1000
 
 STATUS_SUCCESS = "SUCCESS"
@@ -218,10 +223,10 @@ class OffsetTracker:
 
     def __init__(self, consumer: KafkaConsumer):
         self.consumer = consumer
-        self.partitions: dict[TopicPartition, dict[int, object]] = {}
+        self.partitions: dict[TopicPartition, dict[int, "FutureRecordMetadata"]] = {}
         self._lock = threading.Lock()
 
-    def _partition_state(self, tp: TopicPartition) -> dict[int, object]:
+    def _partition_state(self, tp: TopicPartition) -> dict[int, "FutureRecordMetadata"]:
         if tp not in self.partitions:
             self.partitions[tp] = {}
         return self.partitions[tp]
@@ -236,13 +241,18 @@ class OffsetTracker:
         with self._lock:
             commits = {}
             for tp, inflight in list(self.partitions.items()):
-                next_expected = self.consumer.position(tp)
+                if not inflight:
+                    continue
+                next_expected = min(inflight)
                 made_progress = False
                 while next_expected in inflight:
                     future = inflight[next_expected]
                     if not future.done():
                         break
-                    future.result()  # raise if the job failed unexpectedly
+                    try:
+                        future.result()  # raise if the job failed unexpectedly
+                    except BaseException:  # noqa: BLE001 - keep the partition draining
+                        log.exception("Job for offset %s failed unexpectedly; discarding message", next_expected)
                     del inflight[next_expected]
                     next_expected += 1
                     made_progress = True
@@ -283,14 +293,14 @@ class JobProcessor:
             log.error("MinIO upload failed for %s: %s", output_key, e)
             return False
 
-    def _notify(self, video_id: int, status: str, output_key: str | None = None, error: str = ""):
+    def _notify(self, video_id: int, status: str, output_key: str | None = None, error: str = "") -> None:
         payload = {
             "videoId": video_id,
             "status": status,
             "outputKey": output_key,
             "error": error,
         }
-        self.producer.send(
+        sent = self.producer.send(
             COMPLETION_TOPIC,
             key=str(video_id).encode(),
             value=payload,
@@ -302,7 +312,10 @@ class JobProcessor:
         ).add_errback(
             lambda exc: log.error("Completion delivery failed for video %s: %s", video_id, exc)
         )
-        self.producer.flush(timeout=10)
+        # Block until the record is acknowledged so an undelivered completion
+        # surfaces here instead of being silently dropped by flush().
+        if not sent.get(timeout=10):
+            raise RuntimeError(f"Completion event for video {video_id} was not acknowledged")
 
     def _publish_progress(self, video_id: int, percent: float, eta_seconds: float | None):
         payload = {
@@ -409,13 +422,16 @@ def main():
 
     try:
         while not shutdown.is_set():
-            records = consumer.poll(timeout_ms=POLL_TIMEOUT_MS)
+            records = consumer.poll(timeout_ms=POLL_TIMEOUT_MS, max_records=16)
             if not records:
                 tracker.poll()
                 continue
 
             for tp, messages in records.items():
                 for message in messages:
+                    if message.offset is None:
+                        log.warning("Skipping message without an offset from %s", tp)
+                        continue
                     future = transcoder.submit(_safe_process, processor, message)
                     tracker.add(tp, message.offset, future)
 
@@ -434,6 +450,10 @@ def _safe_process(processor: JobProcessor, message) -> None:
         processor.process(message)
     except Exception as e:  # noqa: BLE001 - never let a single job kill the worker
         log.exception("Unexpected error processing message at offset %s: %s", message.offset, e)
+
+
+if TYPE_CHECKING:
+    from kafka import FutureRecordMetadata  # noqa: F401 (type hint for OffsetTracker)
 
 
 if __name__ == "__main__":

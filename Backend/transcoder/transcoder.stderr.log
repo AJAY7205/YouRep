@@ -1,0 +1,470 @@
+2026-08-11 13:25:03,335 INFO [transcoder] Transcoder pool ready: 11 workers (preset=veryfast, crf=23)
+D:\Projects\YouRep\Backend\transcoder\transcoder.py:460: DeprecationWarning: key_serializer does not implement kafka.serializer.Serializer
+  main()
+D:\Projects\YouRep\Backend\transcoder\transcoder.py:460: DeprecationWarning: value_serializer does not implement kafka.serializer.Serializer
+  main()
+2026-08-11 13:25:03,340 INFO [kafka.net.manager] Attempting bootstrap to bootstrap-0 at localhost:9092 (rack None)
+2026-08-11 13:25:03,341 INFO [kafka.net.manager] Initializing connection for node_id bootstrap-0 at localhost:9092 (rack=None)
+2026-08-11 13:25:03,353 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63915]>: connected to <socket.socket fd=480, family=23, type=1, proto=0, laddr=('::1', 63915, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:25:03,359 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-63915] broker_version=unknown (initializing)>: Broker version identified as 4.3
+2026-08-11 13:25:03,360 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-63915] broker_version=(4, 3) (connected)>: Connected
+2026-08-11 13:25:03,368 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-08-11 13:25:03,369 INFO [kafka.net.manager] Bootstrap complete: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-08-11 13:25:03,369 INFO [kafka.net.manager] Closing bootstrap connection bootstrap-0
+2026-08-11 13:25:03,370 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63915]>: Closing transport
+2026-08-11 13:25:03,370 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 broker_version=(4, 3) (disconnected)>: Connection closed
+2026-08-11 13:25:03,371 INFO [kafka.cluster] Starting metadata refresh loop
+2026-08-11 13:25:03,372 INFO [kafka.producer.kafka] <KafkaProducer client_id=kafka-python-producer-1 transactional_id=None>: Instantiated an idempotent producer.
+2026-08-11 13:25:03,373 INFO [kafka.producer.transaction_manager] ProducerId set to -1 with epoch -1
+2026-08-11 13:25:03,373 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:25:03,375 INFO [kafka.net.selector] IO loop starting (client_id=kafka-python-3.0.9)
+2026-08-11 13:25:03,375 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63918]>: connected to <socket.socket fd=756, family=23, type=1, proto=0, laddr=('::1', 63918, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:25:03,376 INFO [kafka.net.manager] Attempting bootstrap to bootstrap-0 at localhost:9092 (rack None)
+2026-08-11 13:25:03,377 INFO [kafka.net.manager] Initializing connection for node_id bootstrap-0 at localhost:9092 (rack=None)
+2026-08-11 13:25:03,380 INFO [kafka.net.connection] <KafkaConnection node_id=1 host=[::1:9092<-63918] broker_version=(4, 3) (connected)>: Connected
+2026-08-11 13:25:03,380 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63919]>: connected to <socket.socket fd=772, family=23, type=1, proto=0, laddr=('::1', 63919, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:25:03,385 INFO [kafka.producer.transaction_manager] ProducerId set to 3002 with epoch 0
+2026-08-11 13:25:03,386 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-63919] broker_version=unknown (initializing)>: Broker version identified as 4.3
+2026-08-11 13:25:03,386 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 host=[::1:9092<-63919] broker_version=(4, 3) (connected)>: Connected
+2026-08-11 13:25:03,389 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-08-11 13:25:03,389 INFO [kafka.net.manager] Bootstrap complete: ClusterMetadata(brokers: 1, topics: 0, coordinators: 0)
+2026-08-11 13:25:03,390 INFO [kafka.net.manager] Closing bootstrap connection bootstrap-0
+2026-08-11 13:25:03,390 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63919]>: Closing transport
+2026-08-11 13:25:03,391 INFO [kafka.net.connection] <KafkaConnection node_id=bootstrap-0 broker_version=(4, 3) (disconnected)>: Connection closed
+2026-08-11 13:25:03,391 INFO [kafka.cluster] Starting metadata refresh loop
+D:\Projects\YouRep\Backend\transcoder\transcoder.py:395: DeprecationWarning: key_deserializer does not implement kafka.serializer.Deserializer
+  consumer = KafkaConsumer(
+D:\Projects\YouRep\Backend\transcoder\transcoder.py:395: DeprecationWarning: value_deserializer does not implement kafka.serializer.Deserializer
+  consumer = KafkaConsumer(
+2026-08-11 13:25:03,393 INFO [kafka.consumer.subscription_state] Updating subscribed topics to: ('transcode-requests',)
+2026-08-11 13:25:03,394 INFO [transcoder] Transcoder listening on 'transcode-requests' (bootstrap=localhost:9092)
+2026-08-11 13:25:03,394 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:25:03,397 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63920]>: connected to <socket.socket fd=608, family=23, type=1, proto=0, laddr=('::1', 63920, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:25:03,402 INFO [kafka.net.connection] <KafkaConnection node_id=1 host=[::1:9092<-63920] broker_version=(4, 3) (connected)>: Connected
+2026-08-11 13:25:03,407 INFO [kafka.cluster] Coordinator for GROUP/python-transcoder-group is MetadataResponseBroker(node_id='coordinator-1', host='localhost', port=9092, rack=None)
+2026-08-11 13:25:03,408 INFO [kafka.coordinator] Discovered coordinator coordinator-1 for group python-transcoder-group
+2026-08-11 13:25:03,408 INFO [kafka.net.manager] Initializing connection for node_id coordinator-1 at localhost:9092 (rack=None)
+2026-08-11 13:25:03,410 INFO [kafka.coordinator.consumer] Revoking previously assigned partitions set() for group python-transcoder-group
+2026-08-11 13:25:03,411 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63921]>: connected to <socket.socket fd=748, family=23, type=1, proto=0, laddr=('::1', 63921, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:25:03,412 INFO [kafka.coordinator] (Re-)joining group python-transcoder-group
+2026-08-11 13:25:03,419 INFO [kafka.net.connection] <KafkaConnection node_id=coordinator-1 host=[::1:9092<-63921] broker_version=(4, 3) (connected)>: Connected
+2026-08-11 13:25:03,425 INFO [kafka.coordinator] Received member id kafka-python-3.0.9-b5589f90-65ec-49f1-83f2-8b973d132f94 for group python-transcoder-group; will retry join-group
+2026-08-11 13:25:03,426 INFO [kafka.coordinator] (Re-)joining group python-transcoder-group
+2026-08-11 13:25:03,499 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-08-11 13:25:44,037 INFO [kafka.coordinator] Successfully joined group python-transcoder-group <Generation 13 (member_id: kafka-python-3.0.9-b5589f90-65ec-49f1-83f2-8b973d132f94, protocol: range)>
+2026-08-11 13:25:44,038 INFO [kafka.coordinator] Elected group leader -- performing partition assignments using range
+2026-08-11 13:25:44,045 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-08-11 13:25:44,048 INFO [kafka.consumer.subscription_state] Updated partition assignment: [TopicPartition(topic='transcode-requests', partition=0)]
+2026-08-11 13:25:44,049 INFO [kafka.coordinator.consumer] Setting newly assigned partitions {TopicPartition(topic='transcode-requests', partition=0)} for group python-transcoder-group
+2026-08-11 13:25:44,075 INFO [kafka.consumer.fetcher] Fetch offset 0 is out of range for topic-partition TopicPartition(topic='transcode-requests', partition=0)
+2026-08-11 13:25:44,085 INFO [kafka.consumer.fetcher] Resetting offset for partition TopicPartition(topic='transcode-requests', partition=0) to offset 3.
+2026-08-11 13:25:44,091 INFO [transcoder] Processing video 1 (objectKey=videos/c8f659a0-9d8b-4e05-a987-96f1a289ccd5-Cricket Bowling 150fps 1200.avi)
+2026-08-11 13:25:44,092 INFO [transcoder] Processing video 1 (objectKey=videos/651e1ac8-e794-404e-8ff0-d57b32f8796b-Cricket Bowling 150fps 1200.avi)
+2026-08-11 13:25:45,353 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 0)
+2026-08-11 13:25:51,786 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 2, coordinators: 0)
+2026-08-11 13:25:51,791 INFO [transcoder] Completion SUCCESS for video 1 delivered to transcode-completion[0]@9
+2026-08-11 13:25:51,792 INFO [transcoder] Video 1 transcoded successfully -> transcoded/1.mp4
+2026-08-11 13:25:51,811 INFO [transcoder] Completion SUCCESS for video 1 delivered to transcode-completion[0]@10
+2026-08-11 13:25:51,812 INFO [transcoder] Video 1 transcoded successfully -> transcoded/1.mp4
+2026-08-11 13:30:44,291 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-08-11 13:30:51,798 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 2, coordinators: 0)
+2026-08-11 13:33:36,547 INFO [kafka.cluster] Updated metadata: ClusterMetadata(brokers: 1, topics: 1, coordinators: 1)
+2026-08-11 13:33:36,583 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63920]>: socket disconnected
+2026-08-11 13:33:36,584 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63920]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:36,585 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63918]>: socket disconnected
+2026-08-11 13:33:36,587 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63918]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:36,588 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,590 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,591 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63921]>: socket disconnected
+2026-08-11 13:33:36,592 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:36,592 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63921]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:36,594 ERROR [kafka.net.connection] <KafkaConnection node_id=coordinator-1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,596 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61150]>: connected to <socket.socket fd=1252, family=23, type=1, proto=0, laddr=('::1', 61150, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:36,603 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61150]>: socket disconnected
+2026-08-11 13:33:36,604 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61150]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:36,606 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,607 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,661 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:36,678 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61151]>: connected to <socket.socket fd=748, family=23, type=1, proto=0, laddr=('::1', 61151, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:36,681 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61151]>: socket disconnected
+2026-08-11 13:33:36,682 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61151]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:36,683 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,683 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,721 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:36,725 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61155]>: connected to <socket.socket fd=1288, family=23, type=1, proto=0, laddr=('::1', 61155, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:36,730 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61155]>: socket disconnected
+2026-08-11 13:33:36,730 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61155]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:36,731 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,732 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,798 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:36,801 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61156]>: connected to <socket.socket fd=1288, family=23, type=1, proto=0, laddr=('::1', 61156, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:36,805 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61156]>: socket disconnected
+2026-08-11 13:33:36,805 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61156]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:36,806 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,807 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,845 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:36,848 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61159]>: connected to <socket.socket fd=1208, family=23, type=1, proto=0, laddr=('::1', 61159, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:36,854 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61159]>: socket disconnected
+2026-08-11 13:33:36,855 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61159]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:36,856 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,857 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:36,922 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:36,939 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61161]>: connected to <socket.socket fd=1276, family=23, type=1, proto=0, laddr=('::1', 61161, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:36,942 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61161]>: Error receiving network data closing socket
+Traceback (most recent call last):
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\transport.py", line 110, in _sock_recv
+    data = self._sock.recv(4096)
+ConnectionAbortedError: [WinError 10053] An established connection was aborted by the software in your host machine
+2026-08-11 13:33:36,968 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,007 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61161]>: Abort (KafkaConnectionError: [WinError 10053] An established connection was aborted by the software in your host machine)
+2026-08-11 13:33:37,009 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: [WinError 10053] An established connection was aborted by the software in your host machine
+2026-08-11 13:33:37,010 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: [WinError 10053] An established connection was aborted by the software in your host machine
+2026-08-11 13:33:37,011 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61163]>: connected to <socket.socket fd=1288, family=23, type=1, proto=0, laddr=('::1', 61163, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,014 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61163]>: socket disconnected
+2026-08-11 13:33:37,014 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61163]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,016 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,017 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,113 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,116 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61165]>: connected to <socket.socket fd=1288, family=23, type=1, proto=0, laddr=('::1', 61165, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,120 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61165]>: socket disconnected
+2026-08-11 13:33:37,120 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61165]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,121 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,122 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,126 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,129 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61166]>: connected to <socket.socket fd=1276, family=23, type=1, proto=0, laddr=('::1', 61166, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,132 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61166]>: socket disconnected
+2026-08-11 13:33:37,132 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61166]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,133 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,134 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,232 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,236 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61168]>: connected to <socket.socket fd=1144, family=23, type=1, proto=0, laddr=('::1', 61168, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,240 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61168]>: socket disconnected
+2026-08-11 13:33:37,241 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61168]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,241 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,242 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,248 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,251 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61169]>: connected to <socket.socket fd=1288, family=23, type=1, proto=0, laddr=('::1', 61169, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,255 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61169]>: socket disconnected
+2026-08-11 13:33:37,256 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-61169]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,256 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,257 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,356 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,372 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,373 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53186]>: connected to <socket.socket fd=756, family=23, type=1, proto=0, laddr=('::1', 53186, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,375 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53187]>: connected to <socket.socket fd=640, family=23, type=1, proto=0, laddr=('::1', 53187, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,377 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53186]>: socket disconnected
+2026-08-11 13:33:37,377 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53186]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,378 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53187]>: socket disconnected
+2026-08-11 13:33:37,378 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,379 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53187]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,379 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,380 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,381 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,496 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,496 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,513 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53189]>: connected to <socket.socket fd=928, family=23, type=1, proto=0, laddr=('::1', 53189, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,513 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53190]>: connected to <socket.socket fd=1260, family=23, type=1, proto=0, laddr=('::1', 53190, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,516 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53189]>: socket disconnected
+2026-08-11 13:33:37,517 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53190]>: socket disconnected
+2026-08-11 13:33:37,517 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53189]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,518 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53190]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,519 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,519 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,520 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,520 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,634 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,635 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,637 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53194]>: connected to <socket.socket fd=1292, family=23, type=1, proto=0, laddr=('::1', 53194, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,637 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53193]>: connected to <socket.socket fd=748, family=23, type=1, proto=0, laddr=('::1', 53193, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,642 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53193]>: Error receiving network data closing socket
+Traceback (most recent call last):
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\transport.py", line 110, in _sock_recv
+    data = self._sock.recv(4096)
+ConnectionAbortedError: [WinError 10053] An established connection was aborted by the software in your host machine
+2026-08-11 13:33:37,642 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53194]>: socket disconnected
+2026-08-11 13:33:37,643 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53193]>: Abort (KafkaConnectionError: [WinError 10053] An established connection was aborted by the software in your host machine)
+2026-08-11 13:33:37,644 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53194]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,645 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: [WinError 10053] An established connection was aborted by the software in your host machine
+2026-08-11 13:33:37,645 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,646 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: [WinError 10053] An established connection was aborted by the software in your host machine
+2026-08-11 13:33:37,646 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,747 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,758 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,763 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53197]>: connected to <socket.socket fd=1308, family=23, type=1, proto=0, laddr=('::1', 53197, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,763 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53196]>: connected to <socket.socket fd=1292, family=23, type=1, proto=0, laddr=('::1', 53196, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,766 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53197]>: socket disconnected
+2026-08-11 13:33:37,767 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53197]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,766 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53196]>: socket disconnected
+2026-08-11 13:33:37,768 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,768 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53196]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,769 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,769 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,770 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,883 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,884 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:37,887 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53198]>: connected to <socket.socket fd=1320, family=23, type=1, proto=0, laddr=('::1', 53198, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,887 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53199]>: connected to <socket.socket fd=1316, family=23, type=1, proto=0, laddr=('::1', 53199, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:37,954 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53199]>: socket disconnected
+2026-08-11 13:33:37,955 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53199]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:37,956 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:37,957 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:38,069 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:38,071 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53204]>: connected to <socket.socket fd=1244, family=23, type=1, proto=0, laddr=('::1', 53204, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:38,073 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53204]>: socket disconnected
+2026-08-11 13:33:38,074 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53204]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:38,075 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:38,075 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:38,177 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:38,180 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53205]>: connected to <socket.socket fd=1236, family=23, type=1, proto=0, laddr=('::1', 53205, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:38,182 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53205]>: socket disconnected
+2026-08-11 13:33:38,183 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53205]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:38,183 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:38,184 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:38,287 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:38,305 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53206]>: connected to <socket.socket fd=1316, family=23, type=1, proto=0, laddr=('::1', 53206, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:38,307 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53206]>: socket disconnected
+2026-08-11 13:33:38,307 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53206]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:38,308 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:38,309 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:38,413 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:38,430 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53207]>: connected to <socket.socket fd=1280, family=23, type=1, proto=0, laddr=('::1', 53207, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:39,321 INFO [kafka.net.manager] Initializing connection for node_id coordinator-1 at localhost:9092 (rack=None)
+2026-08-11 13:33:39,338 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53213]>: connected to <socket.socket fd=1332, family=23, type=1, proto=0, laddr=('::1', 53213, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:33:41,987 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53198]>: socket disconnected
+2026-08-11 13:33:41,987 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53207]>: Error receiving network data closing socket
+Traceback (most recent call last):
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\transport.py", line 110, in _sock_recv
+    data = self._sock.recv(4096)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-08-11 13:33:41,988 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53198]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:33:41,989 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53207]>: Abort (KafkaConnectionError: [WinError 10054] An existing connection was forcibly closed by the remote host)
+2026-08-11 13:33:41,990 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:33:41,990 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-08-11 13:33:41,991 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:33:41,991 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53213]>: Error receiving network data closing socket
+Traceback (most recent call last):
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\transport.py", line 110, in _sock_recv
+    data = self._sock.recv(4096)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-08-11 13:33:41,991 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-08-11 13:33:41,992 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-53213]>: Abort (KafkaConnectionError: [WinError 10054] An existing connection was forcibly closed by the remote host)
+2026-08-11 13:33:41,994 ERROR [kafka.net.connection] <KafkaConnection node_id=coordinator-1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: [WinError 10054] An existing connection was forcibly closed by the remote host
+2026-08-11 13:33:41,995 ERROR [kafka.coordinator] Error sending HeartbeatRequest to node coordinator-1 [KafkaConnectionError: [WinError 10054] An existing connection was forcibly closed by the remote host]
+2026-08-11 13:33:41,995 WARNING [kafka.coordinator] Marking the coordinator dead (node coordinator-1) for group python-transcoder-group: KafkaConnectionError: [WinError 10054] An existing connection was forcibly closed by the remote host.
+2026-08-11 13:33:41,996 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:42,104 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:52,012 ERROR [kafka.net.manager] Connection failed: KafkaConnectionError: Connection timed out
+2026-08-11 13:33:52,027 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: Connection timed out
+2026-08-11 13:33:52,028 ERROR [kafka.coordinator] Error sending FindCoordinatorRequest to node 1 [KafkaConnectionError: Connection timed out]
+2026-08-11 13:33:52,028 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: Connection timed out
+2026-08-11 13:33:52,121 ERROR [kafka.net.manager] Connection failed: KafkaConnectionError: Connection timed out
+2026-08-11 13:33:52,135 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: Connection timed out
+2026-08-11 13:33:52,136 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:33:52,137 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: Connection timed out
+2026-08-11 13:33:52,243 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:34:02,514 ERROR [kafka.net.manager] Connection failed: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:02,529 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:02,529 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: Connection timed out
+2026-08-11 13:34:02,530 ERROR [kafka.coordinator] Error sending FindCoordinatorRequest to node 1 [KafkaConnectionError: Connection timed out]
+2026-08-11 13:34:02,638 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:34:03,027 ERROR [kafka.net.manager] Connection failed: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:03,041 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:03,042 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: Connection timed out
+2026-08-11 13:34:03,151 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:34:24,697 ERROR [kafka.net.manager] Connection failed: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:24,711 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:24,712 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: Connection timed out
+2026-08-11 13:34:24,823 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:34:24,887 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:34:25,011 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:34:26,564 ERROR [kafka.net.manager] Connection failed: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:26,580 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:26,581 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: Connection timed out
+2026-08-11 13:34:26,581 ERROR [kafka.coordinator] Error sending FindCoordinatorRequest to node 1 [KafkaConnectionError: Connection timed out]
+2026-08-11 13:34:26,688 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:34:26,751 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:34:26,766 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:34:51,723 ERROR [kafka.net.manager] Connection failed: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:51,738 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:51,739 ERROR [kafka.coordinator] Error sending FindCoordinatorRequest to node 1 [KafkaConnectionError: Connection timed out]
+2026-08-11 13:34:51,740 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: Connection timed out
+2026-08-11 13:34:51,850 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:34:51,927 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:34:52,052 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:34:52,195 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:34:56,358 ERROR [kafka.net.manager] Connection failed: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:56,373 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: Connection timed out
+2026-08-11 13:34:56,374 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: Connection timed out
+2026-08-11 13:34:56,482 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:34:56,543 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:34:56,652 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:34:56,883 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:35:23,076 ERROR [kafka.net.manager] Connection failed: KafkaConnectionError: Connection timed out
+2026-08-11 13:35:23,091 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: Connection timed out
+2026-08-11 13:35:23,092 ERROR [kafka.coordinator] Error sending FindCoordinatorRequest to node 1 [KafkaConnectionError: Connection timed out]
+2026-08-11 13:35:23,093 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: Connection timed out
+2026-08-11 13:35:23,201 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:35:23,247 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:35:23,357 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:35:23,574 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:35:24,008 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:35:24,897 ERROR [kafka.net.manager] Connection failed: KafkaConnectionError: Connection timed out
+2026-08-11 13:35:24,912 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: Connection timed out
+2026-08-11 13:35:24,913 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: Connection timed out
+2026-08-11 13:35:25,023 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:35:25,085 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:35:25,207 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:35:25,410 WARNING [kafka.cluster] No node available for metadata refresh - backoff/retry
+2026-08-11 13:35:25,795 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:35:26,305 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63116]>: connected to <socket.socket fd=1064, family=23, type=1, proto=0, laddr=('::1', 63116, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:35:26,307 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63116]>: socket disconnected
+2026-08-11 13:35:26,308 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63116]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:35:26,308 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,310 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,415 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:35:26,418 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63123]>: connected to <socket.socket fd=1064, family=23, type=1, proto=0, laddr=('::1', 63123, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:35:26,420 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63123]>: socket disconnected
+2026-08-11 13:35:26,420 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63123]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:35:26,422 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,422 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,537 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:35:26,541 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63125]>: connected to <socket.socket fd=1324, family=23, type=1, proto=0, laddr=('::1', 63125, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:35:26,549 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63125]>: socket disconnected
+2026-08-11 13:35:26,550 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63125]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:35:26,552 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,553 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,569 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63100]>: connected to <socket.socket fd=1220, family=23, type=1, proto=0, laddr=('::1', 63100, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:35:26,586 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63100]>: socket disconnected
+2026-08-11 13:35:26,588 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63100]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:35:26,590 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,591 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,591 ERROR [kafka.coordinator] Error sending FindCoordinatorRequest to node 1 [KafkaConnectionError: socket disconnected]
+2026-08-11 13:35:26,659 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:35:26,662 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63127]>: connected to <socket.socket fd=832, family=23, type=1, proto=0, laddr=('::1', 63127, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:35:26,665 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63127]>: socket disconnected
+2026-08-11 13:35:26,666 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63127]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:35:26,667 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,668 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,706 INFO [kafka.net.manager] Initializing connection for node_id 1 at localhost:9092 (rack=None)
+2026-08-11 13:35:26,709 INFO [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63128]>: connected to <socket.socket fd=748, family=23, type=1, proto=0, laddr=('::1', 63128, 0, 0), raddr=('::1', 9092, 0, 0)>
+2026-08-11 13:35:26,712 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63128]>: socket disconnected
+2026-08-11 13:35:26,713 ERROR [kafka.net.transport] <KafkaTCPTransport [::1:9092<-63128]>: Abort (KafkaConnectionError: socket disconnected)
+2026-08-11 13:35:26,714 ERROR [kafka.net.connection] <KafkaConnection node_id=1 broker_version=(4, 3) (disconnected)>: Connection lost: KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,715 ERROR [kafka.cluster] Metadata refresh: failed KafkaConnectionError: socket disconnected
+2026-08-11 13:35:26,716 ERROR [kafka.coordinator] Error sending FindCoordinatorRequest to node 1 [KafkaConnectionError: socket disconnected]
+2026-08-11 13:35:26,717 INFO [transcoder] Waiting for in-flight transcodes to finish...
+2026-08-11 13:35:26,719 INFO [kafka.coordinator.consumer] Revoking previously assigned partitions {TopicPartition(topic='transcode-requests', partition=0)} for group python-transcoder-group on close
+2026-08-11 13:35:26,720 INFO [kafka.consumer.subscription_state] Updated partition assignment: []
+2026-08-11 13:35:26,722 INFO [kafka.cluster] Stopping metadata refresh loop
+2026-08-11 13:35:26,722 INFO [kafka.net.selector] IO loop exited cleanly (client_id=kafka-python-3.0.9, stop=True)
+2026-08-11 13:35:26,724 INFO [kafka.producer.kafka] <KafkaProducer client_id=kafka-python-producer-1 transactional_id=None>: Closing the Kafka producer with 4294967.0 secs timeout.
+2026-08-11 13:35:26,726 INFO [kafka.cluster] Stopping metadata refresh loop
+2026-08-11 13:35:26,727 INFO [transcoder] Transcoder stopped.
+Traceback (most recent call last):
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\coordinator\base.py", line 363, in ensure_coordinator_ready_async
+    await self._manager.wait_for(future, timer.timeout_ms)
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\manager.py", line 430, in wait_for
+    return await wrapper
+           ^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\future.py", line 165, in __await__
+    raise self.exception
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\coordinator\base.py", line 976, in _heartbeat_loop
+    await self.lookup_coordinator()
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\future.py", line 165, in __await__
+    raise self.exception
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\connection.py", line 368, in initialize
+    await self._get_api_versions(timeout_at)
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\connection.py", line 394, in _get_api_versions
+    response = await self._send_request(request, timeout_at=timeout_at)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\future.py", line 165, in __await__
+    raise self.exception
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\selector.py", line 389, in wrapper
+    future.success(await self._invoke(coro, *args))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\selector.py", line 402, in _invoke
+    result = await coro(*args)
+             ^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\coordinator\base.py", line 834, in _send_group_coordinator_request
+    response = await self._manager.send(request, node_id=node_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\future.py", line 165, in __await__
+    raise self.exception
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\cluster.py", line 127, in _refresh_loop
+    await self.refresh_metadata()
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\cluster.py", line 155, in refresh_metadata
+    await self._do_refresh_metadata(node_id)
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\cluster.py", line 173, in _do_refresh_metadata
+    response = await self._manager.send(request, node_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\future.py", line 165, in __await__
+    raise self.exception
+kafka.errors.KafkaConnectionError: KafkaConnectionError: socket disconnected
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\YouRep\Backend\transcoder\transcoder.py", line 460, in <module>
+    main()
+    ~~~~^^
+  File "D:\Projects\YouRep\Backend\transcoder\transcoder.py", line 425, in main
+    records = consumer.poll(timeout_ms=POLL_TIMEOUT_MS, max_records=16)
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\consumer\group.py", line 827, in poll
+    records = self._poll_once(timer, max_records, update_offsets=update_offsets)
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\consumer\group.py", line 844, in _poll_once
+    if not self._coordinator.poll(timeout_ms=timer.timeout_ms):
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\coordinator\consumer.py", line 403, in poll
+    if not self.ensure_coordinator_ready(timeout_ms=timer.timeout_ms):
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\coordinator\base.py", line 339, in ensure_coordinator_ready
+    return self._net.run(self.ensure_coordinator_ready_async, timeout_ms)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\selector.py", line 332, in run
+    raise state['exception']  # pylint: disable=E0702
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\coordinator\base.py", line 976, in _heartbeat_loop
+    await self.lookup_coordinator()
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\future.py", line 165, in __await__
+    raise self.exception
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\selector.py", line 316, in waiter
+    state['value'] = await self._invoke(coro, *args)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\selector.py", line 402, in _invoke
+    result = await coro(*args)
+             ^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\coordinator\base.py", line 370, in ensure_coordinator_ready_async
+    await self._manager.wait_for(metadata_update, timer.timeout_ms)
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\manager.py", line 430, in wait_for
+    return await wrapper
+           ^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\future.py", line 165, in __await__
+    raise self.exception
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\connection.py", line 368, in initialize
+    await self._get_api_versions(timeout_at)
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\connection.py", line 394, in _get_api_versions
+    response = await self._send_request(request, timeout_at=timeout_at)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\future.py", line 165, in __await__
+    raise self.exception
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\selector.py", line 389, in wrapper
+    future.success(await self._invoke(coro, *args))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\net\selector.py", line 402, in _invoke
+    result = await coro(*args)
+             ^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\coordinator\base.py", line 834, in _send_group_coordinator_request
+    response = await self._manager.send(request, node_id=node_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\future.py", line 165, in __await__
+    raise self.exception
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\cluster.py", line 127, in _refresh_loop
+    await self.refresh_metadata()
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\cluster.py", line 155, in refresh_metadata
+    await self._do_refresh_metadata(node_id)
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\cluster.py", line 173, in _do_refresh_metadata
+    response = await self._manager.send(request, node_id)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\YouRep\Backend\transcoder\venv\Lib\site-packages\kafka\future.py", line 165, in __await__
+    raise self.exception
+kafka.errors.KafkaConnectionError: KafkaConnectionError: socket disconnected

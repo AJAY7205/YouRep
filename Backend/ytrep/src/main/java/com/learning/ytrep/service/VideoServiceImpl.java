@@ -2,6 +2,7 @@ package com.learning.ytrep.service;
 
 import com.learning.ytrep.exception.APIException;
 import com.learning.ytrep.exception.ResourceNotFoundException;
+import com.learning.ytrep.model.Comment;
 import com.learning.ytrep.model.User;
 import com.learning.ytrep.model.UserLike;
 import com.learning.ytrep.model.Video;
@@ -12,6 +13,8 @@ import com.learning.ytrep.payload.VideoAnalyticsResponse;
 import com.learning.ytrep.payload.VideoDTO;
 import com.learning.ytrep.payload.VideoResponse;
 import com.learning.ytrep.payload.VideoUploadRequest;
+import com.learning.ytrep.repository.CommentLikeRepository;
+import com.learning.ytrep.repository.CommentRepository;
 import com.learning.ytrep.repository.UserLikeRepository;
 import com.learning.ytrep.repository.UserRepository;
 import com.learning.ytrep.repository.VideoRepository;
@@ -20,6 +23,7 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
@@ -41,9 +45,11 @@ public class VideoServiceImpl implements VideoService{
     private final ThumbnailService thumbnailService;
     private final UserRepository userRepository;
     private final UserLikeRepository userLikeRepository;
+    private final CommentRepository commentRepository;
+    private final CommentLikeRepository commentLikeRepository;
     private final TranscodeRequestProducer transcodeRequestProducer;
 
-    public VideoServiceImpl(VideoRepository videoRepository, StorageService storageService, VideoAnalyticsServiceImpl videoAnalyticsServiceImpl, ModelMapper modelMapper, ThumbnailService thumbnailService, UserRepository userRepository, UserLikeRepository userLikeRepository, TranscodeRequestProducer transcodeRequestProducer){
+    public VideoServiceImpl(VideoRepository videoRepository, StorageService storageService, VideoAnalyticsServiceImpl videoAnalyticsServiceImpl, ModelMapper modelMapper, ThumbnailService thumbnailService, UserRepository userRepository, UserLikeRepository userLikeRepository, CommentRepository commentRepository, CommentLikeRepository commentLikeRepository, TranscodeRequestProducer transcodeRequestProducer){
         this.videoRepository = videoRepository;
         this.storageService = storageService;
         this.videoAnalyticsServiceImpl = videoAnalyticsServiceImpl;
@@ -51,6 +57,8 @@ public class VideoServiceImpl implements VideoService{
         this.thumbnailService = thumbnailService;
         this.userRepository = userRepository;
         this.userLikeRepository = userLikeRepository;
+        this.commentRepository = commentRepository;
+        this.commentLikeRepository = commentLikeRepository;
         this.transcodeRequestProducer = transcodeRequestProducer;
     }
 
@@ -221,6 +229,7 @@ public class VideoServiceImpl implements VideoService{
     }
 
     @Override
+    @Transactional
     public VideoResponse deleteVideo(Long videoId){
         Video video = videoRepository.findByVideoId(videoId);
         if(video == null){
@@ -229,7 +238,20 @@ public class VideoServiceImpl implements VideoService{
         List<UserLike> likes = userLikeRepository.findByVideoVideoId(videoId);
             if (!likes.isEmpty()) {
                 userLikeRepository.deleteAll(likes);
-                }   
+                }
+        // comment_likes are not cascaded by the entity graph, and comments are
+        // not related to Video, so remove both before the video delete.
+        List<Comment> topLevelComments = commentRepository
+                .findByVideoVideoIdAndParentIsNullOrderByCreatedAtDesc(videoId);
+        for (Comment comment : topLevelComments) {
+            commentLikeRepository.deleteByCommentCommentId(comment.getCommentId());
+            if (comment.getReplies() != null) {
+                for (Comment reply : comment.getReplies()) {
+                    commentLikeRepository.deleteByCommentCommentId(reply.getCommentId());
+                }
+            }
+            commentRepository.delete(comment);
+        }
         storageService.deleteVideo(video.getObjectKey());
         if(video.getTranscodedKey() != null){
             storageService.deleteVideo(video.getTranscodedKey());

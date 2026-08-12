@@ -100,6 +100,15 @@ public class CommentServiceImpl implements CommentService {
             throw new APIException("You can only delete your own comments");
         }
 
+        // comment_likes are not cascaded by the entity graph, so remove them for
+        // the comment and its replies before the parent delete cascades.
+        commentLikeRepository.deleteByCommentCommentId(commentId);
+        if (comment.getReplies() != null) {
+            for (Comment reply : comment.getReplies()) {
+                commentLikeRepository.deleteByCommentCommentId(reply.getCommentId());
+            }
+        }
+
         commentRepository.delete(comment);
     }
 
