@@ -1,7 +1,7 @@
 import api from './axios.config';
 
-const API_BASE_URL = 'https://yourep-api.austriaeast.cloudapp.azure.com/api' || 'http://localhost:8080/api';
-console.log('API_BASE_URL:', API_BASE_URL); // Log the API base URL for debugging
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
+// console.log('API_BASE_URL:', API_BASE_URL); // Log the API base URL for debugging
 
 export const getAllVideos = async () => {
   const response = await api.get('/get-all-video');
