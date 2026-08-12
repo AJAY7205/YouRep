@@ -2,7 +2,7 @@ import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
 const API_BASE_URL = 'https://yourep-api.austriaeast.cloudapp.azure.com/api' || 'http://localhost:8080/api';
-
+console.log('API_BASE_URL:', API_BASE_URL); // Log the API base URL for debugging
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
