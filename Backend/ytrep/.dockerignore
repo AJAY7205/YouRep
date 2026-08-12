@@ -1,0 +1,11 @@
+target/
+.mvn/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+logs/
+src/main/resources/application-secret.properties
+Dockerfile
+.dockerignore

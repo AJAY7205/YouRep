@@ -1,0 +1,9 @@
+venv/
+.env
+*.log
+*.pyc
+__pycache__/
+Dockerfile
+.dockerignore
+transcoder.stdout.log
+transcoder.stderr.log

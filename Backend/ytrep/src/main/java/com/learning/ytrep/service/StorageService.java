@@ -1,10 +1,15 @@
 package com.learning.ytrep.service;
 
 import com.learning.ytrep.exception.APIException;
+import io.minio.BucketExistsArgs;
+import io.minio.GetObjectArgs;
+import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
-import io.minio.GetObjectArgs;
+import jakarta.annotation.PostConstruct;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +19,8 @@ import java.util.UUID;
 
 @Service
 public class StorageService {
+
+    private static final Logger log = LoggerFactory.getLogger(StorageService.class);
 
     @Value("${minio.video}")
     private String VIDEO_BUCKET_NAME;
@@ -25,6 +32,24 @@ public class StorageService {
 
     public StorageService(MinioClient minIOConfig) {
         this.minIOConfig = minIOConfig;
+    }
+
+    @PostConstruct
+    public void initBuckets() {
+        initBucket(VIDEO_BUCKET_NAME);
+        initBucket(THUMBNAIL_BUCKET_NAME);
+    }
+
+    private void initBucket(String bucketName) {
+        try {
+            boolean exists = minIOConfig.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
+            if (!exists) {
+                minIOConfig.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
+                log.info("Created MinIO bucket: {}", bucketName);
+            }
+        } catch (Exception e) {
+            log.error("Failed to initialize MinIO bucket '{}': {}", bucketName, e.getMessage());
+        }
     }
 
     public String uploadVideoStream(InputStream inputStream, long fileSize, String fileName) {

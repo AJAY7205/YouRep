@@ -1,6 +1,6 @@
 import api from './axios.config';
 
-const API_BASE_URL = 'http://localhost:8080/api';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
 export const getAllVideos = async () => {
   const response = await api.get('/get-all-video');

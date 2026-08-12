@@ -1,0 +1,17 @@
+{$DOMAIN_NAME} {
+    # Reverse proxy /api and backend endpoints
+    reverse_proxy /api/* backend:8080
+    reverse_proxy /swagger-ui/* backend:8080
+    reverse_proxy /v3/api-docs/* backend:8080
+    reverse_proxy /actuator/* backend:8080
+
+    # Support HTTP range requests and large bodies for video streaming/uploads
+    request_body {
+        max_size 500MB
+    }
+
+    # Logging
+    log {
+        output file /data/caddy.log
+    }
+}
