@@ -79,6 +79,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(auth -> auth
                 // Public endpoints
                 .requestMatchers("/api/auth/signin").permitAll()
+                .requestMatchers("/api/health").permitAll()
                 .requestMatchers("/api/auth/signup").permitAll()
                 .requestMatchers("/api/get-all-video").permitAll()
                 .requestMatchers("/api/getVideo/*").permitAll()
