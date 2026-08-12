@@ -39,6 +39,10 @@ public class VideoController {
         this.progressService = progressService;
     }
 
+    @GetMapping("/health")
+    public ResponseEntity<String> healthCheck() {
+        return ResponseEntity.ok("API is healthy");
+    }
     @Operation(summary = "Post a new video USER/ADMIN only")
     @Idempotent
     @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
