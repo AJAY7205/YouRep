@@ -91,9 +91,9 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - JWT_SECRET=${JWT_SECRET}
-      - JWT_EXPIRATION_MS=${JWT_EXPIRATION_MS:-86400000}
+      - JWT_EXPIRATION_MS=${JWT_EXPIRATION_MS}
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9093
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-Admin@123}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
     depends_on:
       postgres:
         condition: service_healthy
