@@ -23,7 +23,7 @@ public class DataInitializer implements CommandLineRunner {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Value("${ADMIN_PASSWORD:Admin@123}")
+    @Value("${admin.password}")
     private String adminPassword;
 
     public DataInitializer(

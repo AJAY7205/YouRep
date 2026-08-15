@@ -1,0 +1,996 @@
+2026-08-15T11:12:06.316+05:30  INFO 29356 --- [ytrep] [main] com.learning.ytrep.YtrepApplication      : Starting YtrepApplication using Java 21.0.9 with PID 29356 (D:\Projects\YouRep\Backend\ytrep\target\classes started by ajayl in D:\Projects\YouRep)
+2026-08-15T11:12:06.328+05:30  INFO 29356 --- [ytrep] [main] com.learning.ytrep.YtrepApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-08-15T11:12:08.088+05:30  INFO 29356 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-08-15T11:12:08.091+05:30  INFO 29356 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-15T11:12:08.308+05:30  INFO 29356 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 204 ms. Found 7 JPA repository interfaces.
+2026-08-15T11:12:08.336+05:30  INFO 29356 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-08-15T11:12:08.340+05:30  INFO 29356 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-08-15T11:12:08.366+05:30  INFO 29356 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.CommentLikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:12:08.367+05:30  INFO 29356 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.CommentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:12:08.367+05:30  INFO 29356 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:12:08.368+05:30  INFO 29356 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.UserLikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:12:08.369+05:30  INFO 29356 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:12:08.369+05:30  INFO 29356 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.VideoAnalyticsRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:12:08.370+05:30  INFO 29356 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.VideoRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:12:08.370+05:30  INFO 29356 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2026-08-15T11:12:09.500+05:30  INFO 29356 --- [ytrep] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-08-15T11:12:09.516+05:30  INFO 29356 --- [ytrep] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-15T11:12:09.517+05:30  INFO 29356 --- [ytrep] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-08-15T11:12:09.620+05:30  INFO 29356 --- [ytrep] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-15T11:12:09.620+05:30  INFO 29356 --- [ytrep] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3218 ms
+2026-08-15T11:12:09.962+05:30  INFO 29356 --- [ytrep] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-15T11:12:10.037+05:30  INFO 29356 --- [ytrep] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.39.Final
+2026-08-15T11:12:10.082+05:30  INFO 29356 --- [ytrep] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-08-15T11:12:10.430+05:30  INFO 29356 --- [ytrep] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-15T11:12:10.471+05:30  WARN 29356 --- [ytrep] [main] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2026-08-15T11:12:10.471+05:30  INFO 29356 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-15T11:12:10.787+05:30  INFO 29356 --- [ytrep] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6a97517
+2026-08-15T11:12:10.789+05:30  INFO 29356 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-15T11:12:10.862+05:30  WARN 29356 --- [ytrep] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-15T11:12:10.890+05:30  INFO 29356 --- [ytrep] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-15T11:12:12.191+05:30  INFO 29356 --- [ytrep] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-15T11:12:12.556+05:30  INFO 29356 --- [ytrep] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-15T11:12:13.672+05:30  INFO 29356 --- [ytrep] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-08-15T11:12:13.672+05:30  WARN 29356 --- [ytrep] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-08-15T11:12:14.754+05:30  WARN 29356 --- [ytrep] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-15T11:12:15.121+05:30  INFO 29356 --- [ytrep] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-08-15T11:12:15.280+05:30 DEBUG 29356 --- [ytrep] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, AuthTokenFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-08-15T11:12:15.990+05:30  INFO 29356 --- [ytrep] [main] o.a.k.clients.admin.AdminClientConfig    : AdminClientConfig values: 
+	auto.include.jmx.reporter = true
+	bootstrap.controllers = []
+	bootstrap.servers = [localhost:9092]
+	client.dns.lookup = use_all_dns_ips
+	client.id = ytrep-admin-0
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	enable.metrics.push = true
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2026-08-15T11:12:16.181+05:30  INFO 29356 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.1
+2026-08-15T11:12:16.182+05:30  INFO 29356 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: f745dfdcee2b9851
+2026-08-15T11:12:16.182+05:30  INFO 29356 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1786772536180
+2026-08-15T11:12:16.741+05:30  INFO 29356 --- [ytrep] [kafka-admin-client-thread | ytrep-admin-0] o.a.kafka.common.utils.AppInfoParser     : App info kafka.admin.client for ytrep-admin-0 unregistered
+2026-08-15T11:12:16.747+05:30  INFO 29356 --- [ytrep] [kafka-admin-client-thread | ytrep-admin-0] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-08-15T11:12:16.748+05:30  INFO 29356 --- [ytrep] [kafka-admin-client-thread | ytrep-admin-0] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-08-15T11:12:16.748+05:30  INFO 29356 --- [ytrep] [kafka-admin-client-thread | ytrep-admin-0] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-08-15T11:12:16.768+05:30  INFO 29356 --- [ytrep] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-08-15T11:12:16.798+05:30  INFO 29356 --- [ytrep] [main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-video-processing-group-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = video-processing-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.JsonDeserializer
+
+2026-08-15T11:12:16.849+05:30  INFO 29356 --- [ytrep] [main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-08-15T11:12:16.952+05:30  INFO 29356 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.1
+2026-08-15T11:12:16.953+05:30  INFO 29356 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: f745dfdcee2b9851
+2026-08-15T11:12:16.953+05:30  INFO 29356 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1786772536952
+2026-08-15T11:12:16.963+05:30  INFO 29356 --- [ytrep] [main] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Subscribed to topic(s): transcode-completion
+2026-08-15T11:12:16.975+05:30  INFO 29356 --- [ytrep] [main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-video-processing-group-2
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = video-processing-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2026-08-15T11:12:16.975+05:30  INFO 29356 --- [ytrep] [main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-08-15T11:12:16.988+05:30  INFO 29356 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.1
+2026-08-15T11:12:16.989+05:30  INFO 29356 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: f745dfdcee2b9851
+2026-08-15T11:12:16.989+05:30  INFO 29356 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1786772536988
+2026-08-15T11:12:16.990+05:30  INFO 29356 --- [ytrep] [main] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Subscribed to topic(s): transcode-progress
+2026-08-15T11:12:17.007+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Cluster ID: 
+2026-08-15T11:12:17.007+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Cluster ID: 
+2026-08-15T11:12:17.012+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+2026-08-15T11:12:17.012+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+2026-08-15T11:12:17.015+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] (Re-)joining group
+2026-08-15T11:12:17.015+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] (Re-)joining group
+2026-08-15T11:12:17.021+05:30  INFO 29356 --- [ytrep] [main] com.learning.ytrep.YtrepApplication      : Started YtrepApplication in 11.35 seconds (process running for 11.899)
+2026-08-15T11:12:17.054+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Request joining group due to: need to re-join with the given member-id: consumer-video-processing-group-1-b4bd0dbb-735a-4f65-b078-8b9df51d66b1
+2026-08-15T11:12:17.054+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Request joining group due to: need to re-join with the given member-id: consumer-video-processing-group-2-e3202957-04d8-43b7-9f08-09b147af3ca8
+2026-08-15T11:12:17.055+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] (Re-)joining group
+2026-08-15T11:12:17.055+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] (Re-)joining group
+2026-08-15T11:12:17.405+05:30  WARN 29356 --- [ytrep] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-08-15T11:12:17.405+05:30  WARN 29356 --- [ytrep] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-08-15T11:12:23.069+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Successfully joined group with generation Generation{generationId=13, memberId='consumer-video-processing-group-2-e3202957-04d8-43b7-9f08-09b147af3ca8', protocol='range'}
+2026-08-15T11:12:23.070+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Successfully joined group with generation Generation{generationId=13, memberId='consumer-video-processing-group-1-b4bd0dbb-735a-4f65-b078-8b9df51d66b1', protocol='range'}
+2026-08-15T11:12:23.090+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Finished assignment for group at generation 13: {consumer-video-processing-group-2-e3202957-04d8-43b7-9f08-09b147af3ca8=Assignment(partitions=[transcode-progress-0]), consumer-video-processing-group-1-b4bd0dbb-735a-4f65-b078-8b9df51d66b1=Assignment(partitions=[transcode-completion-0])}
+2026-08-15T11:12:23.144+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Successfully synced group in generation Generation{generationId=13, memberId='consumer-video-processing-group-2-e3202957-04d8-43b7-9f08-09b147af3ca8', protocol='range'}
+2026-08-15T11:12:23.144+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Successfully synced group in generation Generation{generationId=13, memberId='consumer-video-processing-group-1-b4bd0dbb-735a-4f65-b078-8b9df51d66b1', protocol='range'}
+2026-08-15T11:12:23.145+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Notifying assignor about the new Assignment(partitions=[transcode-progress-0])
+2026-08-15T11:12:23.145+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Notifying assignor about the new Assignment(partitions=[transcode-completion-0])
+2026-08-15T11:12:23.148+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Adding newly assigned partitions: transcode-progress-0
+2026-08-15T11:12:23.148+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Adding newly assigned partitions: transcode-completion-0
+2026-08-15T11:12:23.207+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition transcode-completion-0 to the committed offset FetchPosition{offset=12, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=18}}
+2026-08-15T11:12:23.209+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition transcode-progress-0 to the committed offset FetchPosition{offset=79, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=18}}
+2026-08-15T11:12:23.212+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : video-processing-group: partitions assigned: [transcode-completion-0]
+2026-08-15T11:12:23.212+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : video-processing-group: partitions assigned: [transcode-progress-0]
+2026-08-15T11:21:53.916+05:30  INFO 29356 --- [ytrep] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-15T11:21:53.917+05:30  INFO 29356 --- [ytrep] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-15T11:21:53.920+05:30  INFO 29356 --- [ytrep] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2026-08-15T11:21:53.967+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing OPTIONS /api/get-all-video
+2026-08-15T11:21:53.966+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing OPTIONS /api/get-all-video
+2026-08-15T11:21:53.967+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing OPTIONS /api/get-all-video
+2026-08-15T11:21:53.966+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing OPTIONS /api/likes/my-likes
+2026-08-15T11:21:54.035+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/get-all-video
+2026-08-15T11:21:54.035+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/likes/my-likes
+2026-08-15T11:21:54.210+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-15T11:21:54.210+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-5] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-15T11:21:54.218+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/get-all-video
+2026-08-15T11:21:54.226+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-6] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+2026-08-15T11:21:54.239+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /error
+2026-08-15T11:21:54.241+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /error
+2026-08-15T11:21:54.309+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/get-all-video
+2026-08-15T11:21:54.311+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-6] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-15T11:21:54.315+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-7] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-15T11:21:54.316+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/get-all-video
+2026-08-15T11:21:54.326+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/get-all-video
+2026-08-15T11:21:54.331+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-8] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-15T11:21:54.332+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/get-all-video
+2026-08-15T11:21:59.754+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing OPTIONS /api/auth/signin
+2026-08-15T11:21:59.760+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/signin
+2026-08-15T11:21:59.764+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-2] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-15T11:21:59.766+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/signin
+2026-08-15T11:22:00.118+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-2] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2026-08-15T11:22:00.250+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/get-all-video
+2026-08-15T11:22:00.261+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Securing GET /api/likes/my-likes
+2026-08-15T11:22:00.985+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/get-all-video
+2026-08-15T11:22:00.993+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-6] o.s.security.web.FilterChainProxy        : Secured GET /api/likes/my-likes
+2026-08-15T11:22:00.999+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Securing GET /api/get-all-video
+2026-08-15T11:22:00.999+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-6] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.learning.ytrep.controller.UserLikeController.getMyLikedVideos(org.springframework.security.core.Authentication); target is of class [com.learning.ytrep.controller.UserLikeController]
+2026-08-15T11:22:01.017+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-7] o.s.security.web.FilterChainProxy        : Secured GET /api/get-all-video
+2026-08-15T11:22:01.026+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-6] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.learning.ytrep.controller.UserLikeController.getMyLikedVideos(org.springframework.security.core.Authentication); target is of class [com.learning.ytrep.controller.UserLikeController]
+2026-08-15T11:22:01.047+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Securing GET /api/likes/my-likes
+2026-08-15T11:22:01.063+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-8] o.s.security.web.FilterChainProxy        : Secured GET /api/likes/my-likes
+2026-08-15T11:22:01.065+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-8] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.learning.ytrep.controller.UserLikeController.getMyLikedVideos(org.springframework.security.core.Authentication); target is of class [com.learning.ytrep.controller.UserLikeController]
+2026-08-15T11:22:01.066+05:30 DEBUG 29356 --- [ytrep] [http-nio-8080-exec-8] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.learning.ytrep.controller.UserLikeController.getMyLikedVideos(org.springframework.security.core.Authentication); target is of class [com.learning.ytrep.controller.UserLikeController]
+2026-08-15T11:24:26.842+05:30  INFO 27956 --- [ytrep] [main] com.learning.ytrep.YtrepApplication      : Starting YtrepApplication using Java 21.0.9 with PID 27956 (D:\Projects\YouRep\Backend\ytrep\target\classes started by ajayl in D:\Projects\YouRep)
+2026-08-15T11:24:26.845+05:30  INFO 27956 --- [ytrep] [main] com.learning.ytrep.YtrepApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-08-15T11:24:27.643+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Revoke previously assigned partitions transcode-progress-0
+2026-08-15T11:24:27.643+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Revoke previously assigned partitions transcode-completion-0
+2026-08-15T11:24:27.644+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : video-processing-group: partitions revoked: [transcode-progress-0]
+2026-08-15T11:24:27.644+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : video-processing-group: partitions revoked: [transcode-completion-0]
+2026-08-15T11:24:27.645+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Member consumer-video-processing-group-1-b4bd0dbb-735a-4f65-b078-8b9df51d66b1 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+2026-08-15T11:24:27.645+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Member consumer-video-processing-group-2-e3202957-04d8-43b7-9f08-09b147af3ca8 sending LeaveGroup request to coordinator localhost:9092 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+2026-08-15T11:24:27.646+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-08-15T11:24:27.646+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-08-15T11:24:27.646+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Request joining group due to: consumer pro-actively leaving the group
+2026-08-15T11:24:27.646+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Request joining group due to: consumer pro-actively leaving the group
+2026-08-15T11:24:27.646+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Unsubscribed all topics or patterns and assigned partitions
+2026-08-15T11:24:27.646+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Unsubscribed all topics or patterns and assigned partitions
+2026-08-15T11:24:27.648+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-08-15T11:24:27.648+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-08-15T11:24:27.648+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Request joining group due to: consumer pro-actively leaving the group
+2026-08-15T11:24:27.648+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Request joining group due to: consumer pro-actively leaving the group
+2026-08-15T11:24:28.129+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-08-15T11:24:28.129+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-08-15T11:24:28.130+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-08-15T11:24:28.130+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-08-15T11:24:28.130+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-08-15T11:24:28.130+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-08-15T11:24:28.130+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-08-15T11:24:28.131+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-08-15T11:24:28.143+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-video-processing-group-2 unregistered
+2026-08-15T11:24:28.143+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : video-processing-group: Consumer stopped
+2026-08-15T11:24:28.144+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-video-processing-group-1 unregistered
+2026-08-15T11:24:28.145+05:30  INFO 29356 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : video-processing-group: Consumer stopped
+2026-08-15T11:24:28.147+05:30  INFO 29356 --- [ytrep] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-08-15T11:24:28.156+05:30  INFO 29356 --- [ytrep] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-08-15T11:24:28.184+05:30  INFO 29356 --- [ytrep] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-15T11:24:28.188+05:30  INFO 29356 --- [ytrep] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-15T11:24:28.193+05:30  INFO 29356 --- [ytrep] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-15T11:24:28.468+05:30  INFO 27956 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-08-15T11:24:28.471+05:30  INFO 27956 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-15T11:24:28.691+05:30  INFO 27956 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 205 ms. Found 7 JPA repository interfaces.
+2026-08-15T11:24:28.707+05:30  INFO 27956 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-08-15T11:24:28.710+05:30  INFO 27956 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-08-15T11:24:28.731+05:30  INFO 27956 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.CommentLikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:28.731+05:30  INFO 27956 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.CommentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:28.733+05:30  INFO 27956 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:28.733+05:30  INFO 27956 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.UserLikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:28.734+05:30  INFO 27956 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:28.734+05:30  INFO 27956 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.VideoAnalyticsRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:28.734+05:30  INFO 27956 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.VideoRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:28.734+05:30  INFO 27956 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2026-08-15T11:24:29.795+05:30  INFO 27956 --- [ytrep] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-08-15T11:24:29.814+05:30  INFO 27956 --- [ytrep] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-15T11:24:29.815+05:30  INFO 27956 --- [ytrep] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-08-15T11:24:29.916+05:30  INFO 27956 --- [ytrep] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-15T11:24:29.916+05:30  INFO 27956 --- [ytrep] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3021 ms
+2026-08-15T11:24:30.275+05:30  INFO 27956 --- [ytrep] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-15T11:24:30.354+05:30  INFO 27956 --- [ytrep] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.39.Final
+2026-08-15T11:24:30.401+05:30  INFO 27956 --- [ytrep] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-08-15T11:24:30.721+05:30  INFO 27956 --- [ytrep] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-15T11:24:30.769+05:30  WARN 27956 --- [ytrep] [main] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2026-08-15T11:24:30.770+05:30  INFO 27956 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-15T11:24:31.012+05:30  INFO 27956 --- [ytrep] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5a9baba8
+2026-08-15T11:24:31.014+05:30  INFO 27956 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-15T11:24:31.058+05:30  WARN 27956 --- [ytrep] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-15T11:24:31.082+05:30  INFO 27956 --- [ytrep] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-15T11:24:32.359+05:30  INFO 27956 --- [ytrep] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-15T11:24:32.625+05:30  INFO 27956 --- [ytrep] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-15T11:24:33.423+05:30  WARN 27956 --- [ytrep] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataInitializer': Injection of autowired dependencies failed
+2026-08-15T11:24:33.444+05:30  INFO 27956 --- [ytrep] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-15T11:24:33.449+05:30  INFO 27956 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-15T11:24:33.457+05:30  INFO 27956 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-15T11:24:33.462+05:30  INFO 27956 --- [ytrep] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-08-15T11:24:33.490+05:30  INFO 27956 --- [ytrep] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-15T11:24:33.519+05:30 ERROR 27956 --- [ytrep] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataInitializer': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:515) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1228) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1194) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1130) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:990) ~[spring-context-6.2.15.jar:6.2.15]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.15.jar:6.2.15]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.9.jar:3.5.9]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.9.jar:3.5.9]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.9.jar:3.5.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.9.jar:3.5.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.9.jar:3.5.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.9.jar:3.5.9]
+	at com.learning.ytrep.YtrepApplication.main(YtrepApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.util.PlaceholderResolutionException: Could not resolve placeholder 'ADMIN_PASSWORD' in value "${ADMIN_PASSWORD}"
+	at org.springframework.util.PlaceholderResolutionException.withValue(PlaceholderResolutionException.java:81) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.util.PlaceholderParser$ParsedValue.resolve(PlaceholderParser.java:298) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.util.PlaceholderParser.replacePlaceholders(PlaceholderParser.java:131) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:114) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:293) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:264) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:186) ~[spring-context-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:970) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1675) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.15.jar:6.2.15]
+	... 19 common frames omitted
+
+2026-08-15T11:24:37.032+05:30  INFO 22276 --- [ytrep] [main] com.learning.ytrep.YtrepApplication      : Starting YtrepApplication using Java 21.0.9 with PID 22276 (D:\Projects\YouRep\Backend\ytrep\target\classes started by ajayl in D:\Projects\YouRep)
+2026-08-15T11:24:37.035+05:30  INFO 22276 --- [ytrep] [main] com.learning.ytrep.YtrepApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-08-15T11:24:38.640+05:30  INFO 22276 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-08-15T11:24:38.642+05:30  INFO 22276 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-15T11:24:38.817+05:30  INFO 22276 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 161 ms. Found 7 JPA repository interfaces.
+2026-08-15T11:24:38.836+05:30  INFO 22276 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-08-15T11:24:38.839+05:30  INFO 22276 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-08-15T11:24:38.866+05:30  INFO 22276 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.CommentLikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:38.868+05:30  INFO 22276 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.CommentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:38.868+05:30  INFO 22276 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:38.870+05:30  INFO 22276 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.UserLikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:38.870+05:30  INFO 22276 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:38.871+05:30  INFO 22276 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.VideoAnalyticsRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:38.871+05:30  INFO 22276 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.VideoRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:24:38.872+05:30  INFO 22276 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2026-08-15T11:24:39.950+05:30  INFO 22276 --- [ytrep] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-08-15T11:24:39.968+05:30  INFO 22276 --- [ytrep] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-15T11:24:39.969+05:30  INFO 22276 --- [ytrep] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-08-15T11:24:40.079+05:30  INFO 22276 --- [ytrep] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-15T11:24:40.080+05:30  INFO 22276 --- [ytrep] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2991 ms
+2026-08-15T11:24:40.417+05:30  INFO 22276 --- [ytrep] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-15T11:24:40.475+05:30  INFO 22276 --- [ytrep] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.39.Final
+2026-08-15T11:24:40.510+05:30  INFO 22276 --- [ytrep] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-08-15T11:24:40.830+05:30  INFO 22276 --- [ytrep] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-15T11:24:40.866+05:30  WARN 22276 --- [ytrep] [main] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2026-08-15T11:24:40.867+05:30  INFO 22276 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-15T11:24:41.098+05:30  INFO 22276 --- [ytrep] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@795131d6
+2026-08-15T11:24:41.100+05:30  INFO 22276 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-15T11:24:41.136+05:30  WARN 22276 --- [ytrep] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-15T11:24:41.161+05:30  INFO 22276 --- [ytrep] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-15T11:24:42.422+05:30  INFO 22276 --- [ytrep] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-15T11:24:42.574+05:30  INFO 22276 --- [ytrep] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-15T11:24:43.344+05:30  WARN 22276 --- [ytrep] [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataInitializer': Injection of autowired dependencies failed
+2026-08-15T11:24:43.358+05:30  INFO 22276 --- [ytrep] [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-08-15T11:24:43.361+05:30  INFO 22276 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-08-15T11:24:43.370+05:30  INFO 22276 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-08-15T11:24:43.375+05:30  INFO 22276 --- [ytrep] [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-08-15T11:24:43.406+05:30  INFO 22276 --- [ytrep] [main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-08-15T11:24:43.439+05:30 ERROR 22276 --- [ytrep] [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'dataInitializer': Injection of autowired dependencies failed
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:515) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1459) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1228) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1194) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1130) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:990) ~[spring-context-6.2.15.jar:6.2.15]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:627) ~[spring-context-6.2.15.jar:6.2.15]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.9.jar:3.5.9]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.9.jar:3.5.9]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.9.jar:3.5.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.9.jar:3.5.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.9.jar:3.5.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.9.jar:3.5.9]
+	at com.learning.ytrep.YtrepApplication.main(YtrepApplication.java:10) ~[classes/:na]
+Caused by: org.springframework.util.PlaceholderResolutionException: Could not resolve placeholder 'ADMIN_PASSWORD' in value "${ADMIN_PASSWORD}"
+	at org.springframework.util.PlaceholderResolutionException.withValue(PlaceholderResolutionException.java:81) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.util.PlaceholderParser$ParsedValue.resolve(PlaceholderParser.java:298) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.util.PlaceholderParser.replacePlaceholders(PlaceholderParser.java:131) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:114) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:293) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:264) ~[spring-core-6.2.15.jar:6.2.15]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:186) ~[spring-context-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:970) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1675) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146) ~[spring-beans-6.2.15.jar:6.2.15]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509) ~[spring-beans-6.2.15.jar:6.2.15]
+	... 19 common frames omitted
+
+2026-08-15T11:25:48.165+05:30  INFO 31568 --- [ytrep] [main] com.learning.ytrep.YtrepApplication      : Starting YtrepApplication using Java 21.0.9 with PID 31568 (D:\Projects\YouRep\Backend\ytrep\target\classes started by ajayl in D:\Projects\YouRep)
+2026-08-15T11:25:48.168+05:30  INFO 31568 --- [ytrep] [main] com.learning.ytrep.YtrepApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-08-15T11:25:49.713+05:30  INFO 31568 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-08-15T11:25:49.716+05:30  INFO 31568 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-08-15T11:25:49.900+05:30  INFO 31568 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 174 ms. Found 7 JPA repository interfaces.
+2026-08-15T11:25:49.916+05:30  INFO 31568 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-08-15T11:25:49.919+05:30  INFO 31568 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-08-15T11:25:49.939+05:30  INFO 31568 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.CommentLikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:25:49.939+05:30  INFO 31568 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.CommentRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:25:49.940+05:30  INFO 31568 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.RoleRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:25:49.940+05:30  INFO 31568 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.UserLikeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:25:49.941+05:30  INFO 31568 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:25:49.941+05:30  INFO 31568 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.VideoAnalyticsRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:25:49.942+05:30  INFO 31568 --- [ytrep] [main] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.learning.ytrep.repository.VideoRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-08-15T11:25:49.942+05:30  INFO 31568 --- [ytrep] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2026-08-15T11:25:50.929+05:30  INFO 31568 --- [ytrep] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-08-15T11:25:50.947+05:30  INFO 31568 --- [ytrep] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-08-15T11:25:50.948+05:30  INFO 31568 --- [ytrep] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-08-15T11:25:51.038+05:30  INFO 31568 --- [ytrep] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-08-15T11:25:51.039+05:30  INFO 31568 --- [ytrep] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2815 ms
+2026-08-15T11:25:51.379+05:30  INFO 31568 --- [ytrep] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-08-15T11:25:51.467+05:30  INFO 31568 --- [ytrep] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.39.Final
+2026-08-15T11:25:51.510+05:30  INFO 31568 --- [ytrep] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-08-15T11:25:51.811+05:30  INFO 31568 --- [ytrep] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-08-15T11:25:51.847+05:30  WARN 31568 --- [ytrep] [main] com.zaxxer.hikari.HikariConfig           : HikariPool-1 - idleTimeout has been set but has no effect because the pool is operating as a fixed size pool.
+2026-08-15T11:25:51.847+05:30  INFO 31568 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-08-15T11:25:52.095+05:30  INFO 31568 --- [ytrep] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26a202ae
+2026-08-15T11:25:52.096+05:30  INFO 31568 --- [ytrep] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-08-15T11:25:52.133+05:30  WARN 31568 --- [ytrep] [main] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-08-15T11:25:52.154+05:30  INFO 31568 --- [ytrep] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 18.1
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-08-15T11:25:53.443+05:30  INFO 31568 --- [ytrep] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-08-15T11:25:53.616+05:30  INFO 31568 --- [ytrep] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-08-15T11:25:54.655+05:30  INFO 31568 --- [ytrep] [main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-08-15T11:25:54.656+05:30  WARN 31568 --- [ytrep] [main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-08-15T11:25:55.725+05:30  WARN 31568 --- [ytrep] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-08-15T11:25:56.112+05:30  INFO 31568 --- [ytrep] [main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-08-15T11:25:56.288+05:30 DEBUG 31568 --- [ytrep] [main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with filters: DisableEncodeUrlFilter, WebAsyncManagerIntegrationFilter, SecurityContextHolderFilter, HeaderWriterFilter, CorsFilter, LogoutFilter, AuthTokenFilter, RequestCacheAwareFilter, SecurityContextHolderAwareRequestFilter, AnonymousAuthenticationFilter, SessionManagementFilter, ExceptionTranslationFilter, AuthorizationFilter
+2026-08-15T11:25:57.065+05:30  INFO 31568 --- [ytrep] [main] o.a.k.clients.admin.AdminClientConfig    : AdminClientConfig values: 
+	auto.include.jmx.reporter = true
+	bootstrap.controllers = []
+	bootstrap.servers = [localhost:9092]
+	client.dns.lookup = use_all_dns_ips
+	client.id = ytrep-admin-0
+	connections.max.idle.ms = 300000
+	default.api.timeout.ms = 60000
+	enable.metrics.push = true
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retries = 2147483647
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+
+2026-08-15T11:25:57.280+05:30  INFO 31568 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.1
+2026-08-15T11:25:57.281+05:30  INFO 31568 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: f745dfdcee2b9851
+2026-08-15T11:25:57.281+05:30  INFO 31568 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1786773357278
+2026-08-15T11:25:57.879+05:30  INFO 31568 --- [ytrep] [kafka-admin-client-thread | ytrep-admin-0] o.a.kafka.common.utils.AppInfoParser     : App info kafka.admin.client for ytrep-admin-0 unregistered
+2026-08-15T11:25:57.885+05:30  INFO 31568 --- [ytrep] [kafka-admin-client-thread | ytrep-admin-0] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-08-15T11:25:57.886+05:30  INFO 31568 --- [ytrep] [kafka-admin-client-thread | ytrep-admin-0] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-08-15T11:25:57.886+05:30  INFO 31568 --- [ytrep] [kafka-admin-client-thread | ytrep-admin-0] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-08-15T11:25:57.907+05:30  INFO 31568 --- [ytrep] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2026-08-15T11:25:57.937+05:30  INFO 31568 --- [ytrep] [main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-video-processing-group-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = video-processing-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.JsonDeserializer
+
+2026-08-15T11:25:57.988+05:30  INFO 31568 --- [ytrep] [main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-08-15T11:25:58.109+05:30  INFO 31568 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.1
+2026-08-15T11:25:58.109+05:30  INFO 31568 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: f745dfdcee2b9851
+2026-08-15T11:25:58.109+05:30  INFO 31568 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1786773358109
+2026-08-15T11:25:58.121+05:30  INFO 31568 --- [ytrep] [main] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Subscribed to topic(s): transcode-completion
+2026-08-15T11:25:58.136+05:30  INFO 31568 --- [ytrep] [main] o.a.k.clients.consumer.ConsumerConfig    : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.include.jmx.reporter = true
+	auto.offset.reset = latest
+	bootstrap.servers = [localhost:9092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-video-processing-group-2
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = video-processing-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.strategy = none
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2026-08-15T11:25:58.137+05:30  INFO 31568 --- [ytrep] [main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-08-15T11:25:58.150+05:30  INFO 31568 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 3.9.1
+2026-08-15T11:25:58.150+05:30  INFO 31568 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: f745dfdcee2b9851
+2026-08-15T11:25:58.151+05:30  INFO 31568 --- [ytrep] [main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1786773358150
+2026-08-15T11:25:58.153+05:30  INFO 31568 --- [ytrep] [main] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Subscribed to topic(s): transcode-progress
+2026-08-15T11:25:58.163+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Cluster ID: 
+2026-08-15T11:25:58.165+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+2026-08-15T11:25:58.167+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Cluster ID: 
+2026-08-15T11:25:58.169+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Discovered group coordinator localhost:9092 (id: 2147483646 rack: null)
+2026-08-15T11:25:58.170+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] (Re-)joining group
+2026-08-15T11:25:58.171+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] (Re-)joining group
+2026-08-15T11:25:58.181+05:30  INFO 31568 --- [ytrep] [main] com.learning.ytrep.YtrepApplication      : Started YtrepApplication in 10.607 seconds (process running for 11.1)
+2026-08-15T11:25:58.200+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Request joining group due to: need to re-join with the given member-id: consumer-video-processing-group-2-a3b30b9b-cc74-42fc-9b1e-a10c75c37e1b
+2026-08-15T11:25:58.200+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Request joining group due to: need to re-join with the given member-id: consumer-video-processing-group-1-0e7af43f-9647-43da-afdc-5e4480ce07bd
+2026-08-15T11:25:58.201+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] (Re-)joining group
+2026-08-15T11:25:58.201+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] (Re-)joining group
+2026-08-15T11:25:58.600+05:30  WARN 31568 --- [ytrep] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /v3/api-docs endpoint is enabled by default. To disable it in production, set the property 'springdoc.api-docs.enabled=false'
+2026-08-15T11:25:58.600+05:30  WARN 31568 --- [ytrep] [main] o.s.core.events.SpringDocAppInitializer  : SpringDoc /swagger-ui.html endpoint is enabled by default. To disable it in production, set the property 'springdoc.swagger-ui.enabled=false'
+2026-08-15T11:26:04.206+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Successfully joined group with generation Generation{generationId=15, memberId='consumer-video-processing-group-1-0e7af43f-9647-43da-afdc-5e4480ce07bd', protocol='range'}
+2026-08-15T11:26:04.206+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Successfully joined group with generation Generation{generationId=15, memberId='consumer-video-processing-group-2-a3b30b9b-cc74-42fc-9b1e-a10c75c37e1b', protocol='range'}
+2026-08-15T11:26:04.226+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Finished assignment for group at generation 15: {consumer-video-processing-group-1-0e7af43f-9647-43da-afdc-5e4480ce07bd=Assignment(partitions=[transcode-completion-0]), consumer-video-processing-group-2-a3b30b9b-cc74-42fc-9b1e-a10c75c37e1b=Assignment(partitions=[transcode-progress-0])}
+2026-08-15T11:26:04.238+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Successfully synced group in generation Generation{generationId=15, memberId='consumer-video-processing-group-2-a3b30b9b-cc74-42fc-9b1e-a10c75c37e1b', protocol='range'}
+2026-08-15T11:26:04.238+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Successfully synced group in generation Generation{generationId=15, memberId='consumer-video-processing-group-1-0e7af43f-9647-43da-afdc-5e4480ce07bd', protocol='range'}
+2026-08-15T11:26:04.239+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Notifying assignor about the new Assignment(partitions=[transcode-progress-0])
+2026-08-15T11:26:04.239+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Notifying assignor about the new Assignment(partitions=[transcode-completion-0])
+2026-08-15T11:26:04.243+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-video-processing-group-1, groupId=video-processing-group] Adding newly assigned partitions: transcode-completion-0
+2026-08-15T11:26:04.243+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-video-processing-group-2, groupId=video-processing-group] Adding newly assigned partitions: transcode-progress-0
+2026-08-15T11:26:04.255+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition transcode-completion-0 to the committed offset FetchPosition{offset=12, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=18}}
+2026-08-15T11:26:04.257+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.a.k.c.c.internals.ConsumerUtils        : Setting offset for partition transcode-progress-0 to the committed offset FetchPosition{offset=79, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[localhost:9092 (id: 1 rack: null)], epoch=18}}
+2026-08-15T11:26:04.257+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : video-processing-group: partitions assigned: [transcode-completion-0]
+2026-08-15T11:26:04.257+05:30  INFO 31568 --- [ytrep] [org.springframework.kafka.KafkaListenerEndpointContainer#1-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : video-processing-group: partitions assigned: [transcode-progress-0]
+2026-08-15T11:26:05.717+05:30  INFO 31568 --- [ytrep] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-08-15T11:26:05.717+05:30  INFO 31568 --- [ytrep] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-08-15T11:26:05.719+05:30  INFO 31568 --- [ytrep] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-08-15T11:26:05.764+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-1] o.s.security.web.FilterChainProxy        : Securing OPTIONS /api/auth/logout
+2026-08-15T11:26:05.823+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/logout
+2026-08-15T11:26:06.740+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-2] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/logout
+2026-08-15T11:26:09.371+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Securing POST /api/auth/signin
+2026-08-15T11:26:09.375+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-3] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2026-08-15T11:26:09.377+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-3] o.s.security.web.FilterChainProxy        : Secured POST /api/auth/signin
+2026-08-15T11:26:09.661+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-3] o.s.s.a.dao.DaoAuthenticationProvider    : Authenticated user
+2026-08-15T11:26:09.765+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Securing GET /api/get-all-video
+2026-08-15T11:26:09.767+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/likes/my-likes
+2026-08-15T11:26:09.783+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/likes/my-likes
+2026-08-15T11:26:09.787+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-5] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.learning.ytrep.controller.UserLikeController.getMyLikedVideos(org.springframework.security.core.Authentication); target is of class [com.learning.ytrep.controller.UserLikeController]
+2026-08-15T11:26:09.791+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-4] o.s.security.web.FilterChainProxy        : Secured GET /api/get-all-video
+2026-08-15T11:26:09.806+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-5] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.learning.ytrep.controller.UserLikeController.getMyLikedVideos(org.springframework.security.core.Authentication); target is of class [com.learning.ytrep.controller.UserLikeController]
+2026-08-15T11:26:09.831+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Securing GET /api/get-all-video
+2026-08-15T11:26:09.831+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Securing GET /api/likes/my-likes
+2026-08-15T11:26:09.847+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-5] o.s.security.web.FilterChainProxy        : Secured GET /api/likes/my-likes
+2026-08-15T11:26:09.847+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-9] o.s.security.web.FilterChainProxy        : Secured GET /api/get-all-video
+2026-08-15T11:26:09.849+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-5] horizationManagerBeforeMethodInterceptor : Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.learning.ytrep.controller.UserLikeController.getMyLikedVideos(org.springframework.security.core.Authentication); target is of class [com.learning.ytrep.controller.UserLikeController]
+2026-08-15T11:26:09.850+05:30 DEBUG 31568 --- [ytrep] [http-nio-8080-exec-5] horizationManagerBeforeMethodInterceptor : Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.learning.ytrep.controller.UserLikeController.getMyLikedVideos(org.springframework.security.core.Authentication); target is of class [com.learning.ytrep.controller.UserLikeController]
