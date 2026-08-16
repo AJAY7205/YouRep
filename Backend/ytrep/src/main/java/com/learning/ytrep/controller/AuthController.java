@@ -224,16 +224,28 @@ public class AuthController {
 
     @Operation(summary = "Send 6-digit verification code to email")
     @PostMapping("/send-verification-code")
-    public ResponseEntity<?> sendVerificationCode(@Valid @RequestBody SendVerificationCodeRequest request) {
+    public ResponseEntity<?> sendVerificationCode(@Valid @RequestBody SendVerificationCodeRequest request,
+                                                  Authentication authentication) {
+        boolean owner = isOwner(authentication, request.getEmail());
+        if (authentication != null && !owner) {
+            return ResponseEntity.badRequest()
+                    .body(new MessageResponse("You can only request a code for your own email"));
+        }
         User user = userRepository.findByEmail(request.getEmail().trim().toLowerCase())
                 .orElse(null);
         if (user == null) {
-            return ResponseEntity.badRequest()
-                    .body(new MessageResponse("No account found for this email"));
+            if (owner) {
+                return ResponseEntity.badRequest()
+                        .body(new MessageResponse("No account found for this email"));
+            }
+            return ResponseEntity.ok(new MessageResponse("If an account exists for this email, a verification code has been sent."));
         }
         if (user.isEmailVerified()) {
-            return ResponseEntity.badRequest()
-                    .body(new MessageResponse("Email is already verified"));
+            if (owner) {
+                return ResponseEntity.badRequest()
+                        .body(new MessageResponse("Email is already verified"));
+            }
+            return ResponseEntity.ok(new MessageResponse("If an account exists for this email, a verification code has been sent."));
         }
         String code = verificationCodeService.generateAndStoreCode(request.getEmail());
         try {
@@ -242,12 +254,20 @@ public class AuthController {
             verificationCodeService.invalidate(request.getEmail());
             throw e;
         }
-        return ResponseEntity.ok(new MessageResponse("Verification code sent successfully"));
+        if (owner) {
+            return ResponseEntity.ok(new MessageResponse("Verification code sent successfully"));
+        }
+        return ResponseEntity.ok(new MessageResponse("If an account exists for this email, a verification code has been sent."));
     }
 
     @Operation(summary = "Verify email with 6-digit code")
     @PostMapping("/verify-email")
-    public ResponseEntity<?> verifyEmail(@Valid @RequestBody VerifyEmailRequest request) {
+    public ResponseEntity<?> verifyEmail(@Valid @RequestBody VerifyEmailRequest request,
+                                         Authentication authentication) {
+        if (authentication != null && !isOwner(authentication, request.getEmail())) {
+            return ResponseEntity.badRequest()
+                    .body(new MessageResponse("You can only verify your own email"));
+        }
         User user = userRepository.findByEmail(request.getEmail().trim().toLowerCase())
                 .orElse(null);
         if (user == null) {
@@ -261,6 +281,17 @@ public class AuthController {
         user.setEmailVerified(true);
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("Email verified successfully"));
+    }
+
+    private boolean isOwner(Authentication authentication, String email) {
+        if (authentication == null || authentication.getPrincipal() == null) {
+            return false;
+        }
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof UserDetailsImpl userDetails) {
+            return email != null && email.equalsIgnoreCase(userDetails.getEmail());
+        }
+        return false;
     }
 
     @Operation(summary = "User Logout")

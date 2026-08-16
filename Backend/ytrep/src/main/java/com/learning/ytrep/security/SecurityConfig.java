@@ -94,7 +94,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/comments/{videoId}/count").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/error").permitAll()
-                .requestMatchers("/actuator/**").permitAll()
+                .requestMatchers("/actuator/health").permitAll()
                 
                 // Authenticated endpoints
                 .anyRequest().authenticated()

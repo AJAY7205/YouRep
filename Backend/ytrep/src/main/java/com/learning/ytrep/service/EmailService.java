@@ -43,6 +43,9 @@ public class EmailService {
     @Value("${app.mail.debug:false}")
     private boolean mailDebug;
 
+    @Value("${app.verification.expiry-days}")
+    private long expiryDays;
+
     public EmailService(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
         this.httpClient = new OkHttpClient.Builder()
@@ -62,8 +65,29 @@ public class EmailService {
                 + "<p>Your verification code is:</p>"
                 + "<h1 style=\"letter-spacing:6px;color:#065fd4;\">" + code + "</h1>"
                 + "<p>This code expires in 10 minutes.</p>"
+                + "<p><strong>You have " + expiryDays + " day" + (expiryDays == 1 ? "" : "s")
+                + " to verify your email.</strong> If you don't verify in time, your account and its data will be deleted.</p>"
                 + "<p>If you did not create a YouRep account, you can ignore this email.</p>";
 
+        sendEmail(toEmail, "Your YouRep verification code", html);
+    }
+
+    public void sendReminderEmail(String toEmail) {
+        if (mailDebug) {
+            log.info("[MAIL DEBUG] Reminder for {}: verify your email within 1 day before your account is deleted", toEmail);
+            return;
+        }
+
+        String html = "<h2>Don't lose your YouRep account!</h2>"
+                + "<p>You signed up for YouRep but haven't verified your email yet.</p>"
+                + "<p><strong>You have 1 day left.</strong> Verify your email now, otherwise your account and its data will be deleted.</p>"
+                + "<p>Sign in and open the <strong>Verify Email</strong> page to enter your code, or resend the code from there.</p>"
+                + "<p>If you did not create a YouRep account, you can ignore this email.</p>";
+
+        sendEmail(toEmail, "Your YouRep account expires soon — verify your email", html);
+    }
+
+    private void sendEmail(String toEmail, String subject, String html) {
         Map<String, Object> sender = new LinkedHashMap<>();
         sender.put("name", brevoSenderName);
         sender.put("email", brevoSenderEmail);
@@ -76,7 +100,7 @@ public class EmailService {
         Map<String, Object> payload = new LinkedHashMap<>();
         payload.put("sender", sender);
         payload.put("to", to);
-        payload.put("subject", "Your YouRep verification code");
+        payload.put("subject", subject);
         payload.put("htmlContent", html);
 
         String json;

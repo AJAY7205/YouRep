@@ -32,19 +32,46 @@ public class AccountCleanupService {
     private final CommentLikeRepository commentLikeRepository;
     private final UserLikeRepository userLikeRepository;
     private final VideoService videoService;
+    private final EmailService emailService;
 
     @Value("${app.verification.expiry-days:3}")
     private long expiryDays;
 
     public AccountCleanupService(UserRepository userRepository, VideoRepository videoRepository,
                                  CommentRepository commentRepository, CommentLikeRepository commentLikeRepository,
-                                 UserLikeRepository userLikeRepository, VideoService videoService) {
+                                 UserLikeRepository userLikeRepository, VideoService videoService,
+                                 EmailService emailService) {
         this.userRepository = userRepository;
         this.videoRepository = videoRepository;
         this.commentRepository = commentRepository;
         this.commentLikeRepository = commentLikeRepository;
         this.userLikeRepository = userLikeRepository;
         this.videoService = videoService;
+        this.emailService = emailService;
+    }
+
+    @Scheduled(cron = "0 0 4 * * *")
+    public void sendVerificationReminders() {
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime reminderStart = now.minusDays(expiryDays);
+        LocalDateTime reminderEnd = now.minusDays(expiryDays - 1);
+        List<User> reminders = userRepository.findByEmailVerifiedFalseAndReminderSentFalseAndCreatedAtBetween(reminderStart, reminderEnd);
+
+        if (reminders.isEmpty()) {
+            return;
+        }
+
+        log.info("Sending verification reminders to {} unverified account(s)", reminders.size());
+
+        for (User user : reminders) {
+            try {
+                emailService.sendReminderEmail(user.getEmail());
+                user.setReminderSent(true);
+                userRepository.save(user);
+            } catch (Exception e) {
+                log.error("Failed to send reminder to {}", user.getEmail(), e);
+            }
+        }
     }
 
     @Scheduled(cron = "0 30 4 * * *")

@@ -138,13 +138,20 @@ const VerifyEmail = () => {
         </form>
 
         <div className="auth-footer">
+          {cooldown > 0 && (
+            <p className="resend-timer">
+              <span className="resend-timer-icon">&#9203;</span>
+              You can request another code in{' '}
+              <strong>{Math.floor(cooldown / 60)}:{(cooldown % 60).toString().padStart(2, '0')}</strong>
+            </p>
+          )}
           <button
             type="button"
             onClick={handleResend}
             className="btn btn-secondary btn-full"
             disabled={loading || cooldown > 0}
           >
-            {cooldown > 0 ? `Resend code in ${cooldown}s` : 'Resend code'}
+            Resend code
           </button>
           {isAuthenticated ? (
             <p>

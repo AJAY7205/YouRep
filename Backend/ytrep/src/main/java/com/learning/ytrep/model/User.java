@@ -67,6 +67,8 @@ public class User {
 
     private boolean emailVerified = false;
 
+    private boolean reminderSent = false;
+
     private int failedLoginAttempts = 0;
 
     private LocalDateTime lockTime;

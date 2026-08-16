@@ -564,6 +564,29 @@ img {
   font-size: 0.9rem;
 }
 
+.resend-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0 0 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(255, 68, 68, 0.08);
+  border: 1px solid rgba(255, 68, 68, 0.2);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.resend-timer strong {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.resend-timer-icon {
+  font-size: 1rem;
+}
+
 /* ============================================
    Form Elements — Glass Style
    ============================================ */
