@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import CommentForm from './CommentForm';
 import { replyToComment, toggleCommentLike, deleteComment } from '../../services/api/comment.service';
@@ -30,6 +31,7 @@ const CommentCard = ({ comment, videoId, onCommentUpdated, isReply = false }) =>
   const [error, setError] = useState('');
 
   const isOwner = isAuthenticated && user?.username === comment.username;
+  const isUnverified = isAuthenticated && user && user.emailVerified === false;
 
   const handleReply = async (content) => {
     await replyToComment(videoId, comment.commentId, content);
@@ -39,7 +41,7 @@ const CommentCard = ({ comment, videoId, onCommentUpdated, isReply = false }) =>
   };
 
   const handleLike = async () => {
-    if (!isAuthenticated) return;
+    if (!isAuthenticated || isUnverified) return;
     try {
       await toggleCommentLike(comment.commentId);
       setLiked(!liked);
@@ -79,17 +81,24 @@ const CommentCard = ({ comment, videoId, onCommentUpdated, isReply = false }) =>
           <button
             className={`comment-action-btn ${liked ? 'liked' : ''}`}
             onClick={handleLike}
-            disabled={!isAuthenticated}
+            disabled={!isAuthenticated || isUnverified}
+            title={isUnverified ? 'Verify your email to like comments' : ''}
           >
             {liked ? '👍' : '👍'} <span>{likeCount || ''}</span>
           </button>
           {isAuthenticated && (
-            <button
-              className="comment-action-btn"
-              onClick={() => setShowReplyForm(!showReplyForm)}
-            >
-              ↩ Reply
-            </button>
+            isUnverified ? (
+              <Link to="/verify" className="comment-action-btn comment-action-verify">
+                Verify email to reply
+              </Link>
+            ) : (
+              <button
+                className="comment-action-btn"
+                onClick={() => setShowReplyForm(!showReplyForm)}
+              >
+                ↩ Reply
+              </button>
+            )
           )}
           {isOwner && (
             <button className="comment-action-btn comment-action-delete" onClick={handleDelete}>

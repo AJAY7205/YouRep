@@ -10,7 +10,7 @@ import {
 import { Link } from 'react-router-dom';
 
 const CommentSection = ({ videoId }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const [comments, setComments] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -58,13 +58,19 @@ const CommentSection = ({ videoId }) => {
       </div>
 
       {isAuthenticated ? (
-        <div className="comment-section-form">
-          <CommentForm
-            onSubmit={handleNewComment}
-            placeholder="Add a comment..."
-            submitLabel="Comment"
-          />
-        </div>
+        user && user.emailVerified === false ? (
+          <div className="comment-login-prompt">
+            <Link to="/verify">Verify your email</Link> to leave a comment
+          </div>
+        ) : (
+          <div className="comment-section-form">
+            <CommentForm
+              onSubmit={handleNewComment}
+              placeholder="Add a comment..."
+              submitLabel="Comment"
+            />
+          </div>
+        )
       ) : (
         <div className="comment-login-prompt">
           <Link to="/login">Sign in</Link> to leave a comment

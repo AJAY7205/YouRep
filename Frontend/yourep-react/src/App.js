@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Upload from './pages/Upload';
 import VideoPlayer from './pages/VideoPlayer';
+import VerifyEmail from './pages/VerifyEmail';
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/verify" element={<VerifyEmail />} />
             <Route path="/watch/:id" element={<VideoPlayer />} />
             <Route
               path="/upload"

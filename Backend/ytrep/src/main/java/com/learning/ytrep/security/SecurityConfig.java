@@ -81,6 +81,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/signin").permitAll()
                 .requestMatchers("/api/health").permitAll()
                 .requestMatchers("/api/auth/signup").permitAll()
+                .requestMatchers("/api/auth/send-verification-code").permitAll()
+                .requestMatchers("/api/auth/verify-email").permitAll()
                 .requestMatchers("/api/get-all-video").permitAll()
                 .requestMatchers("/api/getVideo/*").permitAll()
                 .requestMatchers("/api/videos/*/stream").permitAll()

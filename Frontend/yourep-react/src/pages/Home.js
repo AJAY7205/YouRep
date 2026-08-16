@@ -3,9 +3,11 @@ import { useAuth } from '../context/AuthContext';
 import { getAllVideos } from '../services/api/video.service';
 import { getMyLikedVideos } from '../services/api/like.service';
 import VideoCard from '../components/video/VideoCard';
+import usePageTitle from '../hooks/usePageTitle';
 
 const Home = () => {
   const { isAuthenticated } = useAuth();
+  usePageTitle('Home');
   const [videos, setVideos] = useState([]);
   const [likedVideos, setLikedVideos] = useState([]);
   const [loading, setLoading] = useState(true);

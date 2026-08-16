@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { signup } from '../services/api/auth.service';
+import usePageTitle from '../hooks/usePageTitle';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -11,8 +12,9 @@ const Signup = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, login } = useAuth();
   const navigate = useNavigate();
+  usePageTitle('Sign Up');
 
   if (isAuthenticated) {
     navigate('/', { replace: true });
@@ -56,11 +58,9 @@ const Signup = () => {
 
     try {
       setLoading(true);
-      await signup(username.trim(), email.trim(), password);
-      setSuccess('Account created successfully! Redirecting to login...');
-      setTimeout(() => {
-        navigate('/login', { replace: true });
-      }, 2000);
+      const data = await signup(username.trim(), email.trim(), password);
+      login(data.token, data.username, data.email, data.roles, data.id, data.emailVerified);
+      navigate('/verify', { replace: true, state: { email: email.trim() } });
     } catch (err) {
       const message = err.response?.data?.message || 'Signup failed. Please try again.';
       setError(message);

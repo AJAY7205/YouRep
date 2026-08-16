@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { getVideo, getTranscodeProgress, getStreamUrl, updateVideo, deleteVideo } from '../services/api/video.service';
 import { toggleLike, checkLiked, getLikeCount } from '../services/api/like.service';
 import CommentSection from '../components/comment/CommentSection';
+import usePageTitle from '../hooks/usePageTitle';
 
 const VideoPlayer = () => {
   const { id } = useParams();
@@ -20,6 +21,7 @@ const VideoPlayer = () => {
   const [buffering, setBuffering] = useState(false);
   const [videoError, setVideoError] = useState('');
   const [progress, setProgress] = useState({ percent: 0, etaSeconds: null });
+  usePageTitle(video ? video.title : 'Watch Video');
 
   const fetchVideo = useCallback(async () => {
     try {
@@ -143,6 +145,7 @@ const VideoPlayer = () => {
   const isOwner = video && user && video.username === user.username;
   const isAdmin = user?.roles?.includes('ADMIN');
   const canModify = isOwner || isAdmin;
+  const isUnverified = isAuthenticated && user && user.emailVerified === false;
 
   if (loading) {
     return (
@@ -253,7 +256,8 @@ const VideoPlayer = () => {
               <button
                 className={`btn btn-like ${liked ? 'liked' : ''}`}
                 onClick={handleLike}
-                disabled={!isAuthenticated}
+                disabled={!isAuthenticated || isUnverified}
+                title={isUnverified ? 'Verify your email to like videos' : ''}
               >
                 {liked ? '❤️' : '🤍'} {likeCount}
               </button>

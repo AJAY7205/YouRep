@@ -45,7 +45,7 @@ public class VideoController {
     }
     @Operation(summary = "Post a new video USER/ADMIN only")
     @Idempotent
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and @verificationSecurityService.isVerified(authentication))")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(content = @Content(
             encoding = @Encoding(name = "metadata", contentType = "application/json")
     ))

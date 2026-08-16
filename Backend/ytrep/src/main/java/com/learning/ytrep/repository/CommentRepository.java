@@ -12,5 +12,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByVideoVideoIdAndParentIsNullOrderByCreatedAtDesc(Long videoId);
     List<Comment> findByVideoVideoIdOrderByCreatedAtDesc(Long videoId);
     List<Comment> findByParentCommentIdOrderByCreatedAtAsc(Long parentId);
+    List<Comment> findByUserUserId(Long userId);
     long countByVideoVideoId(Long videoId);
 }

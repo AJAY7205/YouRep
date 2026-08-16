@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { signin } from '../services/api/auth.service';
+import usePageTitle from '../hooks/usePageTitle';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -10,6 +11,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  usePageTitle('Login');
 
   if (isAuthenticated) {
     navigate('/', { replace: true });
@@ -28,7 +30,7 @@ const Login = () => {
     try {
       setLoading(true);
       const data = await signin(username.trim(), password);
-      login(data.token, data.username, data.email, data.roles, data.id);
+      login(data.token, data.username, data.email, data.roles, data.id, data.emailVerified);
       navigate('/', { replace: true });
     } catch (err) {
       const message = err.response?.data?.message || 'Login failed. Please check your credentials.';

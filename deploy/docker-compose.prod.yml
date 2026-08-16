@@ -94,6 +94,11 @@ services:
       - JWT_EXPIRATION_MS=${JWT_EXPIRATION_MS}
       - KAFKA_BOOTSTRAP_SERVERS=kafka:9093
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - BREVO_API_KEY=${BREVO_API_KEY}
+      - BREVO_SENDER_EMAIL=${BREVO_SENDER_EMAIL}
+      - BREVO_SENDER_NAME=${BREVO_SENDER_NAME}
+      - MAIL_DEBUG=false
+      - VERIFICATION_EXPIRY_DAYS=${VERIFICATION_EXPIRY_DAYS}
     depends_on:
       postgres:
         condition: service_healthy

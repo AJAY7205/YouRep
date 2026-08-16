@@ -23,10 +23,21 @@ export const logoutApi = async () => {
   }
 };
 
+export const sendVerificationCode = async (email) => {
+  const response = await api.post('/auth/send-verification-code', { email });
+  return response.data;
+};
+
+export const verifyEmail = async (email, code) => {
+  const response = await api.post('/auth/verify-email', { email, code });
+  return response.data;
+};
+
 export const logout = () => {
   localStorage.removeItem('authToken');
   localStorage.removeItem('userId');
   localStorage.removeItem('username');
   localStorage.removeItem('userEmail');
   localStorage.removeItem('userRoles');
+  localStorage.removeItem('emailVerified');
 };

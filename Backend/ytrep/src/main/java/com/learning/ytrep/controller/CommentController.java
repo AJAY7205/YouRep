@@ -51,7 +51,7 @@ public class CommentController {
 
     @Operation(summary = "Create a comment on a video")
     @Idempotent
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and @verificationSecurityService.isVerified(authentication))")
     @PostMapping("/{videoId}")
     public ResponseEntity<CommentDTO> createComment(
             @PathVariable Long videoId,
@@ -64,7 +64,7 @@ public class CommentController {
 
     @Operation(summary = "Reply to a comment")
     @Idempotent
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and @verificationSecurityService.isVerified(authentication))")
     @PostMapping("/{videoId}/reply/{parentId}")
     public ResponseEntity<CommentDTO> replyToComment(
             @PathVariable Long videoId,
@@ -77,7 +77,7 @@ public class CommentController {
     }
 
     @Operation(summary = "Toggle like on a comment")
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and @verificationSecurityService.isVerified(authentication))")
     @PostMapping("/{commentId}/like")
     public ResponseEntity<APIResponse> toggleLike(
             @PathVariable Long commentId,

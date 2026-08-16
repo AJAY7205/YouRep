@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,7 +28,11 @@ import com.learning.ytrep.repository.UserRepository;
 import com.learning.ytrep.security.jwt.JwtUtils;
 import com.learning.ytrep.security.jwt.TokenBlacklistService;
 import com.learning.ytrep.security.request.LoginRequest;
+import com.learning.ytrep.security.request.SendVerificationCodeRequest;
 import com.learning.ytrep.security.request.SignupRequest;
+import com.learning.ytrep.security.request.VerifyEmailRequest;
+import com.learning.ytrep.service.EmailService;
+import com.learning.ytrep.service.VerificationCodeService;
 import com.learning.ytrep.security.response.JwtResponse;
 import com.learning.ytrep.security.response.MessageResponse;
 import com.learning.ytrep.security.services.UserDetailsImpl;
@@ -38,12 +44,16 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
+
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder encoder;
     private final JwtUtils jwtUtils;
     private final TokenBlacklistService tokenBlacklistService;
+    private final VerificationCodeService verificationCodeService;
+    private final EmailService emailService;
 
     private static final long LOCK_DURATION_MINUTES = 15;
 
@@ -53,13 +63,17 @@ public class AuthController {
             RoleRepository roleRepository,
             PasswordEncoder encoder,
             JwtUtils jwtUtils,
-            TokenBlacklistService tokenBlacklistService) {
+            TokenBlacklistService tokenBlacklistService,
+            VerificationCodeService verificationCodeService,
+            EmailService emailService) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.encoder = encoder;
         this.jwtUtils = jwtUtils;
         this.tokenBlacklistService = tokenBlacklistService;
+        this.verificationCodeService = verificationCodeService;
+        this.emailService = emailService;
     }
     @Operation(summary = "User Login")
     @PostMapping("/signin")
@@ -107,7 +121,8 @@ public class AuthController {
                     userDetails.getId(),
                     userDetails.getUsername(),
                     userDetails.getEmail(),
-                    roles));
+                    roles,
+                    user != null && user.isEmailVerified()));
 
         } catch (Exception e) {
             if (user != null) {
@@ -181,7 +196,71 @@ public class AuthController {
         user.setRoles(roles);
         userRepository.save(user);
 
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        // Send the verification code (non-blocking: never fail signup if email delivery fails)
+        try {
+            String code = verificationCodeService.generateAndStoreCode(user.getEmail());
+            emailService.sendVerificationCode(user.getEmail(), code);
+        } catch (Exception e) {
+            log.error("Failed to send verification code for {}: {}", user.getEmail(), e.getMessage());
+        }
+
+        // Auto-login after successful signup
+        Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(user.getUsername(), signUpRequest.getPassword()));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        String jwt = jwtUtils.generateJwtToken(authentication);
+
+        List<String> userRoles = user.getRoles().stream()
+                .map(role -> role.getAppRole().name())
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(new JwtResponse(jwt,
+                user.getUserId(),
+                user.getUsername(),
+                user.getEmail(),
+                userRoles,
+                user.isEmailVerified()));
+    }
+
+    @Operation(summary = "Send 6-digit verification code to email")
+    @PostMapping("/send-verification-code")
+    public ResponseEntity<?> sendVerificationCode(@Valid @RequestBody SendVerificationCodeRequest request) {
+        User user = userRepository.findByEmail(request.getEmail().trim().toLowerCase())
+                .orElse(null);
+        if (user == null) {
+            return ResponseEntity.badRequest()
+                    .body(new MessageResponse("No account found for this email"));
+        }
+        if (user.isEmailVerified()) {
+            return ResponseEntity.badRequest()
+                    .body(new MessageResponse("Email is already verified"));
+        }
+        String code = verificationCodeService.generateAndStoreCode(request.getEmail());
+        try {
+            emailService.sendVerificationCode(request.getEmail(), code);
+        } catch (Exception e) {
+            verificationCodeService.invalidate(request.getEmail());
+            throw e;
+        }
+        return ResponseEntity.ok(new MessageResponse("Verification code sent successfully"));
+    }
+
+    @Operation(summary = "Verify email with 6-digit code")
+    @PostMapping("/verify-email")
+    public ResponseEntity<?> verifyEmail(@Valid @RequestBody VerifyEmailRequest request) {
+        User user = userRepository.findByEmail(request.getEmail().trim().toLowerCase())
+                .orElse(null);
+        if (user == null) {
+            return ResponseEntity.badRequest()
+                    .body(new MessageResponse("No account found for this email"));
+        }
+        if (user.isEmailVerified()) {
+            return ResponseEntity.ok(new MessageResponse("Email is already verified"));
+        }
+        verificationCodeService.verify(request.getEmail(), request.getCode());
+        user.setEmailVerified(true);
+        userRepository.save(user);
+        return ResponseEntity.ok(new MessageResponse("Email verified successfully"));
     }
 
     @Operation(summary = "User Logout")

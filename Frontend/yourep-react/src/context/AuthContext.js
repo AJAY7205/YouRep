@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
     const storedRoles = localStorage.getItem('userRoles');
     const storedEmail = localStorage.getItem('userEmail');
     const storedId = localStorage.getItem('userId');
+    const storedVerified = localStorage.getItem('emailVerified') === 'true';
 
     if (storedToken && storedUsername) {
       setToken(storedToken);
@@ -30,19 +31,21 @@ export const AuthProvider = ({ children }) => {
         username: storedUsername,
         email: storedEmail,
         roles: storedRoles ? JSON.parse(storedRoles) : [],
+        emailVerified: storedVerified,
       });
     }
     setLoading(false);
   }, []);
 
-  const login = useCallback((token, username, email, roles, id) => {
+  const login = useCallback((token, username, email, roles, id, emailVerified) => {
     localStorage.setItem('authToken', token);
     localStorage.setItem('userId', id);
     localStorage.setItem('username', username);
     localStorage.setItem('userEmail', email);
     localStorage.setItem('userRoles', JSON.stringify(roles));
+    localStorage.setItem('emailVerified', String(!!emailVerified));
     setToken(token);
-    setUser({ id, username, email, roles });
+    setUser({ id, username, email, roles, emailVerified: !!emailVerified });
   }, []);
 
   const logout = useCallback(async () => {
@@ -52,8 +55,14 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem('username');
     localStorage.removeItem('userEmail');
     localStorage.removeItem('userRoles');
+    localStorage.removeItem('emailVerified');
     setToken(null);
     setUser(null);
+  }, []);
+
+  const refreshVerified = useCallback(() => {
+    setUser((prev) => (prev ? { ...prev, emailVerified: true } : prev));
+    localStorage.setItem('emailVerified', 'true');
   }, []);
 
   const isAuthenticated = !!token && !!user;
@@ -65,6 +74,7 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated,
     login,
     logout,
+    refreshVerified,
   };
 
   return (

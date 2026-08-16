@@ -29,7 +29,7 @@ public class UserLikeController {
     }
 
     @Operation(summary = "Toggle like on a video (USER/ADMIN only)")
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or (hasAuthority('USER') and @verificationSecurityService.isVerified(authentication))")
     @PostMapping("/{videoId}")
     public ResponseEntity<APIResponse> toggleLike(
             @PathVariable Long videoId,
@@ -45,7 +45,7 @@ public class UserLikeController {
     }
 
     @Operation(summary = "Check if user has liked a video")
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
     @GetMapping("/{videoId}/check")
     public ResponseEntity<Boolean> hasLiked(
             @PathVariable Long videoId,
@@ -58,7 +58,7 @@ public class UserLikeController {
     }
 
     @Operation(summary = "Get user's liked videos")
-    @PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
     @GetMapping("/my-likes")
     public ResponseEntity<List<VideoDTO>> getMyLikedVideos(Authentication authentication) {
         String username = authentication.getName();

@@ -62,6 +62,12 @@ const Header = () => {
           <span className={`hamburger-line ${menuOpen ? 'open' : ''}`} />
         </button>
       </div>
+      {isAuthenticated && user && user.emailVerified === false && (
+        <div className="verify-banner">
+          <span>⚠️ You have limited access until you verify your email.</span>
+          <Link to="/verify" className="btn btn-sm btn-primary">Verify now</Link>
+        </div>
+      )}
     </header>
   );
 };

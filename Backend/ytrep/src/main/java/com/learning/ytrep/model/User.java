@@ -65,6 +65,8 @@ public class User {
 
     private boolean accountLocked = false;
 
+    private boolean emailVerified = false;
+
     private int failedLoginAttempts = 0;
 
     private LocalDateTime lockTime;

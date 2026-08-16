@@ -65,6 +65,7 @@ public class DataInitializer implements CommandLineRunner {
             admin.setEmail(adminEmail);
             admin.setPassword(passwordEncoder.encode(adminPassword));
             admin.setCreatedAt(LocalDateTime.now());
+            admin.setEmailVerified(true);
 
             Set<Role> roles = new HashSet<>();
             Role adminRole = roleRepository.findByAppRole(AppRole.ADMIN)

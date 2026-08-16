@@ -376,6 +376,17 @@ img {
   width: 100%;
 }
 
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
 .btn-cancel {
   background: rgba(244, 67, 54, 0.06);
   color: var(--error);
@@ -664,6 +675,33 @@ img {
   color: var(--success);
   border: 1px solid rgba(76, 175, 80, 0.2);
   box-shadow: 0 0 15px rgba(76, 175, 80, 0.05);
+}
+
+.message.info {
+  background: rgba(255, 68, 68, 0.08);
+  color: var(--text-secondary);
+  border: 1px solid rgba(255, 68, 68, 0.2);
+  box-shadow: 0 0 15px rgba(255, 68, 68, 0.05);
+  margin-bottom: 14px;
+}
+
+.verify-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: rgba(255, 68, 68, 0.1);
+  color: var(--text-primary);
+  border-bottom: 1px solid rgba(255, 68, 68, 0.25);
+  font-size: 0.9rem;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.btn-sm {
+  padding: 6px 14px;
+  font-size: 0.85rem;
 }
 
 /* ============================================
